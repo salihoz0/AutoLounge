@@ -1,0 +1,20 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+    <!-- Sleek Cockpit Tile Background -->
+    <path
+        android:fillColor="#14151A"
+        android:pathData="M24,10 h48 a14,14 0 0 1 14,14 v48 a14,14 0 0 1 -14,14 h-48 a14,14 0 0 1 -14,-14 v-48 a14,14 0 0 1 14,-14 z"/>
+    <path
+        android:strokeColor="#262832"
+        android:strokeWidth="1.2"
+        android:fillColor="#00000000"
+        android:pathData="M24,10 h48 a14,14 0 0 1 14,14 v48 a14,14 0 0 1 -14,14 h-48 a14,14 0 0 1 -14,-14 v-48 a14,14 0 0 1 14,-14 z"/>
+    
+    <!-- Proportional Emerald Globe (radius 14 centered at 48,48) -->
+    <path
+        android:fillColor="#10B981"
+        android:pathData="M48,34 C40.27,34 34,40.27 34,48 C34,55.73 40.27,62 48,62 C55.73,62 62,55.73 62,48 C62,40.27 55.73,34 48,34 Z M46.6,59.13 C41.77,58.51 37.98,54.79 36.95,49.96 L41,52.2 L41,53.6 C41,55.14 42.26,56.4 43.8,56.4 L43.8,59.13 Z M56.26,55.56 C55.14,53.95 53.18,52.9 50.8,52.9 L49.4,52.9 L49.4,48.7 C49.4,47.93 48.77,47.3 48,47.3 L42.4,47.3 L42.4,44.5 L45.2,44.5 C45.97,44.5 46.6,43.87 46.6,43.1 L46.6,40.3 L49.4,40.3 C50.94,40.3 52.2,39.04 52.2,37.5 L52.2,36.94 C56.26,38.55 59.2,42.96 59.2,48 C59.2,50.94 58.08,53.6 56.26,55.56 Z"/>
+</vector>

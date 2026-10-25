@@ -1,0 +1,23 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+    <!-- Sleek Cockpit Tile Background -->
+    <path
+        android:fillColor="#14151A"
+        android:pathData="M24,10 h48 a14,14 0 0 1 14,14 v48 a14,14 0 0 1 -14,14 h-48 a14,14 0 0 1 -14,-14 v-48 a14,14 0 0 1 14,-14 z"/>
+    <path
+        android:strokeColor="#262832"
+        android:strokeWidth="1.2"
+        android:fillColor="#00000000"
+        android:pathData="M24,10 h48 a14,14 0 0 1 14,14 v48 a14,14 0 0 1 -14,14 h-48 a14,14 0 0 1 -14,-14 v-48 a14,14 0 0 1 14,-14 z"/>
+    
+    <!-- Delicate, smaller Gemini Sparkle centered (radius 15) -->
+    <path
+        android:fillColor="#38BDF8"
+        android:pathData="M48,32 L51.5,43.5 L63,48 L51.5,52.5 L48,64 L44.5,52.5 L33,48 L44.5,43.5 Z"/>
+    <path
+        android:fillColor="#818CF8"
+        android:pathData="M60,33 L61.8,37.8 L66,39.5 L61.8,41.2 L60,46 L58.2,41.2 L54,39.5 L58.2,37.8 Z"/>
+</vector>

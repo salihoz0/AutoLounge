@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGauge" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E121B"/>
+      <stop offset="100%" stop-color="#05070B"/>
+    </linearGradient>
+    <!-- Left-to-Right Power Gradient (from bottom-left cyan to top-right emerald) -->
+    <linearGradient id="activeArcL2R" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="50%" stop-color="#34D399"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+    <linearGradient id="playGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Luxury Dark Squircle Base -->
+  <rect x="16" y="16" width="480" height="480" rx="116" fill="url(#bgGauge)" stroke="#1C2333" stroke-width="4"/>
+
+  <!-- Inactive Base Tachometer Arc (270 degrees sweep, dark titanium) -->
+  <path d="M 157 355 A 140 140 0 1 1 355 355" fill="none" stroke="#1E2738" stroke-width="26" stroke-linecap="round"/>
+
+  <!-- Active Power / Speed Segment (Sweeps Clockwise SOLDAN SAĞA: 135 deg to 335 deg) -->
+  <path d="M 157 355 A 140 140 0 1 1 383 197" fill="none" stroke="url(#activeArcL2R)" stroke-width="26" stroke-linecap="round"/>
+
+  <!-- Active Peak Indicator Bead at 383, 197 -->
+  <circle cx="383" cy="197" r="7" fill="#FFFFFF"/>
+
+  <!-- Tachometer Gauge Ticks -->
+  <!-- Left Tick (9 o'clock, active cyan) -->
+  <line x1="130" y1="256" x2="148" y2="256" stroke="#38BDF8" stroke-width="6" stroke-linecap="round"/>
+  <!-- Top Center Tick (12 o'clock, active emerald) -->
+  <line x1="256" y1="130" x2="256" y2="148" stroke="#34D399" stroke-width="6" stroke-linecap="round"/>
+  <!-- Right Tick (3 o'clock, inactive dark slate) -->
+  <line x1="364" y1="256" x2="382" y2="256" stroke="#475569" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Center Hub Glass Disc -->
+  <circle cx="256" cy="256" r="82" fill="#121824" stroke="#2B364D" stroke-width="3"/>
+
+  <!-- Centered Floating Play Core (Media / Lounge) -->
+  <path d="M 240 216 C 240 208 249 203 256 207 L 302 247 C 308 251 308 261 302 265 L 256 305 C 249 309 240 304 240 296 Z" fill="url(#playGrad)"/>
+</svg>

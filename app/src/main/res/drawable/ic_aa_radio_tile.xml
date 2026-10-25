@@ -1,0 +1,26 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+    <!-- Sleek Cockpit Tile Background -->
+    <path
+        android:fillColor="#16171C"
+        android:pathData="M20,6 h56 a14,14 0 0 1 14,14 v56 a14,14 0 0 1 -14,14 h-56 a14,14 0 0 1 -14,-14 v-56 a14,14 0 0 1 14,-14 z"/>
+    <path
+        android:strokeColor="#2E323D"
+        android:strokeWidth="1.5"
+        android:fillColor="#00000000"
+        android:pathData="M20,6 h56 a14,14 0 0 1 14,14 v56 a14,14 0 0 1 -14,14 h-56 a14,14 0 0 1 -14,-14 v-56 a14,14 0 0 1 14,-14 z"/>
+    
+    <!-- Broadcast / Radio Tower Icon in Ruby Red / Coral -->
+    <path
+        android:fillColor="#F43F5E"
+        android:pathData="M48,42 C44.7,42 42,44.7 42,48 C42,51.3 44.7,54 48,54 C51.3,54 54,51.3 54,48 C54,44.7 51.3,42 48,42 Z"/>
+    <path
+        android:fillColor="#F43F5E"
+        android:pathData="M48,34 C40.3,34 34,40.3 34,48 C34,51.8 35.6,55.3 38.1,57.9 L41,55 C39.1,53.2 38,50.7 38,48 C38,42.5 42.5,38 48,38 C53.5,38 58,42.5 58,48 C58,50.7 56.9,53.2 55,55 L57.9,57.9 C60.4,55.3 62,51.8 62,48 C62,40.3 55.7,34 48,34 Z"/>
+    <path
+        android:fillColor="#F43F5E"
+        android:pathData="M48,26 C35.8,26 26,35.8 26,48 C26,54.1 28.5,59.6 32.5,63.5 L35.3,60.7 C32,57.4 30,52.9 30,48 C30,38.1 38.1,30 48,30 C57.9,30 66,38.1 66,48 C66,52.9 64,57.4 60.7,60.7 L63.5,63.5 C67.5,59.6 70,54.1 70,48 C70,35.8 60.2,26 48,26 Z"/>
+</vector>

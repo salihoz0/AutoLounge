@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; }
+  body {
+    width: 1280px; height: 720px;
+    background: #080A0F;
+    color: #F1F5F9;
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+  }
+  .bg-glow {
+    position: absolute;
+    width: 1280px; height: 720px;
+    background: radial-gradient(circle at 50% -10%, #151E2E 0%, #090C12 60%, #05060A 100%);
+    z-index: 0;
+  }
+  .container {
+    position: relative;
+    z-index: 1;
+    width: 1280px; height: 720px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 20px 28px;
+  }
+  /* Top Bar */
+  .top-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+    background: rgba(18, 24, 36, 0.85);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(46, 56, 74, 0.7);
+    border-radius: 20px;
+    padding: 0 18px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  }
+  .back-btn {
+    display: flex; align-items: center; gap: 8px;
+    background: #19202E;
+    border: 1px solid #2B374A;
+    border-radius: 12px;
+    padding: 9px 16px;
+    color: #E2E8F0;
+    font-size: 14px; font-weight: 600;
+  }
+  .center-brand {
+    display: flex; align-items: center; gap: 14px;
+  }
+  .logo-img {
+    width: 36px; height: 36px;
+  }
+  .brand-title {
+    font-size: 18px; font-weight: 700; letter-spacing: -0.3px; color: #FFFFFF;
+  }
+  .park-badge {
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    border-radius: 20px;
+    padding: 5px 12px;
+    color: #10B981;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+  }
+  .park-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: #10B981;
+    box-shadow: 0 0 10px #10B981;
+  }
+  .quick-tabs {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .pill-tab {
+    display: flex; align-items: center; gap: 8px;
+    background: #141824;
+    border: 1px solid #242C3D;
+    border-radius: 14px;
+    padding: 8px 16px;
+    font-size: 13px; font-weight: 600; color: #CBD5E1;
+  }
+  .pill-tab.active {
+    background: rgba(56, 189, 248, 0.12);
+    border-color: rgba(56, 189, 248, 0.45);
+    color: #38BDF8;
+  }
+
+  /* Main Grid */
+  .content-grid {
+    display: grid;
+    grid-template-columns: 2.1fr 1fr;
+    gap: 22px;
+    flex: 1;
+    margin: 18px 0;
+  }
+  .section-title {
+    font-size: 13px; font-weight: 700; color: #8292A6; text-transform: uppercase; letter-spacing: 0.9px;
+    margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 14px;
+    height: 100%;
+  }
+  .media-card {
+    background: rgba(18, 23, 34, 0.85);
+    border: 1px solid #222C3E;
+    border-radius: 18px;
+    padding: 18px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative; overflow: hidden;
+  }
+  .media-card::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.7), transparent);
+  }
+  .media-card-top {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .platform-icon {
+    width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    font-size: 19px; font-weight: 800; color: #fff;
+  }
+  .live-pill {
+    font-size: 10px; font-weight: 700; padding: 4px 9px; border-radius: 8px;
+    background: rgba(56, 189, 248, 0.15); color: #38BDF8; border: 1px solid rgba(56,189,248,0.3);
+  }
+  .media-name { font-size: 17px; font-weight: 700; color: #FFFFFF; }
+  .media-sub { font-size: 12px; color: #64748B; margin-top: 3px; }
+
+  /* Right Panel: Live Channels */
+  .channels-panel {
+    background: rgba(16, 21, 31, 0.85);
+    border: 1px solid #202738;
+    border-radius: 20px;
+    padding: 18px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    height: 100%;
+  }
+  .channel-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 14px;
+    background: #111622;
+    border: 1px solid #1C2332;
+    border-radius: 14px;
+  }
+  .channel-row.active-ch {
+    border-color: rgba(16, 185, 129, 0.4);
+    background: rgba(16, 185, 129, 0.08);
+  }
+  .channel-info {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .ch-logo {
+    width: 32px; height: 32px; border-radius: 8px; background: #242E42;
+    display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800;
+  }
+  .ch-name { font-size: 14px; font-weight: 600; color: #E2E8F0; }
+  .ch-cat { font-size: 11px; color: #64748B; margin-top: 2px; }
+  .play-mini {
+    width: 28px; height: 28px; border-radius: 50%; background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.4); color: #10B981;
+    display: flex; align-items: center; justify-content: center; font-size: 11px;
+  }
+
+  /* Bottom HUD */
+  .bottom-hud {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 48px;
+    background: rgba(14, 18, 27, 0.85);
+    border: 1px solid #1E2536;
+    border-radius: 16px;
+    padding: 0 20px;
+    font-size: 12px; color: #94A3B8;
+  }
+  .hud-left { display: flex; align-items: center; gap: 10px; }
+  .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: #38BDF8; box-shadow: 0 0 10px #38BDF8; }
+  .hud-right { display: flex; align-items: center; gap: 20px; }
+</style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="container">
+    <!-- Top Cockpit Bar -->
+    <div class="top-bar">
+      <div class="back-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E2E8F0" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+        Cockpit
+      </div>
+
+      <div class="center-brand">
+        <img class="logo-img" src="file:///home/slhoz/Belgeler/Github/AutoLounge/website/assets/logo.png" />
+        <span class="brand-title">AutoLounge</span>
+        <div class="park-badge">
+          <div class="park-dot"></div>
+          PARK MODE
+        </div>
+      </div>
+
+      <div class="quick-tabs">
+        <div class="pill-tab active">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12c0 2 .2 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.3-1.9.5-3.8.5-5.8 0-2-.2-3.9-.5-5.8z"/><polygon fill="#FFFFFF" points="9.6,15.6 15.8,12 9.6,8.4"/></svg>
+          YouTube
+        </div>
+        <div class="pill-tab">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#CBD5E1" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>
+          Live TV
+        </div>
+        <div class="pill-tab">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#CBD5E1" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+          Web Browser
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="content-grid">
+      <!-- Media Cards Grid -->
+      <div style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div class="section-title">
+          <span>Entertainment & Streaming Lounge</span>
+          <span style="font-size: 11px; color: #38BDF8; font-weight: 600;">12 Major Platforms Integrated</span>
+        </div>
+        <div class="cards-grid">
+          <div class="media-card">
+            <div class="media-card-top">
+              <div class="platform-icon" style="background: #CC0000;">▶</div>
+              <div class="live-pill">4K HDR</div>
+            </div>
+            <div>
+              <div class="media-name">YouTube</div>
+              <div class="media-sub">Videos, Music & Podcasts</div>
+            </div>
+          </div>
+
+          <div class="media-card">
+            <div class="media-card-top">
+              <div class="platform-icon" style="background: #00A650;">tabii</div>
+              <div class="live-pill">FREE LIVE</div>
+            </div>
+            <div>
+              <div class="media-name">TRT tabii</div>
+              <div class="media-sub">Exclusive Series & Live Matches</div>
+            </div>
+          </div>
+
+          <div class="media-card">
+            <div class="media-card-top">
+              <div class="platform-icon" style="background: #E50914;">N</div>
+              <div class="live-pill">Cinema</div>
+            </div>
+            <div>
+              <div class="media-name">Netflix</div>
+              <div class="media-sub">Movies, Originals & Shows</div>
+            </div>
+          </div>
+
+          <div class="media-card">
+            <div class="media-card-top">
+              <div class="platform-icon" style="background: #002D62;">MAX</div>
+              <div class="live-pill">HBO</div>
+            </div>
+            <div>
+              <div class="media-name">Max</div>
+              <div class="media-sub">Blockbusters & Premium Sports</div>
+            </div>
+          </div>
+
+          <div class="media-card">
+            <div class="media-card-top">
+              <div class="platform-icon" style="background: #113CCF;">D+</div>
+              <div class="live-pill">Disney</div>
+            </div>
+            <div>
+              <div class="media-name">Disney+</div>
+              <div class="media-sub">Pixar, Marvel, Star Wars & NatGeo</div>
+            </div>
+          </div>
+
+          <div class="media-card">
+            <div class="media-card-top">
+              <div class="platform-icon" style="background: #FFD200; color: #000;">X</div>
+              <div class="live-pill">Sports</div>
+            </div>
+            <div>
+              <div class="media-name">Exxen</div>
+              <div class="media-sub">UEFA Champions League Live</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Channels Panel -->
+      <div style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div class="section-title">
+          <span>Live In-Car TV Channels</span>
+          <span style="font-size: 11px; color: #10B981; font-weight: 600;">100+ Channels</span>
+        </div>
+        <div class="channels-panel">
+          <div class="channel-row active-ch">
+            <div class="channel-info">
+              <div class="ch-logo" style="background: #B91C1C;">TRT1</div>
+              <div>
+                <div class="ch-name">TRT 1 HD</div>
+                <div class="ch-cat">National • 1080p 60fps • Live</div>
+              </div>
+            </div>
+            <div class="play-mini">▶</div>
+          </div>
+
+          <div class="channel-row">
+            <div class="channel-info">
+              <div class="ch-logo" style="background: #1E3A8A;">BBC</div>
+              <div>
+                <div class="ch-name">BBC World News</div>
+                <div class="ch-cat">Global Broadcast • Live</div>
+              </div>
+            </div>
+            <div class="play-mini">▶</div>
+          </div>
+
+          <div class="channel-row">
+            <div class="channel-info">
+              <div class="ch-logo" style="background: #0F766E;">EURO</div>
+              <div>
+                <div class="ch-name">Eurosport 1</div>
+                <div class="ch-cat">Motorsport & Live Racing</div>
+              </div>
+            </div>
+            <div class="play-mini">▶</div>
+          </div>
+
+          <div class="channel-row">
+            <div class="channel-info">
+              <div class="ch-logo" style="background: #4338CA;">SKY</div>
+              <div>
+                <div class="ch-name">Sky Sports F1</div>
+                <div class="ch-cat">Formula 1 Cockpit Feed</div>
+              </div>
+            </div>
+            <div class="play-mini">▶</div>
+          </div>
+
+          <div class="channel-row">
+            <div class="channel-info">
+              <div class="ch-logo" style="background: #1E293B;">CNN</div>
+              <div>
+                <div class="ch-name">CNN International</div>
+                <div class="ch-cat">World News & Finance</div>
+              </div>
+            </div>
+            <div class="play-mini">▶</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom HUD -->
+    <div class="bottom-hud">
+      <div class="hud-left">
+        <div class="pulse-dot"></div>
+        <span>Phone Synced • <strong>In-Car Audio High-Fidelity</strong> (ExoPlayer Cellular 50s Buffer Active)</span>
+      </div>
+      <div class="hud-right">
+        <span>Gear: <strong style="color:#10B981;">PARK [P]</strong></span>
+        <span>Speed: <strong>0 km/h</strong></span>
+        <span>5G LTE • 98% Battery</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

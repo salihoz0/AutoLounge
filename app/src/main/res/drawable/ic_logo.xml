@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Inactive Base Tachometer Arc (270 degrees sweep, dark titanium) -->
+    <path
+        android:strokeColor="#1E2738"
+        android:strokeWidth="5.5"
+        android:strokeLineCap="round"
+        android:pathData="M 33.14,74.86 A 29.5,29.5 0 1,1 74.86,74.86" />
+
+    <!-- Active Power Arc (Sweeping Clockwise Left-to-Right: 135 deg to 335 deg) -->
+    <path
+        android:strokeWidth="5.5"
+        android:strokeLineCap="round"
+        android:pathData="M 33.14,74.86 A 29.5,29.5 0 1,1 80.74,41.53">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:startX="30"
+                android:startY="75"
+                android:endX="82"
+                android:endY="40"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#38BDF8" />
+                <item android:offset="0.5" android:color="#34D399" />
+                <item android:offset="1.0" android:color="#10B981" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Peak Active Power Indicator Bead -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 80.74,40.03 A 1.5,1.5 0 1,1 80.73,40.03 Z" />
+
+    <!-- Left Tick (active cyan) -->
+    <path
+        android:strokeColor="#38BDF8"
+        android:strokeWidth="1.3"
+        android:strokeLineCap="round"
+        android:pathData="M 27.5,54 L 31.5,54" />
+
+    <!-- Top Tick (active emerald) -->
+    <path
+        android:strokeColor="#34D399"
+        android:strokeWidth="1.3"
+        android:strokeLineCap="round"
+        android:pathData="M 54,27.5 L 54,31.5" />
+
+    <!-- Right Tick (inactive slate) -->
+    <path
+        android:strokeColor="#475569"
+        android:strokeWidth="1.3"
+        android:strokeLineCap="round"
+        android:pathData="M 76.5,54 L 80.5,54" />
+
+    <!-- Center Hub Glass Disc -->
+    <path
+        android:fillColor="#121824"
+        android:strokeColor="#2B364D"
+        android:strokeWidth="0.8"
+        android:pathData="M 37,54 A 17,17 0 1,0 71,54 A 17,17 0 1,0 37,54 Z" />
+
+    <!-- Centered Floating Play Core -->
+    <path
+        android:pathData="M 50.5,46.5 C 50.5,44.8 52.4,43.7 53.9,44.6 L 63.5,51.8 C 64.8,52.7 64.8,54.8 63.5,55.7 L 53.9,62.9 C 52.4,63.8 50.5,62.7 50.5,61.0 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="50"
+                android:startY="45"
+                android:endX="65"
+                android:endY="60"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#34D399" />
+                <item android:offset="1.0" android:color="#059669" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+</vector>

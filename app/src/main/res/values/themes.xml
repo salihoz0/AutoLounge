@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.AutoLounge" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:fontFamily">@font/app_font</item>
+        <item name="android:windowBackground">#000000</item>
+    </style>
+</resources>

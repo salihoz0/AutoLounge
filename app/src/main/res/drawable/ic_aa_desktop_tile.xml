@@ -1,0 +1,20 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+    <!-- Sleek Cockpit Tile Background -->
+    <path
+        android:fillColor="#16171C"
+        android:pathData="M20,6 h56 a14,14 0 0 1 14,14 v56 a14,14 0 0 1 -14,14 h-56 a14,14 0 0 1 -14,-14 v-56 a14,14 0 0 1 14,-14 z"/>
+    <path
+        android:strokeColor="#2E323D"
+        android:strokeWidth="1.5"
+        android:fillColor="#00000000"
+        android:pathData="M20,6 h56 a14,14 0 0 1 14,14 v56 a14,14 0 0 1 -14,14 h-56 a14,14 0 0 1 -14,-14 v-56 a14,14 0 0 1 14,-14 z"/>
+    
+    <!-- Desktop Grid 4 rounded squares in Platinum White -->
+    <path
+        android:fillColor="#E2E8F0"
+        android:pathData="M30,30 h14 v14 h-14 z M52,30 h14 v14 h-14 z M30,52 h14 v14 h-14 z M52,52 h14 v14 h-14 z"/>
+</vector>

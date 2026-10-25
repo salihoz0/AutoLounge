@@ -1,0 +1,23 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+    <!-- Sleek Cockpit Tile Background -->
+    <path
+        android:fillColor="#14151A"
+        android:pathData="M24,10 h48 a14,14 0 0 1 14,14 v48 a14,14 0 0 1 -14,14 h-48 a14,14 0 0 1 -14,-14 v-48 a14,14 0 0 1 14,-14 z"/>
+    <path
+        android:strokeColor="#262832"
+        android:strokeWidth="1.2"
+        android:fillColor="#00000000"
+        android:pathData="M24,10 h48 a14,14 0 0 1 14,14 v48 a14,14 0 0 1 -14,14 h-48 a14,14 0 0 1 -14,-14 v-48 a14,14 0 0 1 14,-14 z"/>
+    
+    <!-- Proportional TV Screen Icon in Ice Blue (width 26, height 20) -->
+    <path
+        android:fillColor="#38BDF8"
+        android:pathData="M61,36 H35 C33.3,36 32,37.3 32,39 V53 C32,54.7 33.3,56 35,56 H44 V59 H41 C40.4,59 40,59.4 40,60 C40,60.6 40.4,61 41,61 H55 C55.6,61 56,60.6 56,60 C56,59.4 55.6,59 55,59 H52 V56 H61 C62.7,56 64,54.7 64,53 V39 C64,37.3 62.7,36 61,36 Z M61,53 H35 V39 H61 V53 Z"/>
+    <path
+        android:fillColor="#38BDF8"
+        android:pathData="M45,43 L52,46 L45,49 Z"/>
+</vector>

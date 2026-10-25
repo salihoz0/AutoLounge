@@ -1,0 +1,26 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+    <!-- Sleek Cockpit Tile Background -->
+    <path
+        android:fillColor="#14151A"
+        android:pathData="M24,10 h48 a14,14 0 0 1 14,14 v48 a14,14 0 0 1 -14,14 h-48 a14,14 0 0 1 -14,-14 v-48 a14,14 0 0 1 14,-14 z"/>
+    <path
+        android:strokeColor="#262832"
+        android:strokeWidth="1.2"
+        android:fillColor="#00000000"
+        android:pathData="M24,10 h48 a14,14 0 0 1 14,14 v48 a14,14 0 0 1 -14,14 h-48 a14,14 0 0 1 -14,-14 v-48 a14,14 0 0 1 14,-14 z"/>
+    
+    <!-- Proportional Gallery Icon in Warm Amber -->
+    <path
+        android:fillColor="#F59E0B"
+        android:pathData="M61,35 H35 C33.3,35 32,36.3 32,38 V58 C32,59.7 33.3,61 35,61 H61 C62.7,61 64,59.7 64,58 V38 C64,36.3 62.7,35 61,35 Z M61,58 H35 V38 H61 V58 Z"/>
+    <path
+        android:fillColor="#F59E0B"
+        android:pathData="M39,52 L44,45 L48,50 L53,43 L58,52 Z"/>
+    <path
+        android:fillColor="#F59E0B"
+        android:pathData="M40,42 A3,3 0 1,1 40,36 A3,3 0 1,1 40,42 Z"/>
+</vector>
