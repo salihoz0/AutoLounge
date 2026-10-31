@@ -107,7 +107,7 @@ set "TARGET_APK=%~dp0AutoLounge.apk"
 powershell -NoProfile -Command ^
     "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; " ^
     "try { " ^
-    "  $rel = Invoke-RestMethod -Uri 'https://api.github.com/repos/autolounge/AutoLounge-Releases/releases/latest'; " ^
+    "  $rel = Invoke-RestMethod -Uri 'https://api.github.com/repos/salihoz0/AutoLounge/releases/latest'; " ^
     "  $asset = $rel.assets | Where-Object { $_.name -like '*.apk' } | Select-Object -First 1; " ^
     "  if ($asset) { Invoke-WebRequest -Uri $asset.browser_download_url -OutFile '%TARGET_APK%' } " ^
     "} catch { exit 1 }"

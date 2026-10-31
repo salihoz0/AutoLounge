@@ -4,7 +4,7 @@
 # ==============================================================================
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" 2>/dev/null && pwd || pwd)"
 TOOLS_DIR="${SCRIPT_DIR}/tools"
 
 GREEN="\033[1;32m"
@@ -40,7 +40,7 @@ else
     echo -e "${YELLOW}[!] 'adb' command was not found on your system.${RESET}"
     echo -e "    Google Platform Tools (~18 MB) is required to proceed with installation.\n"
     
-    read -rp "Would you like to automatically download Google Platform Tools? [Y/n]: " choice
+    read -rp "Would you like to automatically download Google Platform Tools? [Y/n]: " choice < /dev/tty || choice="Y"
     choice="${choice:-Y}"
     if [[ ! "$choice" =~ ^[YyEe]$ ]]; then
         echo -e "${RED}[X] Cannot proceed without ADB. Aborting.${RESET}"
@@ -80,7 +80,7 @@ if [[ ${#apk_files[@]} -gt 0 ]]; then
     echo -e "${GREEN}[✓] APK file found: ${TARGET_APK}${RESET}"
 else
     echo -e "${YELLOW}[!] No AutoLounge APK file found in directory.${RESET}"
-    read -rp "Download the latest APK from GitHub Releases? [Y/n]: " choice_apk
+    read -rp "Download the latest APK from GitHub Releases? [Y/n]: " choice_apk < /dev/tty || choice_apk="Y"
     choice_apk="${choice_apk:-Y}"
     if [[ ! "$choice_apk" =~ ^[YyEe]$ ]]; then
         echo -e "${RED}[X] Please place AutoLounge.apk in this directory and run again.${RESET}"
@@ -89,7 +89,7 @@ else
 
     TARGET_APK="${SCRIPT_DIR}/AutoLounge.apk"
     echo -e "${CYAN}[*] Downloading latest APK from GitHub...${RESET}"
-    API_URL="https://api.github.com/repos/autolounge/AutoLounge-Releases/releases/latest"
+    API_URL="https://api.github.com/repos/salihoz0/AutoLounge/releases/latest"
     DOWNLOAD_URL="$(curl -fsSL "${API_URL}" | grep "browser_download_url.*\.apk" | head -n1 | cut -d '"' -f 4 || true)"
     
     if [[ -n "${DOWNLOAD_URL}" ]]; then
@@ -133,7 +133,7 @@ while true; do
         fi
     fi
     
-    read -rp "Press Enter to retry (or CTRL+C to quit): " _
+    read -rp "Press Enter to retry (or CTRL+C to quit): " _ < /dev/tty || true
 done
 
 # 5. INSTALL WITH GOOGLE PLAY VERIFICATION
