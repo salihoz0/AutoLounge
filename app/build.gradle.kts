@@ -14,8 +14,8 @@ android {
         applicationId = "com.autolounge.park"
         minSdk = 29
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0.0-internal"
+        versionCode = 2
+        versionName = "1.0.1"
         buildConfigField("String", "SUPPORT_EMAIL", "\"destek@autolounge.app\"")
     }
     signingConfigs {
