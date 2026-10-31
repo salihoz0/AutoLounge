@@ -92,9 +92,15 @@ cd AutoLounge
 
 If you already have ADB installed and downloaded `AutoLounge.apk`:
 ```bash
-adb install -i "com.android.vending" -r AutoLounge.apk
+adb push AutoLounge.apk /sdcard/Download/
+ID=$(adb shell "content query --uri content://media/external/file --projection _id --where \"_data='/storage/emulated/0/Download/AutoLounge.apk'\"" | sed -n 's/.*_id=\([0-9]*\).*/\1/p')
+adb shell am start -a android.intent.action.INSTALL_PACKAGE -d content://media/external/file/$ID \
+  -t application/vnd.android.package-archive -f 1 \
+  --es android.intent.extra.INSTALLER_PACKAGE_NAME com.android.vending \
+  --es android.intent.extra.REFERRER_NAME android-app://com.android.vending \
+  --ei android.intent.extra.INSTALL_REASON 1 --ez android.intent.extra.NOT_UNKNOWN_SOURCE true
 ```
-*(The `-i "com.android.vending"` flag marks the app as installed via Google Play Store, which enables full-screen projection on Android Auto without root).*
+*(Tap **Install / Update** on the phone. A plain `adb install -i com.android.vending` is not enough: the car also checks who started the install. This opens the system installer with Google Play recorded as the source. `install.sh` / `install.bat` do the same.)*
 
 ---
 
@@ -198,9 +204,15 @@ cd AutoLounge
 
 Eğer bilgisayarınızda ADB kuruluysa ve `AutoLounge.apk` dosyasını indirdiyseniz:
 ```bash
-adb install -i "com.android.vending" -r AutoLounge.apk
+adb push AutoLounge.apk /sdcard/Download/
+ID=$(adb shell "content query --uri content://media/external/file --projection _id --where \"_data='/storage/emulated/0/Download/AutoLounge.apk'\"" | sed -n 's/.*_id=\([0-9]*\).*/\1/p')
+adb shell am start -a android.intent.action.INSTALL_PACKAGE -d content://media/external/file/$ID \
+  -t application/vnd.android.package-archive -f 1 \
+  --es android.intent.extra.INSTALLER_PACKAGE_NAME com.android.vending \
+  --es android.intent.extra.REFERRER_NAME android-app://com.android.vending \
+  --ei android.intent.extra.INSTALL_REASON 1 --ez android.intent.extra.NOT_UNKNOWN_SOURCE true
 ```
-*(Buradaki `-i "com.android.vending"` parametresi uygulamayı Google Play Store'dan yüklenmiş olarak tanıtır ve araç ekranında video projeksiyon kilidini root gerekmeden kaldırır).*
+*(Telefonda **Yükle / Güncelle**'ye dokunun. Düz `adb install -i com.android.vending` yetmez: araç, kurulumu kimin başlattığına da bakar. Bu komutlar sistem kurulum ekranını Google Play kaynak olarak kayıtlı şekilde açar. `install.sh` / `install.bat` aynısını yapar.)*
 
 ---
 

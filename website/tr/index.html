@@ -145,7 +145,7 @@
       {
         "@type": "HowTo",
         "@id": "https://salihoz0.github.io/AutoLounge/tr/#howto",
-        "name": "Android sürümünüze göre kurulum rehberi",
+        "name": "Nasıl kurulur",
         "inLanguage": "tr",
         "step": [
           {
@@ -157,7 +157,7 @@
           {
             "@type": "HowToStep",
             "name": "APK'yı Kurun",
-            "text": "Android 15 ve üstü: AutoLounge APK'sını indirip normal şekilde kurun. Android 14: Google Play'den Shizuku'yu kurun ve Kablosuz hata ayıklama ile başlatın. KingInstaller'ın en güncel sürümünü (1.7 veya üstü) indirin. KingInstaller'da \"Shizuku Trick\" seçeneğini açın, ardından AutoLounge APK'sını kurun. Android 13 ve altı: AutoLounge APK'sını ve KingInstaller'ı indirin. KingInstaller'ı açın, \"Select file\" ile AutoLounge APK'sını seçin. \"Install as Google Play Store\" seçeneğiyle kurun.",
+            "text": "undefined: undefined Android 14 ve üstü: Google Play'den Shizuku'yu kurun ve Kablosuz hata ayıklama ile başlatın. KingInstaller'ın en güncel sürümünü (1.7 veya üstü) indirin. KingInstaller'da \"Shizuku Trick\" seçeneğini açın, ardından AutoLounge APK'sını kurun. Android 13 ve altı: AutoLounge APK'sını ve KingInstaller'ı indirin. KingInstaller'ı açın, \"Select file\" ile AutoLounge APK'sını seçin. \"Install as Google Play Store\" seçeneğiyle kurun.",
             "url": "https://salihoz0.github.io/AutoLounge/tr/#install-guide"
           },
           {
@@ -184,7 +184,7 @@
             "name": "Telefonuma root atmam gerekiyor mu?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Hayır. AutoLounge standart, root edilmemiş Android telefonlarda çalışır. Android 15 ve üstü normal kurulur; eski sürümlerde KingInstaller kullanılır (kurulum rehberine bakın)."
+              "text": "Hayır. AutoLounge standart, root edilmemiş Android telefonlarda çalışır. Yalnızca \"Google Play'den\" kurulmuş gibi yüklenmesi gerekir (kurulum rehberine bakın)."
             }
           },
           {
@@ -224,7 +224,7 @@
             "name": "Hangi Android sürümleri destekleniyor?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Android 15 ve üstü normal kurulur, yalnızca Android Auto'da \"Bilinmeyen kaynaklar\" gerekir. Android 14'te Shizuku ile KingInstaller'ın \"Shizuku Trick\" seçeneği kullanılır. Android 13 ve altında KingInstaller'ın \"Install as Google Play Store\" seçeneği kullanılır."
+              "text": "Android 10 ve üstü. \"Google Play'den\" kurulmuş gibi yükleyin: her sürümde bilgisayar betiğiyle, ya da telefonda Shizuku + KingInstaller (Android 14 ve üstü) veya yalnızca KingInstaller (Android 13 ve altı) ile."
             }
           },
           {
@@ -829,7 +829,7 @@
         <a class="step-box reveal" href="#install-guide">
           <div class="step-num">2</div>
           <h3 data-i18n="s2_title">APK'yı Kurun</h3>
-          <p data-i18n="s2_desc">Android 15 ve üstü: normal kurulum yeterli. Android 14 ve altı için KingInstaller gerekir. Adımlar aşağıda.</p>
+          <p data-i18n="s2_desc">APK'nın "Google Play'den" kurulmuş gibi görünmesi gerekir. En kolayı: bilgisayarda betik. Ya da telefonda Shizuku + KingInstaller. Adımlar aşağıda.</p>
           <span class="step-link" data-i18n="s2_link">Telefonuma uygun rehberi aç →</span>
         </a>
         <a class="step-box reveal" href="#help">
@@ -843,8 +843,8 @@
       <div class="install-guide reveal" id="install-guide">
         <div class="ig-head">
           <div>
-            <h3 data-i18n="ig_title">Android sürümünüze göre kurulum rehberi</h3>
-            <p class="ig-lead" data-i18n="ig_lead">Android 15 ve üstünde AutoLounge, tek bir Android Auto ayarıyla araç ekranında açılır. Daha eski sürümlerde uygulamanın "Google Play tarafından yüklendi" görünmesi gerekir (KingInstaller).</p>
+            <h3 data-i18n="ig_title">Nasıl kurulur</h3>
+            <p class="ig-lead" data-i18n="ig_lead">Android Auto, AutoLounge'u yalnızca "Google Play tarafından yüklenmiş" gibi göründüğünde araç ekranında gösterir. Düz APK kurulumu yetmez. Aşağıdan bir yöntem seçin.</p>
           </div>
         </div>
 
@@ -860,20 +860,12 @@
             <p class="w-hint" data-i18n="ig_ver_hint">Emin değil misiniz? Telefonda Ayarlar → Telefon hakkında → Android sürümü bölümüne bakın.</p>
 
             <div class="ig-tabs" role="tablist">
-              <button class="ig-tab active" data-ig="a15" role="tab" aria-selected="true" data-i18n="ig_tab_a15">Android 15 ve üstü</button>
-              <button class="ig-tab" data-ig="a14" role="tab" aria-selected="false" data-i18n="ig_tab_a14">Android 14</button>
+              <button class="ig-tab active" data-ig="adb" role="tab" aria-selected="true" data-i18n="ig_tab_adb">Bilgisayarla (en kolayı)</button>
+              <button class="ig-tab" data-ig="a14" role="tab" aria-selected="false" data-i18n="ig_tab_a14">Android 14 ve üstü</button>
               <button class="ig-tab" data-ig="old" role="tab" aria-selected="false" data-i18n="ig_tab_old">Android 13 ve altı</button>
-              <button class="ig-tab" data-ig="adb" role="tab" aria-selected="false" data-i18n="ig_tab_adb">Bilgisayarla (ADB)</button>
             </div>
             <div class="ig-detected" id="igDetected"><svg class="i"><use href="#i-check"/></svg><span data-i18n="ig_detected">Telefonunuza göre otomatik seçildi.</span></div>
 
-            <div class="ig-panel active" data-ig-panel="a15" role="tabpanel">
-              <ol class="num-list">
-                <li data-i18n="ig_a15_1">AutoLounge APK'sını indirip normal şekilde kurun.</li>
-                <li data-i18n="ig_a15_2">Android Auto'da "Bilinmeyen kaynaklar"ı açın (2. adım). Ek bir yükleyici gerekmez.</li>
-                <li data-i18n="ig_a15_3">AutoLounge araç park halindeyken araç ekranında görünür; araç hareket edince görüntü kapanır, ses devam eder.</li>
-              </ol>
-            </div>
 
             <div class="ig-panel" data-ig-panel="a14" role="tabpanel">
               <ol class="num-list">
@@ -899,15 +891,16 @@
               </div>
             </div>
 
-            <div class="ig-panel" data-ig-panel="adb" role="tabpanel">
+            <div class="ig-panel active" data-ig-panel="adb" role="tabpanel">
               <ol class="num-list">
                 <li data-i18n="ig_adb_1">Telefonda USB hata ayıklamayı açın ve bilgisayara bağlayın.</li>
-                <li data-i18n="ig_adb_2">APK'yı indirdiğiniz klasörde şu komutu çalıştırın:</li>
+                <li data-i18n="ig_adb_2">Projeden install.sh (macOS / Linux) veya install.bat (Windows) dosyasını indirip çalıştırın:</li>
               </ol>
-              <pre class="ig-code"><code>adb install -i "com.android.vending" -r AutoLounge.apk</code></pre>
+              <pre class="ig-code"><code>bash install.sh      # macOS / Linux
+install.bat          # Windows</code></pre>
               <ol class="num-list" start="3">
-                <li data-i18n="ig_adb_3">Ya da projedeki install.sh (macOS / Linux) veya install.bat (Windows) dosyasını çalıştırın.</li>
-                <li class="warn" data-i18n="ig_adb_4">Android 15 ve üstünde gerekmez. Eski sürümlerde çoğu telefonda çalışır, ama bazıları adb ile kurulumda Play damgasını yok sayar; araç ekranı tam ekran açılmazsa KingInstaller kullanın.</li>
+                <li data-i18n="ig_adb_3">Telefonda sistem kurulum ekranı açılınca Yükle / Güncelle'ye dokunun.</li>
+                <li class="warn" data-i18n="ig_adb_4">Düz "adb install" yetmez: araç bunu yok sayar. Betik, kaynağın Google Play görünmesi için sistem kurulum ekranını açar.</li>
               </ol>
               <div class="ig-links">
                 <a class="btn btn-ghost btn-sm" href="https://github.com/salihoz0/AutoLounge/blob/main/install.sh" target="_blank" rel="noopener">install.sh <svg class="i" style="width:14px;height:14px"><use href="#i-ext"/></svg></a>
@@ -957,7 +950,7 @@
       <div class="help-grid">
         <div class="help-card reveal">
           <h3><svg class="i"><use href="#i-alert"/></svg><span data-i18n="h1_q">Araç ekranında "Bu sürüş sırasında yeni mesaj gelmedi" yazıyor</span></h3>
-          <p data-i18n="h1_a">Android Auto uygulamaya henüz güvenmiyor. 2. adımı ("Bilinmeyen kaynaklar") kontrol edin; Android 14 ve altındaysanız KingInstaller ile kurduğunuzdan emin olun. Sonra telefonu yeniden bağlayın.</p>
+          <p data-i18n="h1_a">Android Auto uygulamaya henüz güvenmiyor. 2. adımı ("Bilinmeyen kaynaklar") kontrol edin ve uygulamayı "Google Play'den" kurulmuş gibi yüklediğinizden emin olun (bilgisayar betiği veya KingInstaller). Sonra telefonu yeniden bağlayın.</p>
         </div>
         <div class="help-card reveal">
           <h3><svg class="i"><use href="#i-alert"/></svg><span data-i18n="h2_q">AutoLounge aracın uygulama listesinde yok</span></h3>
@@ -1009,12 +1002,12 @@
         <p data-i18n="faq_sub">AutoLounge ve Android Auto uyumluluğu hakkında merak ettiğiniz her şey.</p>
       </div>
       <div class="faq-container">
-        <details class="faq-item"><summary data-i18n="q1">Telefonuma root atmam gerekiyor mu?</summary><div class="faq-answer" data-i18n="a1">Hayır. AutoLounge standart, root edilmemiş Android telefonlarda çalışır. Android 15 ve üstü normal kurulur; eski sürümlerde KingInstaller kullanılır (kurulum rehberine bakın).</div></details>
+        <details class="faq-item"><summary data-i18n="q1">Telefonuma root atmam gerekiyor mu?</summary><div class="faq-answer" data-i18n="a1">Hayır. AutoLounge standart, root edilmemiş Android telefonlarda çalışır. Yalnızca "Google Play'den" kurulmuş gibi yüklenmesi gerekir (kurulum rehberine bakın).</div></details>
         <details class="faq-item"><summary data-i18n="q5">AutoLounge ücretsiz mi?</summary><div class="faq-answer" data-i18n="a5">Evet. AutoLounge herhangi bir süre veya deneme sınırı olmadan %100 ücretsiz ve açık kaynaklıdır.</div></details>
         <details class="faq-item"><summary data-i18n="q2">Birden fazla telefonda kullanabilir miyim?</summary><div class="faq-answer" data-i18n="a2">Evet! AutoLounge tamamen açık kaynak ve ücretsiz olduğu için herhangi bir kısıtlama olmadan dilediğiniz kadar telefona kurabilirsiniz.</div></details>
         <details class="faq-item"><summary data-i18n="q3">Aracımın garantisi bozulur mu?</summary><div class="faq-answer" data-i18n="a3">Asla bozulmaz. AutoLounge tamamen telefonunuzda çalışır ve standart Android Auto protokolüyle görüntü aktarır; aracın beynine (ECU/OBD) hiçbir müdahalede bulunmaz.</div></details>
         <details class="faq-item"><summary data-i18n="q4">Tünellerde hücresel tamponlama nasıl çalışır?</summary><div class="faq-answer" data-i18n="a4">AutoLounge, ExoPlayer hücresel tamponlama algoritmasıyla yayını 50 saniye önceden hafızaya alır. Tünele girdiğinizde veya şebeke koptuğunda yayın donmadan devam eder.</div></details>
-        <details class="faq-item"><summary data-i18n="q6">Hangi Android sürümleri destekleniyor?</summary><div class="faq-answer" data-i18n="a6">Android 15 ve üstü normal kurulur, yalnızca Android Auto'da "Bilinmeyen kaynaklar" gerekir. Android 14'te Shizuku ile KingInstaller'ın "Shizuku Trick" seçeneği kullanılır. Android 13 ve altında KingInstaller'ın "Install as Google Play Store" seçeneği kullanılır.</div></details>
+        <details class="faq-item"><summary data-i18n="q6">Hangi Android sürümleri destekleniyor?</summary><div class="faq-answer" data-i18n="a6">Android 10 ve üstü. "Google Play'den" kurulmuş gibi yükleyin: her sürümde bilgisayar betiğiyle, ya da telefonda Shizuku + KingInstaller (Android 14 ve üstü) veya yalnızca KingInstaller (Android 13 ve altı) ile.</div></details>
         <details class="faq-item"><summary data-i18n="q7">Araç hareket ederken video oynar mı?</summary><div class="faq-answer" data-i18n="a7">Hayır. Video yalnızca araç park halindeyken oynar. Araç hareket etmeye başlayınca görüntü kapanır, ses çalmaya devam eder.</div></details>
         <details class="faq-item"><summary data-i18n="q8">Kaç cihaza kurabilirim?</summary><div class="faq-answer" data-i18n="a8">Sınırsız. Kendi telefonunuza, aile üyelerinizin veya yedek telefonlarınıza hiçbir sınır olmadan kurabilirsiniz.</div></details>
       </div>
@@ -1115,31 +1108,27 @@
         s1_desc: "Download the latest AutoLounge APK to your Android phone. If your browser asks for permission to install apps, allow it.",
         s1_link: "Download from GitHub →",
         s2_title: "Install the APK",
-        s2_desc: "Android 15+: install normally. Android 14 and below need KingInstaller. See the guide below.",
+        s2_desc: "The APK must be installed so it looks \"from Google Play\". Easiest: a computer script. Or Shizuku + KingInstaller on the phone. See the guide below.",
         s2_link: "Open the guide for my phone →",
         s3_title: "Connect & Enjoy",
         s3_desc: "Plug into your car or connect wirelessly. Tap the AutoLounge cockpit icon on your car screen.",
         s3_link: "Not showing up? Troubleshooting →",
-        ig_title: "Setup guide for your Android version",
-        ig_lead: "On Android 15 and newer, AutoLounge opens on the car screen with just one Android Auto setting. Older versions need the app to look \"installed by Google Play\" (KingInstaller).",
+        ig_title: "How to install",
+        ig_lead: "Android Auto only shows AutoLounge on the car screen if the app looks \"installed by Google Play\". A plain APK install is not enough. Pick one method below.",
         ig_warn: "If the car screen says \"No new messages during this drive\", one of the steps below is missing.",
         ig_step1: "Pick your Android version",
         ig_ver_hint: "Not sure? On your phone open Settings → About phone → Android version.",
         ig_detected: "Selected automatically for your phone.",
-        ig_tab_a15: "Android 15 and newer",
-        ig_tab_a14: "Android 14",
+        ig_tab_a14: "Android 14 and newer",
         ig_tab_old: "Android 13 and below",
-        ig_a15_1: "Download the AutoLounge APK and install it normally.",
-        ig_a15_2: "Turn on Android Auto \"Unknown sources\" (step 2). No extra installer is needed.",
-        ig_a15_3: "AutoLounge appears on the car screen while parked; when the car moves the picture turns off and audio keeps playing.",
         ig_old_1: "Download the AutoLounge APK and KingInstaller.",
         ig_old_2: "Open KingInstaller, tap \"Select file\" and pick the AutoLounge APK.",
         ig_old_3: "Choose \"Install as Google Play Store\".",
-        ig_tab_adb: "With a computer (ADB)",
+        ig_tab_adb: "With a computer (easiest)",
         ig_adb_1: "Turn on USB debugging on your phone and connect it to your computer.",
-        ig_adb_2: "Run this command in the folder where you downloaded the APK:",
-        ig_adb_3: "Or run install.sh (macOS / Linux) or install.bat (Windows) from the project.",
-        ig_adb_4: "Not needed on Android 15 and newer. On older versions it works on most phones, but some ignore the Play stamp when adb installs; if the car screen does not open full screen, use KingInstaller.",
+        ig_adb_2: "Download install.sh (macOS / Linux) or install.bat (Windows) from the project and run it:",
+        ig_adb_3: "When the phone shows the system installer, tap Install / Update.",
+        ig_adb_4: "A plain \"adb install\" is not enough: the car ignores it. The script opens the system installer so that Google Play is recorded as the source.",
         ig_new_1: "Install Shizuku from Google Play and start it with Wireless debugging.",
         ig_new_2: "Download the latest KingInstaller (1.7 or newer).",
         ig_new_3: "In KingInstaller enable \"Shizuku Trick\", then install the AutoLounge APK.",
@@ -1159,7 +1148,7 @@
         help_header: "Something not working?",
         help_sub: "The most common problems and how to fix them in a minute.",
         h1_q: "Car screen says \"No new messages during this drive\"",
-        h1_a: "Android Auto doesn't trust the app yet. Check step 2 (\"Unknown sources\") and, on Android 14 and below, make sure you installed with KingInstaller. Then reconnect the phone.",
+        h1_a: "Android Auto doesn't trust the app yet. Check step 2 (\"Unknown sources\") and make sure you installed it as \"from Google Play\" (computer script, or KingInstaller). Then reconnect the phone.",
         h2_q: "AutoLounge isn't in the car's app list",
         h2_a: "In Android Auto settings open \"Customize launcher\" and make sure AutoLounge is enabled. Unplug and replug the cable; if it still doesn't appear, restart the phone.",
         h3_q: "The picture goes black when I start driving",
@@ -1185,7 +1174,7 @@
         faq_header: "Frequently Asked Questions",
         faq_sub: "Everything you need to know about AutoLounge and Android Auto compatibility.",
         q1: "Do I need to root my phone?",
-        a1: "No. AutoLounge works on stock, non-rooted Android phones. Android 15 and newer install normally; older versions use KingInstaller (see the setup guide).",
+        a1: "No. AutoLounge works on stock, non-rooted Android phones. It only needs to be installed so it looks \"from Google Play\" (see the setup guide).",
         q2: "Can I use it on multiple phones?",
         a2: "Yes! Since AutoLounge is completely open source and free, you can install it on as many devices as you like without any restrictions.",
         q3: "Does it void my car warranty?",
@@ -1204,7 +1193,7 @@
         ab3_q: "Which languages and countries does it support?",
         ab3_a: "The app is available in 11 languages: Turkish, English, Spanish, Portuguese, French, German, Italian, Russian, Arabic, Hindi and Chinese. The live TV list and home shortcuts adapt to your country based on your SIM or region.",
         q6: "Which Android versions are supported?",
-        a6: "Android 15 and newer install normally and only need Android Auto \"Unknown sources\". Android 14 uses Shizuku with the KingInstaller \"Shizuku Trick\". Android 13 and below use KingInstaller \"Install as Google Play Store\".",
+        a6: "Android 10 and newer. Install it so it looks \"from Google Play\": with the computer script on any version, or on the phone with Shizuku + KingInstaller (Android 14 and newer) or KingInstaller alone (Android 13 and below).",
         q7: "Does the video play while I am driving?",
         a7: "No. Video plays only while the car is parked. When the car starts moving the picture turns off and audio keeps playing.",
         q8: "How many devices can I install it on?",
@@ -1268,31 +1257,27 @@
         s1_desc: "En güncel AutoLounge APK dosyasını Android telefonunuza indirin. Tarayıcınız uygulama yükleme izni isterse izin verin.",
         s1_link: "GitHub'dan indir →",
         s2_title: "APK'yı Kurun",
-        s2_desc: "Android 15 ve üstü: normal kurulum yeterli. Android 14 ve altı için KingInstaller gerekir. Adımlar aşağıda.",
+        s2_desc: "APK'nın \"Google Play'den\" kurulmuş gibi görünmesi gerekir. En kolayı: bilgisayarda betik. Ya da telefonda Shizuku + KingInstaller. Adımlar aşağıda.",
         s2_link: "Telefonuma uygun rehberi aç →",
         s3_title: "Bağlayın ve Keyfini Çıkarın",
         s3_desc: "Telefonu aracınıza bağlayın. Araba ekranındaki AutoLounge kokpit ikonuna dokunun.",
         s3_link: "Görünmüyor mu? Sorun giderme →",
-        ig_title: "Android sürümünüze göre kurulum rehberi",
-        ig_lead: "Android 15 ve üstünde AutoLounge, tek bir Android Auto ayarıyla araç ekranında açılır. Daha eski sürümlerde uygulamanın \"Google Play tarafından yüklendi\" görünmesi gerekir (KingInstaller).",
+        ig_title: "Nasıl kurulur",
+        ig_lead: "Android Auto, AutoLounge'u yalnızca \"Google Play tarafından yüklenmiş\" gibi göründüğünde araç ekranında gösterir. Düz APK kurulumu yetmez. Aşağıdan bir yöntem seçin.",
         ig_warn: "Araç ekranında \"Bu sürüş sırasında yeni mesaj gelmedi\" yazıyorsa aşağıdaki adımlardan biri eksiktir.",
         ig_step1: "Android sürümünüzü seçin",
         ig_ver_hint: "Emin değil misiniz? Telefonda Ayarlar → Telefon hakkında → Android sürümü bölümüne bakın.",
         ig_detected: "Telefonunuza göre otomatik seçildi.",
-        ig_tab_a15: "Android 15 ve üstü",
-        ig_tab_a14: "Android 14",
+        ig_tab_a14: "Android 14 ve üstü",
         ig_tab_old: "Android 13 ve altı",
-        ig_a15_1: "AutoLounge APK'sını indirip normal şekilde kurun.",
-        ig_a15_2: "Android Auto'da \"Bilinmeyen kaynaklar\"ı açın (2. adım). Ek bir yükleyici gerekmez.",
-        ig_a15_3: "AutoLounge araç park halindeyken araç ekranında görünür; araç hareket edince görüntü kapanır, ses devam eder.",
         ig_old_1: "AutoLounge APK'sını ve KingInstaller'ı indirin.",
         ig_old_2: "KingInstaller'ı açın, \"Select file\" ile AutoLounge APK'sını seçin.",
         ig_old_3: "\"Install as Google Play Store\" seçeneğiyle kurun.",
-        ig_tab_adb: "Bilgisayarla (ADB)",
+        ig_tab_adb: "Bilgisayarla (en kolayı)",
         ig_adb_1: "Telefonda USB hata ayıklamayı açın ve bilgisayara bağlayın.",
-        ig_adb_2: "APK'yı indirdiğiniz klasörde şu komutu çalıştırın:",
-        ig_adb_3: "Ya da projedeki install.sh (macOS / Linux) veya install.bat (Windows) dosyasını çalıştırın.",
-        ig_adb_4: "Android 15 ve üstünde gerekmez. Eski sürümlerde çoğu telefonda çalışır, ama bazıları adb ile kurulumda Play damgasını yok sayar; araç ekranı tam ekran açılmazsa KingInstaller kullanın.",
+        ig_adb_2: "Projeden install.sh (macOS / Linux) veya install.bat (Windows) dosyasını indirip çalıştırın:",
+        ig_adb_3: "Telefonda sistem kurulum ekranı açılınca Yükle / Güncelle'ye dokunun.",
+        ig_adb_4: "Düz \"adb install\" yetmez: araç bunu yok sayar. Betik, kaynağın Google Play görünmesi için sistem kurulum ekranını açar.",
         ig_new_1: "Google Play'den Shizuku'yu kurun ve Kablosuz hata ayıklama ile başlatın.",
         ig_new_2: "KingInstaller'ın en güncel sürümünü (1.7 veya üstü) indirin.",
         ig_new_3: "KingInstaller'da \"Shizuku Trick\" seçeneğini açın, ardından AutoLounge APK'sını kurun.",
@@ -1312,7 +1297,7 @@
         help_header: "Bir şey ters mi gitti?",
         help_sub: "En sık karşılaşılan sorunlar ve bir dakikada çözümleri.",
         h1_q: "Araç ekranında \"Bu sürüş sırasında yeni mesaj gelmedi\" yazıyor",
-        h1_a: "Android Auto uygulamaya henüz güvenmiyor. 2. adımı (\"Bilinmeyen kaynaklar\") kontrol edin; Android 14 ve altındaysanız KingInstaller ile kurduğunuzdan emin olun. Sonra telefonu yeniden bağlayın.",
+        h1_a: "Android Auto uygulamaya henüz güvenmiyor. 2. adımı (\"Bilinmeyen kaynaklar\") kontrol edin ve uygulamayı \"Google Play'den\" kurulmuş gibi yüklediğinizden emin olun (bilgisayar betiği veya KingInstaller). Sonra telefonu yeniden bağlayın.",
         h2_q: "AutoLounge aracın uygulama listesinde yok",
         h2_a: "Android Auto ayarlarında \"Başlatıcıyı özelleştir\" bölümünü açıp AutoLounge'ın işaretli olduğundan emin olun. Kabloyu çıkarıp takın; hâlâ görünmüyorsa telefonu yeniden başlatın.",
         h3_q: "Sürüşe başlayınca görüntü kararıyor",
@@ -1338,7 +1323,7 @@
         faq_header: "Sıkça Sorulan Sorular",
         faq_sub: "AutoLounge ve Android Auto uyumluluğu hakkında merak ettiğiniz her şey.",
         q1: "Telefonuma root atmam gerekiyor mu?",
-        a1: "Hayır. AutoLounge standart, root edilmemiş Android telefonlarda çalışır. Android 15 ve üstü normal kurulur; eski sürümlerde KingInstaller kullanılır (kurulum rehberine bakın).",
+        a1: "Hayır. AutoLounge standart, root edilmemiş Android telefonlarda çalışır. Yalnızca \"Google Play'den\" kurulmuş gibi yüklenmesi gerekir (kurulum rehberine bakın).",
         q2: "Birden fazla telefonda kullanabilir miyim?",
         a2: "Evet! AutoLounge tamamen açık kaynak ve ücretsiz olduğu için herhangi bir kısıtlama olmadan dilediğiniz kadar telefona kurabilirsiniz.",
         q3: "Aracımın garantisi bozulur mu?",
@@ -1357,7 +1342,7 @@
         ab3_q: "Hangi dilleri ve ülkeleri destekliyor?",
         ab3_a: "Uygulama 11 dilde sunulur: Türkçe, İngilizce, İspanyolca, Portekizce, Fransızca, Almanca, İtalyanca, Rusça, Arapça, Hintçe ve Çince. Canlı TV listesi ve ana ekran kısayolları SIM kartınıza veya bölgenize göre ülkenize uyum sağlar.",
         q6: "Hangi Android sürümleri destekleniyor?",
-        a6: "Android 15 ve üstü normal kurulur, yalnızca Android Auto'da \"Bilinmeyen kaynaklar\" gerekir. Android 14'te Shizuku ile KingInstaller'ın \"Shizuku Trick\" seçeneği kullanılır. Android 13 ve altında KingInstaller'ın \"Install as Google Play Store\" seçeneği kullanılır.",
+        a6: "Android 10 ve üstü. \"Google Play'den\" kurulmuş gibi yükleyin: her sürümde bilgisayar betiğiyle, ya da telefonda Shizuku + KingInstaller (Android 14 ve üstü) veya yalnızca KingInstaller (Android 13 ve altı) ile.",
         q7: "Araç hareket ederken video oynar mı?",
         a7: "Hayır. Video yalnızca araç park halindeyken oynar. Araç hareket etmeye başlayınca görüntü kapanır, ses çalmaya devam eder.",
         q8: "Kaç cihaza kurabilirim?",
@@ -1440,16 +1425,14 @@
       navigator.userAgentData.getHighEntropyValues(['platformVersion']).then(v => {
         if (navigator.userAgentData.platform !== 'Android') return;
         const major = parseInt(v.platformVersion, 10);
-        if (major >= 15) autoSelectInstallTab('a15');
-        else if (major === 14) autoSelectInstallTab('a14');
+        if (major >= 14) autoSelectInstallTab('a14');
         else if (major > 0) autoSelectInstallTab('old');
       }).catch(() => {});
     } else {
       const androidMatch = navigator.userAgent.match(/Android (\d+)/);
       const major = androidMatch ? parseInt(androidMatch[1], 10) : 0;
       // Chrome dışı tarayıcılar gerçek sürümü yazar; Chrome hep "10" yazdığı için onu dikkate almayız
-      if (major >= 15) autoSelectInstallTab('a15');
-      else if (major === 14) autoSelectInstallTab('a14');
+      if (major >= 14) autoSelectInstallTab('a14');
       else if (major > 0 && major < 10) autoSelectInstallTab('old');
     }
 
