@@ -18,8 +18,20 @@ android {
         versionName = "1.0.0-internal"
         buildConfigField("String", "SUPPORT_EMAIL", "\"destek@autolounge.app\"")
     }
+    signingConfigs {
+        // Set by CI from repository secrets; local release builds stay unsigned without them.
+        System.getenv("KEYSTORE_FILE")?.let { keystore ->
+            create("release") {
+                storeFile = file(keystore)
+                storePassword = System.getenv("KEYSTORE_PASSWORD")
+                keyAlias = System.getenv("KEY_ALIAS")
+                keyPassword = System.getenv("KEY_PASSWORD")
+            }
+        }
+    }
     buildTypes {
         release {
+            signingConfig = signingConfigs.findByName("release")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
