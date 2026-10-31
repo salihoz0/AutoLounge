@@ -141,9 +141,41 @@ done
 echo -e "\n${CYAN}=====================================================================${RESET}"
 echo -e "${BOLD} 🚀 Installing AutoLounge with Google Play Store signature...${RESET}"
 echo -e "${CYAN}=====================================================================${RESET}"
-echo -e "Command: ${BOLD}${ADB_BIN} install -i \"com.android.vending\" -r \"${TARGET_APK}\"${RESET}\n"
+# Android Auto only trusts the app when the phone's own installer did the install AND the installer
+# is stamped as Play Store. `adb install -i` leaves the initiating package as "shell", which Android
+# Auto ignores on the car screen (verified on Android 16). So: user installs on the phone, we stamp it.
+install_with_play_stamp() {
+    local remote="/storage/emulated/0/Download/AutoLounge.apk" before now id i
+    before="$("${ADB_BIN}" shell dumpsys package com.autolounge.park | grep -m1 lastUpdateTime | tr -d '\r' || true)"
+    "${ADB_BIN}" push "${TARGET_APK}" "${remote}" >/dev/null || return 1
+    # The system installer only takes content:// URIs; MediaStore may need a moment to index the pushed file.
+    for i in 1 2 3 4 5; do
+        id="$("${ADB_BIN}" shell "content query --uri content://media/external/file --projection _id --where \"_data='${remote}'\"" | tr -d '\r' | sed -n 's/.*_id=\([0-9]*\).*/\1/p' | head -1)"
+        [[ -n "${id}" ]] && break
+        sleep 1
+    done
+    [[ -n "${id}" ]] || return 1
+    # Same intent extras as KingInstaller: the system installer records Google Play as installer.
+    "${ADB_BIN}" shell am start -a android.intent.action.INSTALL_PACKAGE -d "content://media/external/file/${id}" \
+        -t application/vnd.android.package-archive -f 0x00000001 \
+        --es android.intent.extra.INSTALLER_PACKAGE_NAME com.android.vending \
+        --es android.intent.extra.REFERRER_NAME android-app://com.android.vending \
+        --ei android.intent.extra.INSTALL_REASON 1 --ez android.intent.extra.NOT_UNKNOWN_SOURCE true >/dev/null || return 1
+    echo -e "${YELLOW} 👉 Tap ${BOLD}Install / Update${RESET}${YELLOW} on your phone screen. Waiting up to 3 minutes...${RESET}"
+    for i in $(seq 1 90); do
+        sleep 2
+        now="$("${ADB_BIN}" shell dumpsys package com.autolounge.park | grep -m1 lastUpdateTime | tr -d '\r' || true)"
+        if [[ -n "${now}" && "${now}" != "${before}" ]]; then
+            "${ADB_BIN}" shell rm -f "${remote}" >/dev/null 2>&1 || true
+            return 0
+        fi
+    done
+    return 1
+}
 
-if "${ADB_BIN}" install -i "com.android.vending" -r "${TARGET_APK}"; then
+echo -e "Method: system installer with Google Play Store as installer\n"
+
+if install_with_play_stamp; then
     echo -e "\n${GREEN}=====================================================================${RESET}"
     echo -e "${GREEN}${BOLD} 🎉 SUCCESS! INSTALLATION COMPLETE!${RESET}"
     echo -e "${GREEN}=====================================================================${RESET}"

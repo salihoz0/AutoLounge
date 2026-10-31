@@ -169,11 +169,43 @@ echo.
 echo =====================================================================
 echo  🚀 Installing AutoLounge with Google Play Store signature...
 echo =====================================================================
-echo Command: adb install -i "com.android.vending" -r "%TARGET_APK%"
+echo Method: system installer with Google Play Store as installer
 echo.
 
-"%ADB_BIN%" install -i "com.android.vending" -r "%TARGET_APK%"
+set "REMOTE=/storage/emulated/0/Download/AutoLounge.apk"
+set "BEFORE="
+for /f "delims=" %%L in ('"%ADB_BIN%" shell dumpsys package com.autolounge.park ^| findstr /c:lastUpdateTime') do set "BEFORE=%%L"
+"%ADB_BIN%" push "%TARGET_APK%" %REMOTE% >nul
+set "MID="
+:: The system installer only takes content:// URIs; MediaStore may need a moment to index the pushed file.
+for /l %%i in (1,1,5) do if not defined MID call :find_media_id
+if not defined MID (
+    cmd /c exit 1
+    goto :install_done
+)
+:: Same intent extras as KingInstaller: the system installer records Google Play as installer.
+"%ADB_BIN%" shell am start -a android.intent.action.INSTALL_PACKAGE -d content://media/external/file/%MID% -t application/vnd.android.package-archive -f 0x00000001 --es android.intent.extra.INSTALLER_PACKAGE_NAME com.android.vending --es android.intent.extra.REFERRER_NAME android-app://com.android.vending --ei android.intent.extra.INSTALL_REASON 1 --ez android.intent.extra.NOT_UNKNOWN_SOURCE true >nul
+if errorlevel 1 goto :install_done
+echo  ^>^> Tap Install / Update on your phone screen. Waiting up to 3 minutes...
+cmd /c exit 1
+for /l %%i in (1,1,90) do if errorlevel 1 call :poll_install
+if not errorlevel 1 ("%ADB_BIN%" shell rm -f %REMOTE% >nul 2>&1 & cmd /c exit 0)
+goto :install_done
 
+:find_media_id
+"%ADB_BIN%" shell "content query --uri content://media/external/file --projection _id --where \"_data='%REMOTE%'\"" > "%TEMP%\al_mid.txt" 2>nul
+for /f "tokens=2 delims==" %%M in ('type "%TEMP%\al_mid.txt"') do set "MID=%%M"
+if not defined MID timeout /t 1 /nobreak >nul
+exit /b 0
+
+:poll_install
+timeout /t 2 /nobreak >nul
+set "NOW="
+for /f "delims=" %%L in ('"%ADB_BIN%" shell dumpsys package com.autolounge.park ^| findstr /c:lastUpdateTime') do set "NOW=%%L"
+if defined NOW if not "%NOW%"=="%BEFORE%" exit /b 0
+exit /b 1
+
+:install_done
 if %errorlevel% equ 0 (
     echo.
     echo =====================================================================
