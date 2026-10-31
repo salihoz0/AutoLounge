@@ -191,8 +191,10 @@ if %errorlevel% equ 0 (
     echo   2. Tap the 3 dots in the top-right corner -^> Developer settings.
     echo   3. Check the box for 'Unknown sources'.
     echo.
-    echo  Need help? Ask ChatGPT directly for your phone model:
-    echo  https://chatgpt.com/?q=Android+Auto+Developer+Settings+Unknown+sources+how+to+enable+on+model:+
+    echo  Need help? Ask popular AI assistants for your phone model:
+    echo   - ChatGPT: https://chatgpt.com/?q=Android+Auto+Developer+Settings+Unknown+sources+how+to+enable+on+model:+
+    echo   - Claude:  https://claude.ai/new?q=Android+Auto+Developer+Settings+Unknown+sources+how+to+enable+on+model:+
+    echo   - Gemini:  https://gemini.google.com/app?q=Android+Auto+Developer+Settings+Unknown+sources+how+to+enable+on+model:+
     echo.
     echo All set! AutoLounge is ready for your vehicle.
     echo.

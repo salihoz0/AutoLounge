@@ -157,8 +157,10 @@ if "${ADB_BIN}" install -i "com.android.vending" -r "${TARGET_APK}"; then
     echo -e "  1. Scroll to the very bottom and tap ${BOLD}'Version'${RESET} 10 times."
     echo -e "  2. Tap the ${BOLD}3 dots (⋮)${RESET} in the top-right corner -> ${BOLD}Developer settings${RESET}."
     echo -e "  3. Check the box for ${GREEN}${BOLD}'Unknown sources'${RESET}.\n"
-    echo -e " Need help finding it on your specific phone model? Ask ChatGPT directly:"
-    echo -e " ${CYAN}https://chatgpt.com/?q=Android+Auto+Developer+Settings+Unknown+sources+how+to+enable+on+model:+${RESET}\n"
+    echo -e " Need help finding it on your specific phone model? Ask an AI assistant:"
+    echo -e "  • ChatGPT: ${CYAN}https://chatgpt.com/?q=Android+Auto+Developer+Settings+Unknown+sources+how+to+enable+on+model:+${RESET}"
+    echo -e "  • Claude:  ${CYAN}https://claude.ai/new?q=Android+Auto+Developer+Settings+Unknown+sources+how+to+enable+on+model:+${RESET}"
+    echo -e "  • Gemini:  ${CYAN}https://gemini.google.com/app?q=Android+Auto+Developer+Settings+Unknown+sources+how+to+enable+on+model:+${RESET}\n"
     echo -e "${GREEN}All set! AutoLounge is ready for your vehicle.${RESET}\n"
 else
     echo -e "\n${RED}=====================================================================${RESET}"

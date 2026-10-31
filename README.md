@@ -140,6 +140,14 @@ Telefonunuzun marka/modeline göre (Samsung, Xiaomi, Vivo, Oppo vb.) menülerin 
     <img src="https://img.shields.io/badge/ChatGPT-Kendi%20Modeline%20G%C3%B6re%20Sor-10a37f?style=for-the-badge&logo=openai&logoColor=white" alt="Ask ChatGPT" />
   </a>
   &nbsp;
+  <a href="https://claude.ai/new?q=Android+telefonumda+Android+Auto+i%C3%A7inde+Geli%C5%9Ftirici+Se%C3%A7enekleri+ve+Bilinmeyen+Kaynaklar+(Unknown+sources)+nas%C4%B1l+a%C3%A7%C4%B1l%C4%B1r%3F+Telefon+modelim%3A+" target="_blank">
+    <img src="https://img.shields.io/badge/Claude-Kendi%20Modeline%20G%C3%B6re%20Sor-D97706?style=for-the-badge&logo=anthropic&logoColor=white" alt="Ask Claude" />
+  </a>
+  &nbsp;
+  <a href="https://gemini.google.com/app?q=Android+telefonumda+Android+Auto+i%C3%A7inde+Geli%C5%9Ftirici+Se%C3%A7enekleri+ve+Bilinmeyen+Kaynaklar+(Unknown+sources)+nas%C4%B1l+a%C3%A7%C4%B1l%C4%B1r%3F+Telefon+modelim%3A+" target="_blank">
+    <img src="https://img.shields.io/badge/Gemini-Kendi%20Modeline%20G%C3%B6re%20Sor-8E75C4?style=for-the-badge&logo=googlegemini&logoColor=white" alt="Ask Gemini" />
+  </a>
+  <br/><br/>
   <a href="https://www.perplexity.ai/search?q=Android+Auto+Gelistirici+Ayarlari+ve+Bilinmeyen+Kaynaklar+nasil+acilir" target="_blank">
     <img src="https://img.shields.io/badge/Perplexity-Rehberi%20G%C3%B6r-22b8cd?style=for-the-badge&logo=perplexity&logoColor=white" alt="Search Perplexity" />
   </a>
@@ -148,6 +156,11 @@ Telefonunuzun marka/modeline göre (Samsung, Xiaomi, Vivo, Oppo vb.) menülerin 
     <img src="https://img.shields.io/badge/Google-Web'de%20Ara-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Search Google" />
   </a>
 </p>
+
+> 📋 **Hazır Kopyalanabilir Soru:**
+> ```text
+> Android telefonumda Android Auto içinde Geliştirici Seçenekleri ve Bilinmeyen Kaynaklar (Unknown sources) nasıl açılır? Telefon modelim: [Modelinizi Yazın]
+> ```
 
 ---
 
