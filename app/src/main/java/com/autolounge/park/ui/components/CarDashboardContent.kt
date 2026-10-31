@@ -71,10 +71,7 @@ data class LauncherItem(
 fun CarDashboardContent(
     config: CarConfig,
     bookmarks: List<Bookmark>,
-    remainingSeconds: Int = 0,
-    isPremium: Boolean = true,
     onOpenUrl: (url: String, title: String?, isAppMode: Boolean) -> Unit,
-    onOpenPaywall: () -> Unit = {},
     faviconProvider: (String) -> String,
     onReorder: ((List<String>) -> Unit)? = null,
     onDeleteBookmark: ((Long) -> Unit)? = null,
@@ -240,6 +237,7 @@ fun CarDashboardContent(
     val nowTitle by NowPlayingStore.title.collectAsState()
     val nowSub by NowPlayingStore.subtitle.collectAsState()
     val isPlaying by NowPlayingStore.isPlaying.collectAsState()
+    val userCountry = remember { NewsChannelsRepository.detectUserCountry() }
 
     fun launchQuickChannel(keyword: String) {
         val matched = NewsChannelsRepository.allChannels.firstOrNull {
@@ -264,6 +262,29 @@ fun CarDashboardContent(
         // --- 1. MEDIA LAUNCHER STRIP (HORIZONTAL CAPSULES) ---
         item(key = "media_capsules") {
             val scrollState = rememberScrollState()
+            val mediaCapsules = if (userCountry == "TR") {
+                listOf(
+                    Triple("YOUTUBE", Color(0xFFFF0033), "https://m.youtube.com"),
+                    Triple(tr("CANLI TV"), AutoLoungePalette.AcidMint, "tv://hub"),
+                    Triple("TABİİ", Color(0xFF00E5FF), "https://www.tabii.com"),
+                    Triple("NETFLIX", Color(0xFFE50914), "https://www.netflix.com"),
+                    Triple("PRIME", Color(0xFF00A8E1), "https://www.primevideo.com"),
+                    Triple("TWITCH", Color(0xFF9146FF), "https://www.twitch.tv"),
+                    Triple("DISNEY+", Color(0xFF113CCF), "https://www.disneyplus.com"),
+                    Triple("SPOTIFY", Color(0xFF1DB954), "https://open.spotify.com")
+                )
+            } else {
+                listOf(
+                    Triple("YOUTUBE", Color(0xFFFF0033), "https://m.youtube.com"),
+                    Triple(tr("CANLI TV"), AutoLoungePalette.AcidMint, "tv://hub"),
+                    Triple("MAX", Color(0xFF5B7FFF), "https://www.max.com"),
+                    Triple("NETFLIX", Color(0xFFE50914), "https://www.netflix.com"),
+                    Triple("PRIME", Color(0xFF00A8E1), "https://www.primevideo.com"),
+                    Triple("DISNEY+", Color(0xFF113CCF), "https://www.disneyplus.com"),
+                    Triple("TWITCH", Color(0xFF9146FF), "https://www.twitch.tv"),
+                    Triple("SPOTIFY", Color(0xFF1DB954), "https://open.spotify.com")
+                )
+            }
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -271,16 +292,7 @@ fun CarDashboardContent(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                listOf(
-                    Triple("YOUTUBE", Color(0xFFFF0033), "https://m.youtube.com"),
-                    Triple("CANLI TV", AutoLoungePalette.AcidMint, "tv://hub"),
-                    Triple("TABİİ", Color(0xFF00E5FF), "https://www.tabii.com"),
-                    Triple("NETFLIX", Color(0xFFE50914), "https://www.netflix.com"),
-                    Triple("PRIME", Color(0xFF00A8E1), "https://www.primevideo.com"),
-                    Triple("TWITCH", Color(0xFF9146FF), "https://www.twitch.tv"),
-                    Triple("DISNEY+", Color(0xFF113CCF), "https://www.disneyplus.com"),
-                    Triple("SPOTIFY", Color(0xFF1DB954), "https://open.spotify.com")
-                ).forEach { (label, dotColor, target) ->
+                mediaCapsules.forEach { (label, dotColor, target) ->
                     Surface(
                         onClick = {
                             if (target == "tv://hub") {
@@ -542,8 +554,14 @@ fun CarDashboardContent(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
+                            val defaultChannelTitle = when (userCountry) {
+                                "US" -> "ABC News Live"
+                                "GB" -> "BBC One"
+                                "DE" -> "ZDF Heute"
+                                else -> tr("TRT Haber HD")
+                            }
                             Text(
-                                tr("TRT Haber HD"),
+                                defaultChannelTitle,
                                 color = AutoLoungePalette.TextPure,
                                 fontSize = 11.5.sp,
                                 fontFamily = AppFontFamily,
@@ -567,11 +585,17 @@ fun CarDashboardContent(
                         }
 
                         // 3 Quick Channel Switch Chips
+                        val quickChannels = when (userCountry) {
+                            "US" -> listOf("ABC", "CBS", "FOX")
+                            "GB" -> listOf("BBC", "SKY", "ITV")
+                            "DE" -> listOf("ZDF", "ARD", "WELT")
+                            else -> listOf("TRT", "BLOOM", "NTV")
+                        }
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.spacedBy(4.dp)
                         ) {
-                            listOf("TRT", "BLOOM", "NTV").forEach { chName ->
+                            quickChannels.forEach { chName ->
                                 Surface(
                                     onClick = { launchQuickChannel(if (chName == "BLOOM") "BLOOMBERG" else chName) },
                                     shape = RoundedCornerShape(8.dp),

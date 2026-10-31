@@ -85,7 +85,7 @@ object AutoLoungePalette {
     val AcidMint = Color(0xFF5BE9AD)         // Stitch tertiary-container (Lucid Mint)
     val NordicFrost = Color(0xFF00E5FF)      // Stitch primary-container (Hyper Cyan)
     val SatinTitanium = Color(0xFFBAC9CC)    // Stitch on-surface-variant (Titanium)
-    val AmberSignal = Color(0xFFFABC4D)      // Stitch secondary (Warm Gold / VIP)
+    val AmberSignal = Color(0xFFFABC4D)      // Stitch secondary (Warm Gold)
     val CrimsonWarning = Color(0xFFFF5252)   // Alert Red
 
     // Backward compatibility aliases

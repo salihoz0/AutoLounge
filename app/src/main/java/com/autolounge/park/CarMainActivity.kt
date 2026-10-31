@@ -63,8 +63,6 @@ fun CarScreenRoot(vm: BookmarkViewModel) {
     val context = LocalContext.current
     val items by vm.items.collectAsState()
     val config by vm.config.collectAsState()
-    val remainingSeconds by vm.remainingSeconds.collectAsState()
-    val isPremium by vm.isPremium.collectAsState()
     val isParked by vm.safetyManager.isParked.collectAsState()
     val isPassengerBypass by vm.safetyManager.passengerBypassActive.collectAsState()
     val isCarAudioActive by vm.usageTracker.isAudioStreamingActive.collectAsState()
@@ -90,13 +88,6 @@ fun CarScreenRoot(vm: BookmarkViewModel) {
                 }
                 else -> {}
             }
-        }
-    }
-
-    // VIP veya deneme süresi varsa sürüş güvenlik kilidini otomatik bypass yap
-    LaunchedEffect(isPremium, remainingSeconds) {
-        if (isPremium || remainingSeconds > 0) {
-            vm.safetyManager.setPassengerBypass(true)
         }
     }
 
@@ -172,14 +163,11 @@ fun CarScreenRoot(vm: BookmarkViewModel) {
         CarDashboardContent(
             config = config,
             bookmarks = items,
-            remainingSeconds = remainingSeconds,
-            isPremium = isPremium,
             onOpenUrl = { url, title, isApp ->
                 activeBrowserUrl = url
                 activeBrowserTitle = title
                 activeBrowserIsAppMode = isApp
             },
-            onOpenPaywall = {},
             faviconProvider = { vm.favicon(it) },
             onReorder = { vm.reorderCards(it) },
             onDeleteBookmark = { vm.delete(it) },

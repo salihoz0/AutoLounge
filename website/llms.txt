@@ -1,12 +1,10 @@
 # AutoLounge
 
-> AutoLounge is an Android app that brings YouTube, 100+ live TV channels, streaming sites and radio to the Android Auto car screen. Video plays only while the car is parked; when it moves, the picture turns off and audio keeps playing. No root is needed, and every new device gets a 60-minute free trial.
+> AutoLounge is an Android app that brings YouTube, 100+ live TV channels, streaming sites and radio to the Android Auto car screen. Video plays only while the car is parked; when it moves, the picture turns off and audio keeps playing. It is 100% free and open source, with no root, trial or license key.
 
 ## Key facts
-- Price: Lifetime VIP license, one-time payment, no subscription. 199 TRY in Turkey, EUR 11.99 in the EU, USD 12.99 elsewhere.
-- Free trial: 60 minutes on each new device, counted only while video plays on the car screen.
-- Devices: 1 license works on 2 devices; self-service transfer to a new phone.
-- Distribution: APK from GitHub Releases; license sold on the website (Shopier for Turkey, LemonSqueezy elsewhere). Not on Google Play.
+- Price: 100% free and open source. No trial, subscription or license key; install on as many devices as you like.
+- Distribution: APK from GitHub Releases. Not on Google Play.
 - Safety: driving safety lockout hides video when the car moves; audio continues.
 - Languages: app UI in 11 languages (Turkish, English, Spanish, Portuguese, French, German, Italian, Russian, Arabic, Hindi, Chinese).
 - Country-aware: the live TV list and home shortcuts adapt to the user's country (SIM or region).
@@ -17,12 +15,12 @@
 - Android 13 and below: install with KingInstaller using "Install as Google Play Store"; also enable Android Auto "Unknown sources".
 
 ## Pages
-- [Home (English)](https://autolounge.app/): overview, features, install guide, troubleshooting, pricing, FAQ
+- [Home (English)](https://autolounge.app/): overview, features, install guide, troubleshooting, open source, FAQ
 - [Ana sayfa (Türkçe)](https://autolounge.app/tr/): the same content in Turkish
 - [Install guide](https://autolounge.app/#install-guide): step-by-step setup per Android version
-- [Pricing](https://autolounge.app/#pricing): Lifetime VIP license
-- [FAQ](https://autolounge.app/#faq): root, trial, devices, supported Android versions
+- [Open source](https://autolounge.app/#pricing): free, no license key
+- [FAQ](https://autolounge.app/#faq): root, cost, devices, supported Android versions
 
 ## Downloads and support
-- [Latest APK (GitHub Releases)](https://github.com/autolounge/AutoLounge-Releases/releases/latest)
-- [Report an issue](https://github.com/autolounge/AutoLounge-Releases/issues)
+- [Latest APK (GitHub Releases)](https://github.com/salihoz0/AutoLounge/releases/latest)
+- [Report an issue](https://github.com/salihoz0/AutoLounge/issues)

@@ -90,8 +90,6 @@ fun MainPhoneScreen(vm: BookmarkViewModel = hiltViewModel()) {
 
     val items by vm.items.collectAsState()
     val config by vm.config.collectAsState()
-    val remainingSeconds by vm.remainingSeconds.collectAsState()
-    val isPremium by vm.isPremium.collectAsState()
     val isCarAudioActive by vm.usageTracker.isAudioStreamingActive.collectAsState()
     val isParked by vm.safetyManager.isParked.collectAsState()
     val isPassengerBypass by vm.safetyManager.passengerBypassActive.collectAsState()
@@ -129,13 +127,6 @@ fun MainPhoneScreen(vm: BookmarkViewModel = hiltViewModel()) {
                 subtitle = tr("Cihaz Dosyası"),
                 webUrl = uri.toString()
             )
-        }
-    }
-
-    // VIP veya deneme süresi varsa sürüş güvenlik kilidini otomatik bypass yap
-    LaunchedEffect(isPremium, remainingSeconds) {
-        if (isPremium || remainingSeconds > 0) {
-            vm.safetyManager.setPassengerBypass(true)
         }
     }
 
@@ -184,7 +175,7 @@ fun MainPhoneScreen(vm: BookmarkViewModel = hiltViewModel()) {
         }
     }
 
-    // Yan sekmelerdeyken (Ayarlar/VIP) geri tuşuna basıldığında uygulamadan çıkmak yerine Ana Simülatöre dön
+    // Yan sekmelerdeyken (Ayarlar) geri tuşuna basıldığında uygulamadan çıkmak yerine Ana Simülatöre dön
     BackHandler(enabled = selectedTab != MainNavTab.COCKPIT) {
         selectedTab = MainNavTab.COCKPIT
     }
@@ -298,7 +289,7 @@ fun MainPhoneScreen(vm: BookmarkViewModel = hiltViewModel()) {
                         }
                     }
 
-                    // Right Controls: Status + Sync + 5G + VIP
+                    // Right Controls: Status + Sync + 5G
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -400,23 +391,10 @@ fun MainPhoneScreen(vm: BookmarkViewModel = hiltViewModel()) {
                 .background(AutoLoungePalette.ObsidianVoid)
         ) {
             when (selectedTab) {
-                MainNavTab.COCKPIT -> Column(Modifier.fillMaxSize()) {
-                    if (!carSetupStatus.carSessionSeen && !setupBannerHidden) {
-                        CarSetupBanner(
-                            accent = config.theme.primary,
-                            onOpenGuide = { showCarSetupGuide = true },
-                            onHide = {
-                                setupBannerHidden = true
-                                CarSetupChecker.hideBanner(context)
-                            }
-                        )
-                    }
-                    Box(Modifier.weight(1f)) {
+                MainNavTab.COCKPIT -> Box(Modifier.fillMaxSize()) {
                     SimulatorTab(
                         config = config,
                         bookmarks = items,
-                        remainingSeconds = remainingSeconds,
-                        isPremium = isPremium,
                         isCarAudioActive = isCarAudioActive,
                         onStopCarAudio = { AutoLoungeSyncBridge.requestStop() },
                         onOpenUrl = { url, title, isApp ->
@@ -479,7 +457,6 @@ fun MainPhoneScreen(vm: BookmarkViewModel = hiltViewModel()) {
                                         activeLiveTvChannel = null
                                     }
                                 }
-                            }
                         },
                         // Handle Live TV / Radio stream launch natively on phone and sync to car
                         onOpenLiveTv = { ch ->
@@ -534,7 +511,6 @@ fun MainPhoneScreen(vm: BookmarkViewModel = hiltViewModel()) {
                             }
                         },
                         onLaunchAssistant = { launchAssistant() },
-                        onOpenPaywall = {},
                         faviconProvider = { vm.favicon(it) },
                         onReorder = { vm.reorderCards(it) },
                         onDeleteBookmark = { vm.delete(it) },
@@ -544,14 +520,11 @@ fun MainPhoneScreen(vm: BookmarkViewModel = hiltViewModel()) {
                             mediaPickerLauncher.launch("video/*,image/*")
                         }
                     )
-                    }
                 }
                 MainNavTab.CUSTOMIZER -> {
                     CustomizerTab(
                         config = config,
                         bookmarks = items,
-                        isPremium = isPremium,
-                        remainingSeconds = remainingSeconds,
                         isPassengerBypass = isPassengerBypass,
                         onSetPassengerBypass = { active -> vm.safetyManager.setPassengerBypass(active) },
                         onSelectTheme = { theme -> vm.setTheme(theme) },
@@ -673,10 +646,7 @@ fun MainPhoneScreen(vm: BookmarkViewModel = hiltViewModel()) {
 fun SimulatorTab(
     config: CarConfig,
     bookmarks: List<Bookmark>,
-    remainingSeconds: Int,
-    isPremium: Boolean = true,
     onOpenUrl: (url: String, title: String?, isAppMode: Boolean) -> Unit,
-    onOpenPaywall: () -> Unit = {},
     faviconProvider: (String) -> String,
     onReorder: (List<String>) -> Unit,
     onDeleteBookmark: (Long) -> Unit,
@@ -698,10 +668,7 @@ fun SimulatorTab(
         CarDashboardContent(
             config = config,
             bookmarks = bookmarks,
-            remainingSeconds = remainingSeconds,
-            isPremium = isPremium,
             onOpenUrl = onOpenUrl,
-            onOpenPaywall = onOpenPaywall,
             faviconProvider = faviconProvider,
             onReorder = onReorder,
             onDeleteBookmark = onDeleteBookmark,
@@ -785,8 +752,6 @@ fun SimulatorTab(
 fun CustomizerTab(
     config: CarConfig,
     bookmarks: List<Bookmark>,
-    isPremium: Boolean = false,
-    remainingSeconds: Int = 0,
     isPassengerBypass: Boolean = false,
     onSetPassengerBypass: (Boolean) -> Unit = {},
     onSelectTheme: (CarVisualTheme) -> Unit,
@@ -800,8 +765,6 @@ fun CustomizerTab(
     onOpenCarSetup: () -> Unit = {}
 ) {
     var lumenBrightness by remember { mutableStateOf(0.85f) }
-    // VIP veya deneme süresi varsa bypass varsayılan AÇIK
-    val hasAccess = isPremium || remainingSeconds > 0
     val isBypassActive = isPassengerBypass
 
     LazyColumn(
@@ -866,8 +829,22 @@ fun CustomizerTab(
             }
         }
 
-        // --- 0.5 ARAÇ EKRANI KURULUM REHBERİ ---
+        // --- 0.5 İÇERİK & CANLI TV ÜLKESİ ---
         item {
+            val countryContext = LocalContext.current
+            var countryMenuOpen by remember { mutableStateOf(false) }
+            val currentCountryCode = remember { NewsChannelsRepository.detectUserCountry() }
+            var selectedCountryCode by remember { mutableStateOf(currentCountryCode) }
+            val countries = listOf(
+                "US" to "United States (US) 🇺🇸",
+                "TR" to "Türkiye (TR) 🇹🇷",
+                "GB" to "United Kingdom (UK) 🇬🇧",
+                "DE" to "Deutschland (DE) 🇩🇪",
+                "FR" to "France (FR) 🇫🇷",
+                "GLOBAL" to "Global / International 🌐"
+            )
+            val currentCountryLabel = countries.firstOrNull { it.first == selectedCountryCode }?.second ?: selectedCountryCode
+
             Surface(
                 shape = RoundedCornerShape(18.dp),
                 color = AutoLoungePalette.CarbonElevated,
@@ -875,23 +852,37 @@ fun CustomizerTab(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(18.dp))
-                    .clickable { onOpenCarSetup() }
+                    .clickable { countryMenuOpen = true }
             ) {
                 Row(
                     modifier = Modifier.padding(16.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Icon(Icons.Default.DirectionsCar, contentDescription = null, tint = config.theme.primary, modifier = Modifier.size(20.dp))
+                    Icon(Icons.Default.Public, contentDescription = null, tint = config.theme.primary, modifier = Modifier.size(20.dp))
                     Spacer(Modifier.width(10.dp))
                     Column(Modifier.weight(1f)) {
-                        Text(tr("Araç Ekranı Kurulum Rehberi"), color = AutoLoungePalette.TextPure, fontWeight = FontWeight.Bold, fontSize = 15.sp)
-                        Text(
-                            tr("Telefonunuza göre Android Auto ayarlarını kontrol edin"),
-                            color = AutoLoungePalette.TextDim,
-                            fontSize = 11.5.sp
-                        )
+                        Text(tr("İçerik & TV Ülkesi"), color = AutoLoungePalette.TextPure, fontWeight = FontWeight.Bold, fontSize = 15.sp)
+                        Text(currentCountryLabel, color = AutoLoungePalette.TextDim, fontSize = 11.5.sp)
                     }
-                    Icon(Icons.Default.ChevronRight, contentDescription = null, tint = AutoLoungePalette.TextDim)
+                    Box {
+                        Icon(Icons.Default.ChevronRight, contentDescription = null, tint = AutoLoungePalette.TextDim)
+                        DropdownMenu(expanded = countryMenuOpen, onDismissRequest = { countryMenuOpen = false }) {
+                            countries.forEach { (code, label) ->
+                                DropdownMenuItem(
+                                    text = { Text(label) },
+                                    trailingIcon = if (code == selectedCountryCode) {
+                                        { Icon(Icons.Default.Check, contentDescription = null) }
+                                    } else null,
+                                    onClick = {
+                                        countryMenuOpen = false
+                                        selectedCountryCode = code
+                                        NewsChannelsRepository.saveSelectedCountry(code)
+                                        (countryContext as? android.app.Activity)?.recreate()
+                                    }
+                                )
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -1336,7 +1327,7 @@ fun CustomizerTab(
                                 Box(modifier = Modifier.size(6.dp).clip(CircleShape).background(AutoLoungePalette.AcidMint))
                                 Spacer(Modifier.width(5.dp))
                                 Text(
-                                    if (isBypassActive) tr("BYPASS") else if (hasAccess) tr("HAZIR") else tr("AKTİF"),
+                                    if (isBypassActive) tr("BYPASS") else tr("HAZIR"),
                                     color = if (isBypassActive) AutoLoungePalette.AmberSignal else AutoLoungePalette.AcidMint,
                                     fontSize = 9.sp,
                                     fontWeight = FontWeight.Bold
@@ -1369,7 +1360,7 @@ fun CustomizerTab(
                                 Spacer(Modifier.width(8.dp))
                                 Column {
                                     Text(tr("Lounge Bypass Modu"), color = AutoLoungePalette.TextPure, fontWeight = FontWeight.SemiBold, fontSize = 12.sp)
-                                    Text(tr("VIP Yolcu Koltuğu (PIN Gerekir)"), color = AutoLoungePalette.TextDim, fontSize = 10.sp)
+                                    Text(tr("Yolcu Koltuğu Modu (PIN Gerekir)"), color = AutoLoungePalette.TextDim, fontSize = 10.sp)
                                 }
                             }
                             Button(

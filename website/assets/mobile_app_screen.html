@@ -3,276 +3,403 @@
 <head>
 <meta charset="UTF-8">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Plus Jakarta Sans", Roboto, system-ui, -apple-system, sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif; }
   body {
-    width: 420px; height: 880px;
+    width: 420px;
+    height: 880px;
     background: #07090E;
     color: #F8FAFC;
     overflow: hidden;
     position: relative;
     user-select: none;
-    border-radius: 40px;
-    border: 5px solid #232B3E;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 30px 80px rgba(0, 0, 0, 0.85);
+    padding: 14px 18px 18px;
   }
 
-  /* Micro Camera Punch Hole (Android Flagship) */
-  .punch-hole-wrapper {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 14px;
-    height: 14px;
-    background: #030407;
-    border-radius: 50%;
-    z-index: 100;
-    box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2), 0 0 1px rgba(0,0,0,0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .punch-hole-lens {
-    width: 6px;
-    height: 6px;
-    background: radial-gradient(circle at 35% 35%, #1E3A8A 0%, #020617 80%);
-    border-radius: 50%;
-  }
-
-  .phone-container {
-    width: 100%; height: 100%;
-    display: flex; flex-direction: column;
-    padding: 12px 18px 14px;
-    position: relative;
-  }
-
-  /* Android 15 Status Bar */
+  /* Status Bar */
   .status-bar {
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 13px; font-weight: 700; color: #CBD5E1;
-    height: 24px;
+    display: table;
+    width: 100%;
     margin-bottom: 12px;
     padding: 0 4px;
+    color: #94A3B8;
+    font-size: 12px;
+    font-weight: 700;
   }
-  .status-icons {
-    display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600;
-  }
-  .battery-pill {
-    display: inline-flex; align-items: center; gap: 3px;
-    background: #1E293B; border-radius: 5px; padding: 2px 5px; font-size: 10px; font-weight: 700; color: #10B981;
-  }
+  .status-left { display: table-cell; text-align: left; vertical-align: middle; }
+  .status-right { display: table-cell; text-align: right; vertical-align: middle; }
 
   /* App Header */
-  .app-header {
-    display: flex; align-items: center; justify-content: space-between;
+  .header-table {
+    display: table;
+    width: 100%;
     margin-bottom: 14px;
   }
-  .header-brand {
-    display: flex; align-items: center; gap: 10px;
+  .header-left { display: table-cell; vertical-align: middle; }
+  .header-right { display: table-cell; vertical-align: middle; text-align: right; }
+  .logo-box {
+    display: inline-block;
+    vertical-align: middle;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #10B981, #059669);
+    text-align: center;
+    line-height: 36px;
+    font-weight: 900;
+    font-size: 18px;
+    color: #022C22;
+    margin-right: 10px;
   }
-  .header-logo { width: 34px; height: 34px; border-radius: 10px; }
-  .header-title { font-size: 18px; font-weight: 800; letter-spacing: -0.3px; }
-  .car-status-pill {
-    display: flex; align-items: center; gap: 6px;
+  .brand-text { display: inline-block; vertical-align: middle; }
+  .brand-title { font-size: 18px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.3px; line-height: 1.1; }
+  .brand-sub { font-size: 9px; font-weight: 800; color: #64748B; letter-spacing: 1.5px; }
+
+  .park-badge {
+    display: inline-block;
     background: rgba(16, 185, 129, 0.12);
     border: 1px solid rgba(16, 185, 129, 0.35);
     border-radius: 20px;
-    padding: 5px 11px;
-    font-size: 11px; font-weight: 800; color: #10B981;
-    letter-spacing: 0.3px;
-  }
-  .car-dot { width: 7px; height: 7px; border-radius: 50%; background: #10B981; box-shadow: 0 0 10px #10B981; }
-
-  /* Inset Cast Control Bar */
-  .cast-bar {
-    background: linear-gradient(135deg, #131926 0%, #0C101A 100%);
-    border: 1px solid #222C3E;
-    border-radius: 16px;
-    padding: 12px 14px;
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 14px;
-  }
-  .cast-info { display: flex; align-items: center; gap: 9px; font-size: 12px; color: #94A3B8; }
-  .cast-info strong { color: #38BDF8; }
-  .cast-btn {
-    background: #10B981; color: #042F2E;
-    font-size: 11px; font-weight: 800;
-    padding: 6px 12px; border-radius: 10px;
-    border: none;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 800;
+    color: #10B981;
     letter-spacing: 0.5px;
   }
 
-  /* Video Player Container */
-  .video-container {
-    width: 100%; height: 215px;
-    background: #000;
-    border-radius: 20px;
+  /* Horizontal Launcher Capsules */
+  .capsules-row {
+    white-space: nowrap;
     overflow: hidden;
-    border: 1px solid #1E2738;
+    margin-bottom: 14px;
+  }
+  .capsule {
+    display: inline-block;
+    background: #111622;
+    border: 1px solid #1E2638;
+    border-radius: 20px;
+    padding: 6px 13px;
+    font-size: 11px;
+    font-weight: 800;
+    color: #CBD5E1;
+    margin-right: 6px;
+  }
+  .capsule-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  /* Hero Cinema Deck */
+  .hero-card {
+    background: linear-gradient(145deg, #151C2C 0%, #0D121D 100%);
+    border: 1px solid #232D42;
+    border-radius: 20px;
+    padding: 16px;
+    margin-bottom: 14px;
     position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+  .hero-top-table { display: table; width: 100%; margin-bottom: 14px; }
+  .hero-top-left { display: table-cell; vertical-align: middle; }
+  .hero-top-right { display: table-cell; vertical-align: middle; text-align: right; }
+  .hero-badge-red {
+    display: inline-block;
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    color: #F87171;
+    border-radius: 8px;
+    padding: 4px 8px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
+  .hero-badge-cyan {
+    display: inline-block;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: #38BDF8;
+    border-radius: 8px;
+    padding: 4px 8px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
+
+  .hero-mid-table { display: table; width: 100%; margin-bottom: 14px; }
+  .hero-text-cell { display: table-cell; vertical-align: middle; }
+  .hero-play-cell { display: table-cell; vertical-align: middle; text-align: right; width: 54px; }
+  .hero-title { font-size: 16px; font-weight: 800; color: #FFFFFF; margin-bottom: 4px; line-height: 1.2; }
+  .hero-sub { font-size: 11px; font-weight: 500; color: #94A3B8; }
+
+  .play-btn {
+    display: inline-block;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #10B981;
+    color: #022C22;
+    text-align: center;
+    line-height: 46px;
+    font-size: 18px;
+    font-weight: 900;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+  }
+
+  .hero-progress-bg {
+    width: 100%;
+    height: 3px;
+    background: #1E2638;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .hero-progress-bar {
+    width: 65%;
+    height: 100%;
+    background: #10B981;
+  }
+
+  /* 2-Column Split Module */
+  .split-table {
+    display: table;
+    width: 100%;
+    margin-bottom: 14px;
+    border-spacing: 10px 0;
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  .split-cell {
+    display: table-cell;
+    width: 50%;
+    vertical-align: top;
+    background: #0E131F;
+    border: 1px solid #1E2638;
+    border-radius: 16px;
+    padding: 12px;
+  }
+  .tile-header { display: table; width: 100%; margin-bottom: 8px; }
+  .tile-head-left { display: table-cell; font-size: 12px; font-weight: 800; color: #F1F5F9; }
+  .tile-head-right { display: table-cell; text-align: right; font-size: 10px; font-weight: 800; color: #EF4444; }
+
+  .tile-channel-bar {
+    background: #161D2C;
+    border-radius: 8px;
+    padding: 7px 9px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #F8FAFC;
+    margin-bottom: 8px;
+  }
+  .chips-row { display: table; width: 100%; }
+  .chip {
+    display: table-cell;
+    text-align: center;
+    background: #161D2C;
+    border: 1px solid #222C3E;
+    border-radius: 6px;
+    padding: 4px 0;
+    font-size: 9px;
+    font-weight: 800;
+    color: #94A3B8;
+  }
+
+  .vol-slider-bg {
+    width: 100%;
+    height: 6px;
+    background: #1E2638;
+    border-radius: 3px;
+    margin: 12px 0 8px;
+    position: relative;
+  }
+  .vol-slider-fill {
+    width: 68%;
+    height: 100%;
+    background: #10B981;
+    border-radius: 3px;
+  }
+  .vol-sub { font-size: 10px; font-weight: 600; color: #64748B; }
+
+  /* Applications Grid */
+  .apps-section-head {
+    display: table;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .apps-head-left { display: table-cell; font-size: 12px; font-weight: 800; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.5px; }
+  .apps-head-right { display: table-cell; text-align: right; font-size: 11px; font-weight: 700; color: #10B981; }
+
+  .apps-grid-table {
+    display: table;
+    width: 100%;
+    border-spacing: 8px 0;
+    margin-left: -8px;
+    margin-right: -8px;
     margin-bottom: 16px;
   }
-  .video-thumb {
-    width: 100%; height: 100%;
-    background: radial-gradient(circle at 50% 40%, #1A2336 0%, #090C14 100%);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  .app-col {
+    display: table-cell;
+    width: 25%;
+    text-align: center;
   }
-  .play-glow {
-    width: 58px; height: 58px; border-radius: 50%;
-    background: rgba(16, 185, 129, 0.18);
-    border: 2px solid #10B981;
-    display: flex; align-items: center; justify-content: center;
-    color: #10B981; font-size: 22px; box-shadow: 0 0 25px rgba(16,185,129,0.45);
+  .app-icon-box {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 6px;
+    border-radius: 16px;
+    background: #131A27;
+    border: 1px solid #1E293B;
+    display: table;
   }
-  .video-badge {
-    position: absolute; bottom: 12px; left: 12px;
-    background: rgba(8, 11, 18, 0.85); backdrop-filter: blur(10px);
-    border: 1px solid rgba(56, 189, 248, 0.3);
-    padding: 5px 11px; border-radius: 10px; font-size: 11px; font-weight: 700; color: #38BDF8;
+  .app-icon-inner {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 22px;
   }
-
-  /* Quick Actions Grid */
-  .quick-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-    margin-bottom: 16px;
-  }
-  .action-box {
-    background: #10141F; border: 1px solid #1E2638; border-radius: 16px;
-    padding: 13px 14px; display: flex; flex-direction: column; gap: 5px;
-    transition: transform 0.2s;
-  }
-  .action-box-top { display: flex; align-items: center; justify-content: space-between; }
-  .action-icon {
-    width: 32px; height: 32px; border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px; font-weight: 800;
-  }
-  .action-pill { font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 6px; }
-  .action-title { font-size: 14px; font-weight: 700; color: #F1F5F9; margin-top: 4px; }
-  .action-sub { font-size: 11px; color: #64748B; }
-
-  /* Open Source Badge Card */
-  .vip-card {
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(17, 21, 32, 0.95) 100%);
-    border: 1px solid rgba(16, 185, 129, 0.35);
-    border-radius: 18px;
-    padding: 15px 16px;
-    margin-top: auto;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .vip-left { display: flex; flex-direction: column; gap: 3px; }
-  .vip-title { font-size: 13px; font-weight: 800; color: #10B981; display: flex; align-items: center; gap: 6px; }
-  .vip-sub { font-size: 11px; color: #94A3B8; }
-  .vip-badge {
-    background: #10B981; color: #022c22;
-    font-size: 11px; font-weight: 800; padding: 6px 12px; border-radius: 10px;
+  .app-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #CBD5E1;
   }
 
-  /* Android 15 Gesture Bar */
-  .gesture-bar {
-    width: 120px; height: 4px; background: #64748B;
-    border-radius: 4px; margin: 10px auto 0; opacity: 0.7;
+  /* Bottom Floating Dock */
+  .dock-container {
+    background: rgba(19, 26, 39, 0.95);
+    border: 1px solid #222D42;
+    border-radius: 28px;
+    padding: 7px 18px;
+    display: table;
+    width: 260px;
+    margin: 0 auto;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+  }
+  .dock-tab {
+    display: table-cell;
+    width: 50%;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    padding: 6px 0;
+  }
+  .dock-tab.active {
+    color: #10B981;
+  }
+  .dock-tab.inactive {
+    color: #64748B;
   }
 </style>
 </head>
 <body>
-  <!-- Centered Punch Hole Camera -->
-  <div class="punch-hole-wrapper">
-    <div class="punch-hole-lens"></div>
+
+  <!-- Status Bar -->
+  <div class="status-bar">
+    <div class="status-left">12:45</div>
+    <div class="status-right">5G &nbsp;•&nbsp; 100%</div>
   </div>
 
-  <div class="phone-container">
-    <!-- Android Status Bar -->
-    <div class="status-bar">
-      <span>09:41</span>
-      <div class="status-icons">
-        <span>5G</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CBD5E1" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
-        <span class="battery-pill">100%</span>
+  <!-- Header -->
+  <div class="header-table">
+    <div class="header-left">
+      <div class="logo-box">AL</div>
+      <div class="brand-text">
+        <div class="brand-title">AutoLounge</div>
+        <div class="brand-sub">COCKPIT</div>
       </div>
     </div>
-
-    <!-- App Header -->
-    <div class="app-header">
-      <div class="header-brand">
-        <img class="header-logo" src="file:///home/slhoz/Belgeler/Github/AutoLounge/website/assets/logo.png" />
-        <span class="header-title">AutoLounge</span>
-      </div>
-      <div class="car-status-pill">
-        <div class="car-dot"></div>
-        CAR SYNCED
-      </div>
+    <div class="header-right">
+      <div class="park-badge">● PARKED</div>
     </div>
-
-    <!-- Inset Cast Bar -->
-    <div class="cast-bar">
-      <div class="cast-info">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2.5"><path d="M2 16.1A5 5 0 0 1 5.9 20M2 12.05A9 9 0 0 1 9.95 20M2 8A13 13 0 0 1 14 20M2 20h.01"/></svg>
-        <span>Streaming to <strong>Vehicle Cockpit</strong></span>
-      </div>
-      <button class="cast-btn">ACTIVE</button>
-    </div>
-
-    <!-- Active Video Stream -->
-    <div class="video-container">
-      <div class="video-thumb">
-        <div class="play-glow">▶</div>
-      </div>
-      <div class="video-badge">YouTube 4K • In-Car Audio Relay</div>
-    </div>
-
-    <!-- Global Quick Actions Grid -->
-    <div class="quick-grid">
-      <div class="action-box">
-        <div class="action-box-top">
-          <div class="action-icon" style="background:#B91C1C; color:#fff;">TV</div>
-          <span class="action-pill" style="background:rgba(239,68,68,0.2); color:#EF4444;">100+ HD</span>
-        </div>
-        <div class="action-title">Live Channels</div>
-        <div class="action-sub">Global TV & Sports</div>
-      </div>
-
-      <div class="action-box">
-        <div class="action-box-top">
-          <div class="action-icon" style="background:#0F766E; color:#fff;">🌐</div>
-          <span class="action-pill" style="background:rgba(20,184,166,0.2); color:#14B8A6;">4K</span>
-        </div>
-        <div class="action-title">Park Cinema</div>
-        <div class="action-sub">Full Web & Streaming</div>
-      </div>
-
-      <div class="action-box">
-        <div class="action-box-top">
-          <div class="action-icon" style="background:#E50914; color:#fff;">N</div>
-          <span class="action-pill" style="background:rgba(229,9,20,0.2); color:#F87171;">UHD</span>
-        </div>
-        <div class="action-title">Netflix & Prime</div>
-        <div class="action-sub">Movies & TV Series</div>
-      </div>
-
-      <div class="action-box">
-        <div class="action-box-top">
-          <div class="action-icon" style="background:#1DB954; color:#042F2E;">♫</div>
-          <span class="action-pill" style="background:rgba(29,185,84,0.2); color:#10B981;">SYNC</span>
-        </div>
-        <div class="action-title">Hi-Fi Audio</div>
-        <div class="action-sub">Spotify & Podcasts</div>
-      </div>
-    </div>
-
-    <!-- Open Source Badge Card -->
-    <div class="vip-card" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(17, 21, 32, 0.95) 100%); border: 1px solid rgba(16, 185, 129, 0.35);">
-      <div class="vip-left">
-        <div class="vip-title" style="color: #10B981;">
-          <span>✦</span> 100% Free & Open Source
-        </div>
-        <div class="vip-sub">No subscription · No ads · No limits</div>
-      </div>
-      <div class="vip-badge" style="background: #10B981; color: #022c22;">FREE</div>
-    </div>
-
-    <!-- Android 15 Gesture Navigation Bar -->
-    <div class="gesture-bar"></div>
   </div>
+
+  <!-- Launcher Capsules -->
+  <div class="capsules-row">
+    <div class="capsule"><span class="capsule-dot" style="background:#EF4444"></span>YOUTUBE</div>
+    <div class="capsule"><span class="capsule-dot" style="background:#10B981"></span>LIVE TV</div>
+    <div class="capsule"><span class="capsule-dot" style="background:#8B5CF6"></span>MAX</div>
+    <div class="capsule"><span class="capsule-dot" style="background:#EF4444"></span>NETFLIX</div>
+    <div class="capsule"><span class="capsule-dot" style="background:#0EA5E9"></span>PRIME</div>
+  </div>
+
+  <!-- Hero Cinema Deck -->
+  <div class="hero-card">
+    <div class="hero-top-table">
+      <div class="hero-top-left"><div class="hero-badge-red">▶ YOUTUBE CINEMA</div></div>
+      <div class="hero-top-right"><div class="hero-badge-cyan">4K HDR • COCKPIT</div></div>
+    </div>
+    <div class="hero-mid-table">
+      <div class="hero-text-cell">
+        <div class="hero-title">In-Car Cinema &amp; Video Lounge</div>
+        <div class="hero-sub">YouTube 4K, Live Streams &amp; Web Media</div>
+      </div>
+      <div class="hero-play-cell">
+        <div class="play-btn">▶</div>
+      </div>
+    </div>
+    <div class="hero-progress-bg">
+      <div class="hero-progress-bar"></div>
+    </div>
+  </div>
+
+  <!-- 2-Column Split Module -->
+  <div class="split-table">
+    <div class="split-cell">
+      <div class="tile-header">
+        <div class="tile-head-left">Live TV</div>
+        <div class="tile-head-right">● LIVE</div>
+      </div>
+      <div class="tile-channel-bar">ABC News Live</div>
+      <div class="chips-row">
+        <div class="chip" style="margin-right:4px">ABC</div>
+        <div class="chip" style="margin-right:4px">CBS</div>
+        <div class="chip">FOX</div>
+      </div>
+    </div>
+    <div class="split-cell">
+      <div class="tile-header">
+        <div class="tile-head-left">Master Volume</div>
+        <div class="tile-head-right" style="color:#10B981">68%</div>
+      </div>
+      <div class="vol-slider-bg">
+        <div class="vol-slider-fill"></div>
+      </div>
+      <div class="vol-sub">Bluetooth / Car Audio</div>
+    </div>
+  </div>
+
+  <!-- Applications Grid -->
+  <div class="apps-section-head">
+    <div class="apps-head-left">Apps (4)</div>
+    <div class="apps-head-right">+ Add Custom</div>
+  </div>
+
+  <div class="apps-grid-table">
+    <div class="app-col">
+      <div class="app-icon-box"><div class="app-icon-inner" style="color:#EF4444">▶</div></div>
+      <div class="app-label">YouTube</div>
+    </div>
+    <div class="app-col">
+      <div class="app-icon-box"><div class="app-icon-inner" style="color:#38BDF8">🌐</div></div>
+      <div class="app-label">Browser</div>
+    </div>
+    <div class="app-col">
+      <div class="app-icon-box"><div class="app-icon-inner" style="color:#A855F7">✦</div></div>
+      <div class="app-label">AI Assistant</div>
+    </div>
+    <div class="app-col">
+      <div class="app-icon-box"><div class="app-icon-inner" style="color:#10B981">📺</div></div>
+      <div class="app-label">Live TV Hub</div>
+    </div>
+  </div>
+
+  <!-- Floating Dock -->
+  <div class="dock-container">
+    <div class="dock-tab active">▦ COCKPIT</div>
+    <div class="dock-tab inactive">⚙ SETTINGS</div>
+  </div>
+
 </body>
 </html>

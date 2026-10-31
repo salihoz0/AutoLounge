@@ -16,12 +16,6 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "1.0.0-internal"
-
-        // Lisans sunucusu (website/worker) ve imza doğrulama için açık anahtar.
-        // Açık anahtar gizli değildir; özel anahtar yalnızca sunucuda (.secrets/) durur.
-        buildConfigField("String", "LICENSE_API_URL", "\"https://autolounge.app\"")
-        buildConfigField("String", "LICENSE_PUBLIC_KEY", "\"MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEKtE2xllMiDlQ+3VE9+UEWSv86EL/VSZUeRmdIcqjIk8dvuDc3dBo1Kqu/7UlroWXBKHGIHE9MbjRr8ElS5kmmw==\"")
-        buildConfigField("String", "PURCHASE_URL", "\"https://autolounge.app/#pricing\"")
         buildConfigField("String", "SUPPORT_EMAIL", "\"destek@autolounge.app\"")
     }
     buildTypes {

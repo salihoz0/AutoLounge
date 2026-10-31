@@ -14,8 +14,6 @@ import javax.inject.Inject
 @HiltViewModel
 class BookmarkViewModel @Inject constructor(
     private val dao: BookmarkDao,
-    val usageManager: UsageSecurityManager,
-    val licenseManager: LicenseManager,
     val configRepo: CarConfigRepository,
     val usageTracker: CarUsageTracker,
     val safetyManager: ParkSafetyManager
@@ -26,13 +24,6 @@ class BookmarkViewModel @Inject constructor(
 
     val config: StateFlow<CarConfig> = configRepo.configFlow
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), CarConfig())
-
-    val remainingSeconds: StateFlow<Int> = MutableStateFlow(86400)
-
-    // Open Source: Tüm özellikler sınırsız ve açık
-    val isPremium: StateFlow<Boolean> = MutableStateFlow(true)
-
-    val license: StateFlow<LicenseManager.LicenseInfo?> = MutableStateFlow(null)
 
     init {
 
@@ -81,37 +72,6 @@ class BookmarkViewModel @Inject constructor(
             }
             if (existing != null) {
                 dao.deleteById(existing.id)
-            }
-        }
-    }
-
-    fun activateLicense(key: String, onResult: (Boolean, String) -> Unit) {
-        viewModelScope.launch {
-            if (usageManager.activateDebugMasterKey(key)) {
-                onResult(true, tr("Test VIP etkinleştirildi (yalnızca geliştirici sürümü)."))
-                return@launch
-            }
-            when (val r = licenseManager.activate(key)) {
-                is LicenseManager.Result.Success -> onResult(true, tr("%s (%d/%d cihaz)", r.message, r.slotsUsed, r.maxDevices))
-                is LicenseManager.Result.Failure -> onResult(false, r.message)
-            }
-        }
-    }
-
-    fun deactivateLicense(onResult: (Boolean, String) -> Unit) {
-        viewModelScope.launch {
-            when (val r = licenseManager.deactivate()) {
-                is LicenseManager.Result.Success -> onResult(true, r.message)
-                is LicenseManager.Result.Failure -> onResult(false, r.message)
-            }
-        }
-    }
-
-    fun resendLicenseKey(email: String, onResult: (Boolean, String) -> Unit) {
-        viewModelScope.launch {
-            when (val r = licenseManager.resendKey(email)) {
-                is LicenseManager.Result.Success -> onResult(true, r.message)
-                is LicenseManager.Result.Failure -> onResult(false, r.message)
             }
         }
     }
@@ -181,18 +141,6 @@ class BookmarkViewModel @Inject constructor(
         }
     }
 
-
-    fun simulatePremium(active: Boolean) {
-        viewModelScope.launch {
-            usageManager.setSimulatedPremium(active)
-        }
-    }
-
-    fun resetTrial() {
-        viewModelScope.launch {
-            usageManager.resetTrialForTesting()
-        }
-    }
 
     fun resetAllToDefaults(onComplete: () -> Unit = {}) {
         viewModelScope.launch {

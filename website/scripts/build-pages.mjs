@@ -13,7 +13,7 @@ const src = fs.readFileSync(file, 'utf8');
 const T = new Function('return ' + src.match(/const translations = (\{[\s\S]*?\n    \});/)[1])();
 
 const SITE = 'https://autolounge.app';
-const REL = 'https://github.com/autolounge/AutoLounge-Releases';
+const REL = 'https://github.com/salihoz0/AutoLounge';
 const META = {
   en: {
     url: `${SITE}/`, locale: 'en_US', other: 'tr_TR',
@@ -41,7 +41,7 @@ function jsonLd(lang) {
   const d = T[lang], m = META[lang], page = m.url;
   const org = { '@type': 'Organization', '@id': `${SITE}/#org`, name: 'AutoLounge', url: `${SITE}/`,
     logo: { '@type': 'ImageObject', url: `${SITE}/assets/logo.png`, width: 512, height: 512 },
-    sameAs: [REL, 'https://github.com/autolounge'] };
+    sameAs: [REL, 'https://github.com/salihoz0'] };
   const site = { '@type': 'WebSite', '@id': `${SITE}/#website`, url: `${SITE}/`, name: 'AutoLounge',
     inLanguage: ['en', 'tr'], publisher: { '@id': `${SITE}/#org` } };
   const offer = (price, cur, url, region) => ({ '@type': 'Offer', name: 'Free Open Source', price, priceCurrency: cur,
