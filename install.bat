@@ -138,11 +138,12 @@ echo.
 
 :: Query device status
 set "DEVICE_STATE="
-for /f "tokens=1,2" %%A in ('"%ADB_BIN%" devices ^| findstr /v "List of devices"') do (
+for /f "tokens=1,2" %%A in ('"%ADB_BIN%" devices ^| findstr /v "List of devices emulator-"') do (
     if not "%%A"=="" (
         if "%%B"=="device" (
             set "DEVICE_STATE=device"
             echo [✓] Phone connected and authorized: %%A
+            set "ANDROID_SERIAL=%%A"
             goto :install_app
         )
         if "%%B"=="unauthorized" (
@@ -179,6 +180,8 @@ if %errorlevel% equ 0 (
     echo  🎉 SUCCESS! INSTALLATION COMPLETE!
     echo =====================================================================
     echo.
+    :: Samsung Dual Messenger auto-clones Play-signed installs into a DUAL_APP user (second icon with clone badge)
+    for /f "tokens=2 delims={:" %%U in ('"%ADB_BIN%" shell pm list users ^| findstr DUAL_APP') do "%ADB_BIN%" shell pm uninstall --user %%U com.autolounge.park >nul 2>&1
     echo  ✓ AutoLounge is now installed with Google Play Store verification.
     echo  ✓ Plug your phone into your vehicle to launch AutoLounge on your car screen.
     echo.

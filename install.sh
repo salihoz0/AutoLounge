@@ -115,7 +115,7 @@ echo -e "${CYAN}================================================================
 "${ADB_BIN}" start-server >/dev/null 2>&1 || true
 
 while true; do
-    DEVICE_LINE="$("${ADB_BIN}" devices | grep -v "List of devices" | grep -v "^$" | head -n1 || true)"
+    DEVICE_LINE="$("${ADB_BIN}" devices | grep -v "List of devices" | grep -v "^$" | grep -v "^emulator-" | head -n1 || true)"
     
     if [[ -z "${DEVICE_LINE}" ]]; then
         echo -e "${YELLOW}[!] No connected phone detected.${RESET}"
@@ -126,6 +126,7 @@ while true; do
         
         if [[ "${DEVICE_STATE}" == "device" ]]; then
             echo -e "${GREEN}[✓] Phone connected and authorized: ${DEVICE_ID}${RESET}"
+            export ANDROID_SERIAL="${DEVICE_ID}"
             break
         elif [[ "${DEVICE_STATE}" == "unauthorized" ]]; then
             echo -e "${YELLOW}[!] Phone detected, but UNAUTHORIZED.${RESET}"
@@ -146,6 +147,10 @@ if "${ADB_BIN}" install -i "com.android.vending" -r "${TARGET_APK}"; then
     echo -e "\n${GREEN}=====================================================================${RESET}"
     echo -e "${GREEN}${BOLD} 🎉 SUCCESS! INSTALLATION COMPLETE!${RESET}"
     echo -e "${GREEN}=====================================================================${RESET}"
+    # Samsung Dual Messenger auto-clones Play-signed installs into a DUAL_APP user (second icon with clone badge)
+    for u in $("${ADB_BIN}" shell pm list users | grep DUAL_APP | sed -E 's/.*UserInfo\{([0-9]+):.*/\1/'); do
+        "${ADB_BIN}" shell pm uninstall --user "${u}" com.autolounge.park >/dev/null 2>&1 || true
+    done
     echo -e " ✓ AutoLounge is now installed with Google Play Store verification."
     echo -e " ✓ Plug your phone into your vehicle to launch AutoLounge on your car screen.\n"
     
