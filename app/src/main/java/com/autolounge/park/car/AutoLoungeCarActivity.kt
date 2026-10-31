@@ -1183,9 +1183,15 @@ class AutoLoungeCarActivity : CarActivity() {
                 override fun onPermissionRequest(request: PermissionRequest?) {
                     val req = request ?: return
                     try {
-                        // Only grant protected media DRM identifier for video platforms (e.g., Widevine DRM)
-                        // Explicitly deny microphone/camera access to protect cabin privacy
-                        val allowed = req.resources.filter { it == PermissionRequest.RESOURCE_PROTECTED_MEDIA_ID }
+                        // DRM identifier for video platforms (Widevine) and, only if the user already granted
+                        // RECORD_AUDIO on the phone, the microphone (voice search). Camera is always denied.
+                        val micGranted = androidx.core.content.ContextCompat.checkSelfPermission(
+                            this@AutoLoungeCarActivity, android.Manifest.permission.RECORD_AUDIO
+                        ) == android.content.pm.PackageManager.PERMISSION_GRANTED
+                        val allowed = req.resources.filter {
+                            it == PermissionRequest.RESOURCE_PROTECTED_MEDIA_ID ||
+                                (it == PermissionRequest.RESOURCE_AUDIO_CAPTURE && micGranted)
+                        }
                         if (allowed.isNotEmpty()) {
                             req.grant(allowed.toTypedArray())
                         } else {
