@@ -15,11 +15,11 @@
 - Android 13 and below: install with KingInstaller using "Install as Google Play Store"; also enable Android Auto "Unknown sources".
 
 ## Pages
-- [Home (English)](https://autolounge.app/): overview, features, install guide, troubleshooting, open source, FAQ
-- [Ana sayfa (Türkçe)](https://autolounge.app/tr/): the same content in Turkish
-- [Install guide](https://autolounge.app/#install-guide): step-by-step setup per Android version
-- [Open source](https://autolounge.app/#pricing): free, no license key
-- [FAQ](https://autolounge.app/#faq): root, cost, devices, supported Android versions
+- [Home (English)](https://salihoz0.github.io/AutoLounge/): overview, features, install guide, troubleshooting, open source, FAQ
+- [Ana sayfa (Türkçe)](https://salihoz0.github.io/AutoLounge/tr/): the same content in Turkish
+- [Install guide](https://salihoz0.github.io/AutoLounge/#install-guide): step-by-step setup per Android version
+- [Open source](https://salihoz0.github.io/AutoLounge/#pricing): free, no license key
+- [FAQ](https://salihoz0.github.io/AutoLounge/#faq): root, cost, devices, supported Android versions
 
 ## Downloads and support
 - [Latest APK (GitHub Releases)](https://github.com/salihoz0/AutoLounge/releases/latest)

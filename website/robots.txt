@@ -24,4 +24,4 @@ Allow: /
 Disallow: /api/
 Disallow: /webhook/
 
-Sitemap: https://autolounge.app/sitemap.xml
+Sitemap: https://salihoz0.github.io/AutoLounge/sitemap.xml

@@ -12,7 +12,7 @@ const file = path.join(root, 'index.html');
 const src = fs.readFileSync(file, 'utf8');
 const T = new Function('return ' + src.match(/const translations = (\{[\s\S]*?\n    \});/)[1])();
 
-const SITE = 'https://autolounge.app';
+const SITE = 'https://salihoz0.github.io/AutoLounge';
 const REL = 'https://github.com/salihoz0/AutoLounge';
 const META = {
   en: {
