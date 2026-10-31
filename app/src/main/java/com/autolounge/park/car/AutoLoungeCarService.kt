@@ -1,4 +1,4 @@
-package com.autohub.park.car
+package com.autolounge.park.car
 
 import com.google.android.apps.auto.sdk.CarActivity
 import com.google.android.apps.auto.sdk.CarActivityService

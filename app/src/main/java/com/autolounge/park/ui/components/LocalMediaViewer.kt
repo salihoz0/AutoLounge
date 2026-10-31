@@ -1,4 +1,4 @@
-package com.autohub.park.ui.components
+package com.autolounge.park.ui.components
 
 import android.net.Uri
 import android.view.ViewGroup
@@ -21,8 +21,8 @@ import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
 import coil.compose.AsyncImage
-import com.autohub.park.ui.AutoLoungePalette
-import com.autohub.park.i18n.tr
+import com.autolounge.park.ui.AutoLoungePalette
+import com.autolounge.park.i18n.tr
 
 /**
  * Cihazın yerel depolamasından (galeri / dosya yöneticisi) seçilen

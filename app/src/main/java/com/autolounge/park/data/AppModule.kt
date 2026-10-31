@@ -1,4 +1,4 @@
-package com.autohub.park.data
+package com.autolounge.park.data
 
 import android.content.Context
 import androidx.room.Room
@@ -14,7 +14,7 @@ import javax.inject.Singleton
 object AppModule {
     @Provides @Singleton
     fun db(@ApplicationContext ctx: Context): AppDatabase =
-        Room.databaseBuilder(ctx, AppDatabase::class.java, "autohub.db")
+        Room.databaseBuilder(ctx, AppDatabase::class.java, "autolounge.db")
             .fallbackToDestructiveMigration().build()
 
     @Provides fun dao(db: AppDatabase): BookmarkDao = db.bookmarkDao()

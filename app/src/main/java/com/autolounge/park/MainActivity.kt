@@ -1,7 +1,7 @@
-package com.autohub.park
+package com.autolounge.park
 
 import android.app.Activity
-import com.autohub.park.i18n.tr
+import com.autolounge.park.i18n.tr
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -44,24 +44,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
-import com.autohub.park.data.Bookmark
-import com.autohub.park.data.BookmarkViewModel
-import com.autohub.park.data.CarSetupChecker
-import com.autohub.park.data.CarConfig
-import com.autohub.park.data.NewsChannel
-import com.autohub.park.data.NewsChannelsRepository
-import com.autohub.park.ui.*
-import com.autohub.park.ui.browser.ParkBrowser
-import com.autohub.park.ui.components.CarDashboardContent
-import com.autohub.park.ui.components.PaywallDialog
-import com.autohub.park.ui.components.MembershipScreen
-import com.autohub.park.ui.components.AddAppModal
-import com.autohub.park.ui.components.CarKeyboardDock
-import com.autohub.park.ui.components.CarSetupBanner
-import com.autohub.park.ui.components.CarSetupGuideDialog
-import com.autohub.park.ui.components.rememberCarSetupStatus
-import com.autohub.park.ui.components.LiveTvPlayer
-import com.autohub.park.data.AutoLoungeSyncBridge
+import com.autolounge.park.data.Bookmark
+import com.autolounge.park.data.BookmarkViewModel
+import com.autolounge.park.data.CarSetupChecker
+import com.autolounge.park.data.CarConfig
+import com.autolounge.park.data.NewsChannel
+import com.autolounge.park.data.NewsChannelsRepository
+import com.autolounge.park.ui.*
+import com.autolounge.park.ui.browser.ParkBrowser
+import com.autolounge.park.ui.components.CarDashboardContent
+import com.autolounge.park.ui.components.AddAppModal
+import com.autolounge.park.ui.components.CarKeyboardDock
+import com.autolounge.park.ui.components.CarSetupBanner
+import com.autolounge.park.ui.components.CarSetupGuideDialog
+import com.autolounge.park.ui.components.rememberCarSetupStatus
+import com.autolounge.park.ui.components.LiveTvPlayer
+import com.autolounge.park.data.AutoLoungeSyncBridge
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -72,7 +70,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val vm: BookmarkViewModel = hiltViewModel()
             val config by vm.config.collectAsState()
-            AutoHubTheme(carTheme = config.theme, themeMode = config.themeMode) {
+            AutoLoungeTheme(carTheme = config.theme, themeMode = config.themeMode) {
                 MainPhoneScreen(vm = vm)
             }
         }
@@ -81,8 +79,7 @@ class MainActivity : ComponentActivity() {
 
 enum class MainNavTab(val title: String, val icon: androidx.compose.ui.graphics.vector.ImageVector) {
     COCKPIT("Kokpit", Icons.Default.Dashboard),
-    CUSTOMIZER("Ayarlar", Icons.Default.Tune),
-    MEMBERSHIP("VIP Lisans", Icons.Default.MilitaryTech)
+    CUSTOMIZER("Ayarlar", Icons.Default.Tune)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -108,7 +105,6 @@ fun MainPhoneScreen(vm: BookmarkViewModel = hiltViewModel()) {
     var editingBookmark by remember { mutableStateOf<Bookmark?>(null) }
     var editTitleInput by remember { mutableStateOf("") }
     var showAddDialog by remember { mutableStateOf(false) }
-    var showPaywallDialog by remember { mutableStateOf(false) }
     var showResetDialog by remember { mutableStateOf(false) }
     var addError by remember { mutableStateOf("") }
     var lastSentCarUrl by remember { mutableStateOf<String?>(null) }
@@ -195,7 +191,7 @@ fun MainPhoneScreen(vm: BookmarkViewModel = hiltViewModel()) {
 
     // Fullscreen local media player overlay
     if (selectedLocalMediaUri != null) {
-        com.autohub.park.ui.components.LocalMediaViewer(
+        com.autolounge.park.ui.components.LocalMediaViewer(
             mediaUri = selectedLocalMediaUri!!,
             isParked = isParked,
             isPassengerBypass = isPassengerBypass,
@@ -337,14 +333,6 @@ fun MainPhoneScreen(vm: BookmarkViewModel = hiltViewModel()) {
                                 )
                             }
                         }
-
-                        // VIP / Trial Pill
-                        Box(Modifier.clickable { showPaywallDialog = true }) {
-                            TrialPill(
-                                remainingMinutes = remainingSeconds / 60,
-                                isPremium = isPremium
-                            )
-                        }
                     }
                 }
             }
@@ -376,7 +364,7 @@ fun MainPhoneScreen(vm: BookmarkViewModel = hiltViewModel()) {
                     ) {
                         MainNavTab.entries.forEach { tab ->
                             val isSelected = selectedTab == tab
-                            val activeColor = if (tab == MainNavTab.MEMBERSHIP) AutoLoungePalette.AmberSignal else config.theme.primary
+                            val activeColor = config.theme.primary
                             Column(
                                 horizontalAlignment = Alignment.CenterHorizontally,
                                 modifier = Modifier
@@ -432,8 +420,7 @@ fun MainPhoneScreen(vm: BookmarkViewModel = hiltViewModel()) {
                         isCarAudioActive = isCarAudioActive,
                         onStopCarAudio = { AutoLoungeSyncBridge.requestStop() },
                         onOpenUrl = { url, title, isApp ->
-                            if (isPremium || remainingSeconds > 0) {
-                                val itemTitle = title ?: "AutoLounge"
+                            val itemTitle = title ?: "AutoLounge"
                                 if (AutoLoungeSyncBridge.isDirectMediaStream(url)) {
                                     val matched = NewsChannelsRepository.allChannels.firstOrNull {
                                         it.audioStreamUrl == url || it.url == url || it.title.equals(title, ignoreCase = true)
@@ -492,68 +479,62 @@ fun MainPhoneScreen(vm: BookmarkViewModel = hiltViewModel()) {
                                         activeLiveTvChannel = null
                                     }
                                 }
-                            } else {
-                                showPaywallDialog = true
                             }
                         },
                         // Handle Live TV / Radio stream launch natively on phone and sync to car
                         onOpenLiveTv = { ch ->
-                            if (isPremium || remainingSeconds > 0) {
-                                val stream = ch.audioStreamUrl ?: ch.url
-                                val isDirectStream = AutoLoungeSyncBridge.isDirectMediaStream(stream)
-                                if (isDirectStream) {
-                                    AutoLoungeSyncBridge.openOnCar(
-                                        kind = "live_tv",
-                                        url = stream,
-                                        title = ch.title,
-                                        streamUrl = stream
-                                    )
-                                    AutoLoungeSyncBridge.syncToCar(
-                                        id = ch.id,
-                                        title = ch.title,
-                                        subtitle = tr("Canlı TV (%s)", tr(ch.category)),
-                                        webUrl = ch.url,
-                                        streamUri = stream,
-                                        iconUri = NewsChannelsRepository.logoFor(ch.title)
-                                    )
-                                    if (carAlive) {
-                                        activeLiveTvChannel = null
-                                        activeBrowserUrl = null
-                                        Toast.makeText(context, tr("Araç ekranında oynatılıyor: %s", ch.title), Toast.LENGTH_SHORT).show()
-                                    } else {
-                                        activeLiveTvChannel = ch
-                                        activeBrowserUrl = null
-                                    }
+                            val stream = ch.audioStreamUrl ?: ch.url
+                            val isDirectStream = AutoLoungeSyncBridge.isDirectMediaStream(stream)
+                            if (isDirectStream) {
+                                AutoLoungeSyncBridge.openOnCar(
+                                    kind = "live_tv",
+                                    url = stream,
+                                    title = ch.title,
+                                    streamUrl = stream
+                                )
+                                AutoLoungeSyncBridge.syncToCar(
+                                    id = ch.id,
+                                    title = ch.title,
+                                    subtitle = tr("Canlı TV (%s)", tr(ch.category)),
+                                    webUrl = ch.url,
+                                    streamUri = stream,
+                                    iconUri = NewsChannelsRepository.logoFor(ch.title)
+                                )
+                                if (carAlive) {
+                                    activeLiveTvChannel = null
+                                    activeBrowserUrl = null
+                                    Toast.makeText(context, tr("Araç ekranında oynatılıyor: %s", ch.title), Toast.LENGTH_SHORT).show()
                                 } else {
-                                    AutoLoungeSyncBridge.openOnCar(
-                                        kind = "web",
-                                        url = ch.url,
-                                        title = ch.title
-                                    )
-                                    AutoLoungeSyncBridge.syncToCar(
-                                        id = ch.id,
-                                        title = ch.title,
-                                        subtitle = tr("Canlı TV (%s)", tr(ch.category)),
-                                        webUrl = ch.url,
-                                        iconUri = NewsChannelsRepository.logoFor(ch.title)
-                                    )
-                                    if (carAlive) {
-                                        activeBrowserUrl = null
-                                        activeLiveTvChannel = null
-                                        Toast.makeText(context, tr("Araç ekranında açılıyor: %s", ch.title), Toast.LENGTH_SHORT).show()
-                                    } else {
-                                        activeBrowserUrl = ch.url
-                                        activeBrowserTitle = ch.title
-                                        activeBrowserIsAppMode = true
-                                        activeLiveTvChannel = null
-                                    }
+                                    activeLiveTvChannel = ch
+                                    activeBrowserUrl = null
                                 }
                             } else {
-                                showPaywallDialog = true
+                                AutoLoungeSyncBridge.openOnCar(
+                                    kind = "web",
+                                    url = ch.url,
+                                    title = ch.title
+                                )
+                                AutoLoungeSyncBridge.syncToCar(
+                                    id = ch.id,
+                                    title = ch.title,
+                                    subtitle = tr("Canlı TV (%s)", tr(ch.category)),
+                                    webUrl = ch.url,
+                                    iconUri = NewsChannelsRepository.logoFor(ch.title)
+                                )
+                                if (carAlive) {
+                                    activeBrowserUrl = null
+                                    activeLiveTvChannel = null
+                                    Toast.makeText(context, tr("Araç ekranında açılıyor: %s", ch.title), Toast.LENGTH_SHORT).show()
+                                } else {
+                                    activeBrowserUrl = ch.url
+                                    activeBrowserTitle = ch.title
+                                    activeBrowserIsAppMode = true
+                                    activeLiveTvChannel = null
+                                }
                             }
                         },
                         onLaunchAssistant = { launchAssistant() },
-                        onOpenPaywall = { showPaywallDialog = true },
+                        onOpenPaywall = {},
                         faviconProvider = { vm.favicon(it) },
                         onReorder = { vm.reorderCards(it) },
                         onDeleteBookmark = { vm.delete(it) },
@@ -585,20 +566,6 @@ fun MainPhoneScreen(vm: BookmarkViewModel = hiltViewModel()) {
                         onAddNew = { showAddDialog = true },
                         onResetAll = { showResetDialog = true },
                         onOpenCarSetup = { showCarSetupGuide = true }
-                    )
-                }
-                MainNavTab.MEMBERSHIP -> {
-                    val license by vm.license.collectAsState()
-                    MembershipScreen(
-                        remainingSeconds = remainingSeconds,
-                        isPremium = isPremium,
-                        license = license,
-                        accent = config.theme.primary,
-                        onActivate = { key, callback -> vm.activateLicense(key, callback) },
-                        onDeactivate = { callback -> vm.deactivateLicense(callback) },
-                        onResendKey = { email, callback -> vm.resendLicenseKey(email, callback) },
-                        onSimulatePremium = { vm.simulatePremium(it) },
-                        onResetTrial = { vm.resetTrial() }
                     )
                 }
             }
@@ -651,15 +618,6 @@ fun MainPhoneScreen(vm: BookmarkViewModel = hiltViewModel()) {
                 vm.updateBookmarkTitle(b.id, newTitle) { addError = it }
                 editingBookmark = null
             }
-        )
-    }
-
-    if (showPaywallDialog) {
-        PaywallDialog(
-            remainingSeconds = remainingSeconds,
-            accent = config.theme.primary,
-            onActivate = { key, callback -> vm.activateLicense(key, callback) },
-            onDismiss = { showPaywallDialog = false }
         )
     }
 
@@ -716,9 +674,9 @@ fun SimulatorTab(
     config: CarConfig,
     bookmarks: List<Bookmark>,
     remainingSeconds: Int,
-    isPremium: Boolean,
+    isPremium: Boolean = true,
     onOpenUrl: (url: String, title: String?, isAppMode: Boolean) -> Unit,
-    onOpenPaywall: () -> Unit,
+    onOpenPaywall: () -> Unit = {},
     faviconProvider: (String) -> String,
     onReorder: (List<String>) -> Unit,
     onDeleteBookmark: (Long) -> Unit,
@@ -730,8 +688,8 @@ fun SimulatorTab(
     isCarAudioActive: Boolean = false,
     onStopCarAudio: (() -> Unit)? = null
 ) {
-    val nowTitle by com.autohub.park.data.NowPlayingStore.title.collectAsState()
-    val nowSub by com.autohub.park.data.NowPlayingStore.subtitle.collectAsState()
+    val nowTitle by com.autolounge.park.data.NowPlayingStore.title.collectAsState()
+    val nowSub by com.autolounge.park.data.NowPlayingStore.subtitle.collectAsState()
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -942,8 +900,8 @@ fun CustomizerTab(
         item {
             val langContext = LocalContext.current
             var langMenuOpen by remember { mutableStateOf(false) }
-            val currentLang = com.autohub.park.i18n.I18n.languages
-                .firstOrNull { it.code == com.autohub.park.i18n.I18n.lang }?.nativeLabel ?: "English"
+            val currentLang = com.autolounge.park.i18n.I18n.languages
+                .firstOrNull { it.code == com.autolounge.park.i18n.I18n.lang }?.nativeLabel ?: "English"
             Surface(
                 shape = RoundedCornerShape(18.dp),
                 color = AutoLoungePalette.CarbonElevated,
@@ -960,21 +918,21 @@ fun CustomizerTab(
                     Icon(Icons.Default.Language, contentDescription = null, tint = config.theme.primary, modifier = Modifier.size(20.dp))
                     Spacer(Modifier.width(10.dp))
                     Column(Modifier.weight(1f)) {
-                        Text(com.autohub.park.i18n.tr("Uygulama Dili"), color = AutoLoungePalette.TextPure, fontWeight = FontWeight.Bold, fontSize = 15.sp)
+                        Text(com.autolounge.park.i18n.tr("Uygulama Dili"), color = AutoLoungePalette.TextPure, fontWeight = FontWeight.Bold, fontSize = 15.sp)
                         Text(currentLang, color = AutoLoungePalette.TextDim, fontSize = 11.5.sp)
                     }
                     Box {
                         Icon(Icons.Default.ChevronRight, contentDescription = null, tint = AutoLoungePalette.TextDim)
                         DropdownMenu(expanded = langMenuOpen, onDismissRequest = { langMenuOpen = false }) {
-                            com.autohub.park.i18n.I18n.languages.forEach { l ->
+                            com.autolounge.park.i18n.I18n.languages.forEach { l ->
                                 DropdownMenuItem(
                                     text = { Text(l.nativeLabel) },
-                                    trailingIcon = if (l.code == com.autohub.park.i18n.I18n.lang) {
+                                    trailingIcon = if (l.code == com.autolounge.park.i18n.I18n.lang) {
                                         { Icon(Icons.Default.Check, contentDescription = null) }
                                     } else null,
                                     onClick = {
                                         langMenuOpen = false
-                                        com.autohub.park.i18n.I18n.setLang(langContext, l.code)
+                                        com.autolounge.park.i18n.I18n.setLang(langContext, l.code)
                                         // remember{} içinde hesaplanmış metinler de yeni dile geçsin
                                         (langContext as? android.app.Activity)?.recreate()
                                     }
@@ -989,8 +947,8 @@ fun CustomizerTab(
         // --- 0.6 REKLAM ENGELLEYİCİ ---
         item {
             val adContext = LocalContext.current
-            val adBlockEnabled by com.autohub.park.ui.browser.WebContentBlocker.enabled.collectAsState()
-            val adsBlocked by com.autohub.park.ui.browser.WebContentBlocker.totalBlocked.collectAsState()
+            val adBlockEnabled by com.autolounge.park.ui.browser.WebContentBlocker.enabled.collectAsState()
+            val adsBlocked by com.autolounge.park.ui.browser.WebContentBlocker.totalBlocked.collectAsState()
             Surface(
                 shape = RoundedCornerShape(18.dp),
                 color = AutoLoungePalette.CarbonElevated,
@@ -1014,7 +972,7 @@ fun CustomizerTab(
                     }
                     Switch(
                         checked = adBlockEnabled,
-                        onCheckedChange = { com.autohub.park.ui.browser.WebContentBlocker.setEnabled(adContext, it) },
+                        onCheckedChange = { com.autolounge.park.ui.browser.WebContentBlocker.setEnabled(adContext, it) },
                         colors = SwitchDefaults.colors(checkedTrackColor = config.theme.primary)
                     )
                 }

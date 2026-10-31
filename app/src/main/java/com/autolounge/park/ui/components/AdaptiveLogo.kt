@@ -1,4 +1,4 @@
-package com.autohub.park.ui.components
+package com.autolounge.park.ui.components
 
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
@@ -17,7 +17,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.autohub.park.ui.AutoLoungePalette
+import com.autolounge.park.ui.AutoLoungePalette
 import java.util.concurrent.ConcurrentHashMap
 
 /**

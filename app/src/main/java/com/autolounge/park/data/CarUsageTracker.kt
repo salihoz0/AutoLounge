@@ -1,4 +1,4 @@
-package com.autohub.park.data
+package com.autolounge.park.data
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -47,24 +47,6 @@ class CarUsageTracker @Inject constructor(
     }
 
     private fun startUsageTicker() {
-        tickerJob?.cancel()
-        tickerJob = scope.launch {
-            while (isActive) {
-                delay(15000) // 15 saniyelik periyotlarla kontrol (CPU ve Disk I/O tasarrufu)
-                val inCar = _isCarScreenActive.value
-                val isStreaming = _isAudioStreamingActive.value
-
-                // Yalnızca araca bağlıyken VEYA arka planda ses çalışırken süre düş
-                // Lisanslı (veya debug test VIP) kullanıcının deneme süresi düşmez
-                val isPremium = (inCar || isStreaming) &&
-                    (licenseManager.isLicensedFlow.first() || usageManager.isPremiumSimulatedFlow.first())
-                if ((inCar || isStreaming) && !isPremium) {
-                    val remaining = usageManager.remainingSecondsFlow.first()
-                    if (remaining > 0) {
-                        usageManager.recordUsage(15)
-                    }
-                }
-            }
-        }
+        // Open-source: Sınırsız sürüm, kullanım sayacı devre dışı
     }
 }

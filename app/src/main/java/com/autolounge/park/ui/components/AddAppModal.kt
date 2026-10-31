@@ -1,4 +1,4 @@
-package com.autohub.park.ui.components
+package com.autolounge.park.ui.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -24,12 +24,12 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import coil.compose.AsyncImage
-import com.autohub.park.data.AppCatalogRepository
-import com.autohub.park.data.Bookmark
-import com.autohub.park.data.BrandLogos
-import com.autohub.park.data.CatalogItem
-import com.autohub.park.i18n.tr
-import com.autohub.park.ui.AutoLoungePalette
+import com.autolounge.park.data.AppCatalogRepository
+import com.autolounge.park.data.Bookmark
+import com.autolounge.park.data.BrandLogos
+import com.autolounge.park.data.CatalogItem
+import com.autolounge.park.i18n.tr
+import com.autolounge.park.ui.AutoLoungePalette
 
 @Composable
 fun AddAppModal(

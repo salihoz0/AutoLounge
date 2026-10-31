@@ -1,4 +1,4 @@
-package com.autohub.park.audio
+package com.autolounge.park.audio
 
 import android.content.Context
 import androidx.media3.common.MediaItem

@@ -1,4 +1,4 @@
-package com.autohub.park.ui.components
+package com.autolounge.park.ui.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -25,10 +25,10 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
-import com.autohub.park.data.CarSetupChecker
-import com.autohub.park.data.CarSetupChecker.InstallSource
-import com.autohub.park.i18n.tr
-import com.autohub.park.ui.AutoLoungePalette
+import com.autolounge.park.data.CarSetupChecker
+import com.autolounge.park.data.CarSetupChecker.InstallSource
+import com.autolounge.park.i18n.tr
+import com.autolounge.park.ui.AutoLoungePalette
 
 private const val KING_INSTALLER_URL = "https://github.com/fcaronte/KingInstaller/releases"
 private const val SHIZUKU_URL = "https://play.google.com/store/apps/details?id=moe.shizuku.privileged.api"

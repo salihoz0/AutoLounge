@@ -1,4 +1,4 @@
-package com.autohub.park.ui
+package com.autolounge.park.ui
 
 import android.app.Activity
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -19,7 +19,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
-import com.autohub.park.R
+import com.autolounge.park.R
 
 /**
  * AutoLounge Luxury Cockpit Dynamic Palette (Dual Mode: Day Light & Night Dark)
@@ -241,7 +241,7 @@ val AutoLoungeTypography = Typography(
 )
 
 @Composable
-fun AutoHubTheme(
+fun AutoLoungeTheme(
     carTheme: CarVisualTheme = CarVisualTheme.STEALTH_PLATINUM,
     themeMode: String = "system", // "system" | "dark" | "light"
     content: @Composable () -> Unit
@@ -300,7 +300,7 @@ fun AutoHubTheme(
         LocalTextStyle provides AutoLoungeTypography.bodyMedium,
         // Arapça seçiliyse tüm arayüz sağdan sola
         androidx.compose.ui.platform.LocalLayoutDirection provides
-            if (com.autohub.park.i18n.I18n.isRtl) androidx.compose.ui.unit.LayoutDirection.Rtl
+            if (com.autolounge.park.i18n.I18n.isRtl) androidx.compose.ui.unit.LayoutDirection.Rtl
             else androidx.compose.ui.unit.LayoutDirection.Ltr
     ) {
         MaterialTheme(

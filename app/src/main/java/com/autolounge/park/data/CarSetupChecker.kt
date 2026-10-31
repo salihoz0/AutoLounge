@@ -1,4 +1,4 @@
-package com.autohub.park.data
+package com.autolounge.park.data
 
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -7,7 +7,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
-import com.autohub.park.i18n.tr
+import com.autolounge.park.i18n.tr
 
 /**
  * Android Auto kurulum kontrolleri.

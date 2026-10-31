@@ -1,4 +1,4 @@
-package com.autohub.park.ui.components
+package com.autolounge.park.ui.components
 
 import androidx.compose.animation.*
 import androidx.compose.foundation.BorderStroke
@@ -25,13 +25,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.autohub.park.data.Bookmark
-import com.autohub.park.data.NewsChannel
-import com.autohub.park.data.NewsChannelsRepository
-import com.autohub.park.ui.AutoLoungePalette
+import com.autolounge.park.data.Bookmark
+import com.autolounge.park.data.NewsChannel
+import com.autolounge.park.data.NewsChannelsRepository
+import com.autolounge.park.ui.AutoLoungePalette
 import coil.compose.AsyncImage
 import java.util.Locale
-import com.autohub.park.i18n.tr
+import com.autolounge.park.i18n.tr
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -1,6 +1,6 @@
-package com.autohub.park.car
+package com.autolounge.park.car
 
-import com.autohub.park.i18n.tr
+import com.autolounge.park.i18n.tr
 import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
@@ -48,23 +48,23 @@ import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.DefaultLoadControl
 import androidx.media3.exoplayer.ExoPlayer
-import com.autohub.park.audio.LivePlayerFactory
-import com.autohub.park.audio.LivePlayerFactory.liveIf
+import com.autolounge.park.audio.LivePlayerFactory
+import com.autolounge.park.audio.LivePlayerFactory.liveIf
 import androidx.media3.ui.PlayerView
 import coil.load
 import coil.request.CachePolicy
-import com.autohub.park.BuildConfig
-import com.autohub.park.R
-import com.autohub.park.data.AppCatalogRepository
-import com.autohub.park.data.AutoLoungeSyncBridge
-import com.autohub.park.data.BrandLogos
-import com.autohub.park.data.CatalogItem
-import com.autohub.park.data.NewsChannel
-import com.autohub.park.data.NewsChannelsRepository
-import com.autohub.park.data.NowPlayingStore
-import com.autohub.park.data.ParkSafetyManager
-import com.autohub.park.ui.browser.CONSENT_AUTO_ACCEPT_JS
-import com.autohub.park.ui.browser.SPA_SYNC_JS
+import com.autolounge.park.BuildConfig
+import com.autolounge.park.R
+import com.autolounge.park.data.AppCatalogRepository
+import com.autolounge.park.data.AutoLoungeSyncBridge
+import com.autolounge.park.data.BrandLogos
+import com.autolounge.park.data.CatalogItem
+import com.autolounge.park.data.NewsChannel
+import com.autolounge.park.data.NewsChannelsRepository
+import com.autolounge.park.data.NowPlayingStore
+import com.autolounge.park.data.ParkSafetyManager
+import com.autolounge.park.ui.browser.CONSENT_AUTO_ACCEPT_JS
+import com.autolounge.park.ui.browser.SPA_SYNC_JS
 import com.google.android.apps.auto.sdk.CarActivity
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
@@ -302,7 +302,7 @@ class AutoLoungeCarActivity : CarActivity() {
 
         // Remote command bridge from companion phone app
         AutoLoungeSyncBridge.setCarAppAlive(true)
-        com.autohub.park.data.CarSetupChecker.markCarSessionSeen(this)
+        com.autolounge.park.data.CarSetupChecker.markCarSessionSeen(this)
         AutoLoungeSyncBridge.consumePendingCarRequest()?.let { handleCarRequest(it) }
         scope.launch {
             AutoLoungeSyncBridge.openOnCarFlow.collect { req ->
@@ -1041,9 +1041,9 @@ class AutoLoungeCarActivity : CarActivity() {
                 override fun shouldInterceptRequest(view: WebView?, request: WebResourceRequest?): WebResourceResponse? {
                     // Reklam/izleyici istekleri ağa çıkmadan kapatılır (ParkBrowser ile aynı engelleyici)
                     if (request != null && !request.isForMainFrame &&
-                        com.autohub.park.ui.browser.WebContentBlocker.isBlocked(request.url)
+                        com.autolounge.park.ui.browser.WebContentBlocker.isBlocked(request.url)
                     ) {
-                        return com.autohub.park.ui.browser.WebContentBlocker.emptyResponse()
+                        return com.autolounge.park.ui.browser.WebContentBlocker.emptyResponse()
                     }
                     return super.shouldInterceptRequest(view, request)
                 }
@@ -1113,8 +1113,8 @@ class AutoLoungeCarActivity : CarActivity() {
 
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
-                    if (com.autohub.park.ui.browser.WebContentBlocker.enabled.value) {
-                        view?.evaluateJavascript(com.autohub.park.ui.browser.WebContentBlocker.COSMETIC_JS, null)
+                    if (com.autolounge.park.ui.browser.WebContentBlocker.enabled.value) {
+                        view?.evaluateJavascript(com.autolounge.park.ui.browser.WebContentBlocker.COSMETIC_JS, null)
                     }
                     if (currentMode == Mode.WEB) {
                         view?.visibility = View.VISIBLE

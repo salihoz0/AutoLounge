@@ -21,6 +21,7 @@ node_modules/
 .wrangler/
 
 # IDE / OS
+tools/
 .idea/
 *.iml
 .DS_Store

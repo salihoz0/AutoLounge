@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.autohub.park"
+    namespace = "com.autolounge.park"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.autohub.park"
+        applicationId = "com.autolounge.park"
         minSdk = 29
         targetSdk = 36
         versionCode = 1

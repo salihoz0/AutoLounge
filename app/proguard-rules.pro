@@ -14,7 +14,7 @@
 -keep interface com.google.android.gms.car.** { *; }
 -keep class android.support.car.** { *; }
 -keep interface android.support.car.** { *; }
--keep class com.autohub.park.car.** { *; }
+-keep class com.autolounge.park.car.** { *; }
 -dontwarn com.google.android.apps.auto.sdk.**
 -dontwarn com.google.android.gms.car.**
 -dontwarn android.support.car.**
@@ -61,8 +61,8 @@
 # 5. Veri Modelleri, Room Veritabanı & JSON Serileştirme
 # ------------------------------------------------------------------------------
 # AutoLoungeSyncBridge, Room Entities, DataStore ve JSON (channels.json) modelleri
--keep class com.autohub.park.data.** { *; }
--keepclassmembers class com.autohub.park.data.** { *; }
+-keep class com.autolounge.park.data.** { *; }
+-keepclassmembers class com.autolounge.park.data.** { *; }
 
 # Room SQLite Veritabanı
 -keep class * extends androidx.room.RoomDatabase
@@ -80,7 +80,7 @@
 -keep class * extends dagger.hilt.internal.GeneratedComponent
 -keep interface * extends dagger.hilt.internal.GeneratedComponent
 -keep @dagger.hilt.EntryPoint interface * { *; }
--keep class com.autohub.park.car.AutoLoungeCarActivity$CarActivityEntryPoint { *; }
+-keep class com.autolounge.park.car.AutoLoungeCarActivity$CarActivityEntryPoint { *; }
 -dontwarn dagger.hilt.**
 
 # ------------------------------------------------------------------------------

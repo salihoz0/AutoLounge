@@ -1,9 +1,9 @@
-package com.autohub.park.audio
+package com.autolounge.park.audio
 
 import android.app.Presentation
 import android.content.Context
 import android.graphics.Color
-import com.autohub.park.i18n.tr
+import com.autolounge.park.i18n.tr
 import android.graphics.Point
 import android.graphics.Typeface
 import android.hardware.display.DisplayManager
@@ -33,10 +33,10 @@ import androidx.media3.common.MediaItem
 import androidx.media3.exoplayer.DefaultLoadControl
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
-import com.autohub.park.BuildConfig
-import com.autohub.park.R
-import com.autohub.park.car.CarPlayerHelper
-import com.autohub.park.data.ParkSafetyManager
+import com.autolounge.park.BuildConfig
+import com.autolounge.park.R
+import com.autolounge.park.car.CarPlayerHelper
+import com.autolounge.park.data.ParkSafetyManager
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -372,9 +372,9 @@ class CarVideoPresentation(
                 override fun shouldInterceptRequest(view: WebView?, request: WebResourceRequest?): WebResourceResponse? {
                     // Reklam/izleyici istekleri ağa çıkmadan kapatılır (ParkBrowser ile aynı engelleyici)
                     if (request != null && !request.isForMainFrame &&
-                        com.autohub.park.ui.browser.WebContentBlocker.isBlocked(request.url)
+                        com.autolounge.park.ui.browser.WebContentBlocker.isBlocked(request.url)
                     ) {
-                        return com.autohub.park.ui.browser.WebContentBlocker.emptyResponse()
+                        return com.autolounge.park.ui.browser.WebContentBlocker.emptyResponse()
                     }
                     return super.shouldInterceptRequest(view, request)
                 }
@@ -386,8 +386,8 @@ class CarVideoPresentation(
 
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
-                    if (com.autohub.park.ui.browser.WebContentBlocker.enabled.value) {
-                        view?.evaluateJavascript(com.autohub.park.ui.browser.WebContentBlocker.COSMETIC_JS, null)
+                    if (com.autolounge.park.ui.browser.WebContentBlocker.enabled.value) {
+                        view?.evaluateJavascript(com.autolounge.park.ui.browser.WebContentBlocker.COSMETIC_JS, null)
                     }
                     view?.visibility = View.VISIBLE
                 }

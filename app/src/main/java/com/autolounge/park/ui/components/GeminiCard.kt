@@ -1,4 +1,4 @@
-package com.autohub.park.ui.components
+package com.autolounge.park.ui.components
 
 import android.content.Context
 import android.content.Intent
@@ -23,8 +23,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.autohub.park.i18n.tr
-import com.autohub.park.ui.AutoLoungePalette
+import com.autolounge.park.i18n.tr
+import com.autolounge.park.ui.AutoLoungePalette
 
 /**
  * Google Gemini AI Assistant Integration

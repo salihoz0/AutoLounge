@@ -1,12 +1,12 @@
-package com.autohub.park
+package com.autolounge.park
 
 import android.app.Application
 import coil.ImageLoader
 import coil.ImageLoaderFactory
 import coil.disk.DiskCache
 import coil.memory.MemoryCache
-import com.autohub.park.data.NewsChannelsRepository
-import com.autohub.park.i18n.I18n
+import com.autolounge.park.data.NewsChannelsRepository
+import com.autolounge.park.i18n.I18n
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
@@ -36,6 +36,6 @@ class ParkApp : Application(), ImageLoaderFactory {
         super.onCreate()
         I18n.init(this)
         NewsChannelsRepository.initBundledChannelsAsync(this)
-        com.autohub.park.ui.browser.WebContentBlocker.init(this)
+        com.autolounge.park.ui.browser.WebContentBlocker.init(this)
     }
 }

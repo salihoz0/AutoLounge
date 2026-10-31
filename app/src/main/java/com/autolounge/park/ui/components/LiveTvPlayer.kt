@@ -1,4 +1,4 @@
-package com.autohub.park.ui.components
+package com.autolounge.park.ui.components
 
 import android.content.Context
 import android.net.Uri
@@ -63,16 +63,16 @@ import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.DefaultLoadControl
 import androidx.media3.exoplayer.ExoPlayer
-import com.autohub.park.audio.LivePlayerFactory
-import com.autohub.park.audio.LivePlayerFactory.liveIf
+import com.autolounge.park.audio.LivePlayerFactory
+import com.autolounge.park.audio.LivePlayerFactory.liveIf
 import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
 import coil.compose.AsyncImage
-import com.autohub.park.data.NewsChannel
-import com.autohub.park.data.NewsChannelsRepository
-import com.autohub.park.ui.AutoLoungePalette
+import com.autolounge.park.data.NewsChannel
+import com.autolounge.park.data.NewsChannelsRepository
+import com.autolounge.park.ui.AutoLoungePalette
 import kotlinx.coroutines.delay
-import com.autohub.park.i18n.tr
+import com.autolounge.park.i18n.tr
 
 /**
  * AutoLounge Mobil Canlı TV Oynatıcısı.

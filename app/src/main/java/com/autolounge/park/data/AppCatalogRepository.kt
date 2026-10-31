@@ -1,4 +1,4 @@
-package com.autohub.park.data
+package com.autolounge.park.data
 
 data class CatalogItem(
     val id: String,

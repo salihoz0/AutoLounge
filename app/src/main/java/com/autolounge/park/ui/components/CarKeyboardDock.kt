@@ -1,4 +1,4 @@
-package com.autohub.park.ui.components
+package com.autolounge.park.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -23,9 +23,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.autohub.park.i18n.tr
-import com.autohub.park.data.AutoLoungeSyncBridge
-import com.autohub.park.ui.AutoLoungePalette
+import com.autolounge.park.i18n.tr
+import com.autolounge.park.data.AutoLoungeSyncBridge
+import com.autolounge.park.ui.AutoLoungePalette
 
 @Composable
 fun CarKeyboardDock(modifier: Modifier = Modifier) {

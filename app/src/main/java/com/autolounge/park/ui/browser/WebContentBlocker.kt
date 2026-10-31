@@ -1,4 +1,4 @@
-package com.autohub.park.ui.browser
+package com.autolounge.park.ui.browser
 
 import android.content.Context
 import android.net.Uri

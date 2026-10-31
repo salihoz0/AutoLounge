@@ -17,20 +17,20 @@ const REL = 'https://github.com/autolounge/AutoLounge-Releases';
 const META = {
   en: {
     url: `${SITE}/`, locale: 'en_US', other: 'tr_TR',
-    title: 'AutoLounge: YouTube & Live TV on Android Auto (No Root)',
-    desc: 'AutoLounge brings YouTube, 100+ live TV channels and streaming sites to your Android Auto car screen while parked. No root, 60-minute free trial.',
-    ogTitle: 'AutoLounge: YouTube & Live TV on Your Android Auto Screen',
-    ogDesc: 'Watch YouTube, live TV and streaming sites on your car screen while parked. No root needed, 60-minute free trial.',
-    keywords: 'Android Auto YouTube, watch video on Android Auto without root, Android Auto live TV, AutoLounge, Android Auto apps, car infotainment',
+    title: 'AutoLounge: Free & Open Source YouTube & Live TV on Android Auto (No Root)',
+    desc: 'AutoLounge brings YouTube, 100+ live TV channels and streaming sites to your Android Auto car screen while parked. Free and open source, no root needed.',
+    ogTitle: 'AutoLounge: Free & Open Source Video on Android Auto',
+    ogDesc: 'Watch YouTube, live TV and streaming sites on your car screen while parked. 100% free, open source, no root.',
+    keywords: 'Android Auto YouTube, watch video on Android Auto without root, Android Auto live TV, AutoLounge, Android Auto apps, open source car infotainment',
     site: 'AutoLounge website'
   },
   tr: {
     url: `${SITE}/tr/`, locale: 'tr_TR', other: 'en_US',
-    title: "AutoLounge: Android Auto'da YouTube ve Canlı TV (Root Yok)",
-    desc: "AutoLounge, YouTube'u, 100+ canlı TV kanalını ve yayın sitelerini park halindeyken Android Auto araç ekranına getirir. Root yok, 60 dk ücretsiz deneme.",
-    ogTitle: "AutoLounge: Android Auto Ekranınızda YouTube ve Canlı TV",
-    ogDesc: 'Park halindeyken araç ekranınızda YouTube, canlı TV ve yayın sitelerini izleyin. Root gerekmez, 60 dakika ücretsiz deneme.',
-    keywords: "Android Auto YouTube, araçta youtube izleme, Android Auto canlı TV, root olmadan Android Auto video, AutoLounge, Android Auto uygulamaları",
+    title: "AutoLounge: Android Auto'da YouTube ve Canlı TV (Açık Kaynak & Ücretsiz)",
+    desc: "AutoLounge, YouTube'u, 100+ canlı TV kanalını ve yayın sitelerini park halindeyken Android Auto araç ekranına getirir. Tamamen ücretsiz ve açık kaynak, root gerekmez.",
+    ogTitle: "AutoLounge: Android Auto Ekranınızda YouTube ve Canlı TV (Ücretsiz)",
+    ogDesc: 'Park halindeyken araç ekranınızda YouTube, canlı TV ve yayın sitelerini izleyin. %100 ücretsiz, açık kaynak, root gerekmez.',
+    keywords: "Android Auto YouTube, araçta youtube izleme, Android Auto canlı TV, root olmadan Android Auto video, AutoLounge, açık kaynak Android Auto",
     site: 'AutoLounge web sitesi'
   }
 };
@@ -44,7 +44,7 @@ function jsonLd(lang) {
     sameAs: [REL, 'https://github.com/autolounge'] };
   const site = { '@type': 'WebSite', '@id': `${SITE}/#website`, url: `${SITE}/`, name: 'AutoLounge',
     inLanguage: ['en', 'tr'], publisher: { '@id': `${SITE}/#org` } };
-  const offer = (price, cur, url, region) => ({ '@type': 'Offer', name: 'Lifetime VIP license', price, priceCurrency: cur,
+  const offer = (price, cur, url, region) => ({ '@type': 'Offer', name: 'Free Open Source', price, priceCurrency: cur,
     availability: 'https://schema.org/InStock', url, eligibleRegion: region });
   const software = { '@type': 'SoftwareApplication', '@id': `${SITE}/#software`, name: 'AutoLounge',
     operatingSystem: 'Android', applicationCategory: 'MultimediaApplication', applicationSubCategory: 'Android Auto video and live TV',
@@ -52,9 +52,7 @@ function jsonLd(lang) {
     inLanguage: ['tr', 'en', 'es', 'pt', 'fr', 'de', 'it', 'ru', 'ar', 'hi', 'zh'],
     screenshot: `${SITE}/assets/car_cockpit_display.png`, publisher: { '@id': `${SITE}/#org` },
     offers: [
-      offer('12.99', 'USD', 'https://autolounge.lemonsqueezy.com/checkout/buy/autolounge-pro', 'Worldwide'),
-      offer('11.99', 'EUR', 'https://autolounge.lemonsqueezy.com/checkout/buy/autolounge-pro-eur', 'EU'),
-      offer('199', 'TRY', 'https://shopier.com/AutoLoungePRO', 'TR')
+      offer('0', 'USD', `${REL}/releases/latest`, 'Worldwide')
     ],
     featureList: [d.f1_title, d.f2_title, d.f3_title, d.f4_title, d.f5_title, d.f6_title] };
   const webpage = { '@type': 'WebPage', '@id': `${page}#webpage`, url: page, name: m.title, description: m.desc,

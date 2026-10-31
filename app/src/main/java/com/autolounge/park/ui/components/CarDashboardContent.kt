@@ -1,4 +1,4 @@
-package com.autohub.park.ui.components
+package com.autolounge.park.ui.components
 
 import android.content.Context
 import android.media.AudioManager
@@ -41,18 +41,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import coil.compose.AsyncImage
-import com.autohub.park.data.AutoLoungeSyncBridge
-import com.autohub.park.data.Bookmark
-import com.autohub.park.data.BrandLogos
-import com.autohub.park.data.CarConfig
-import com.autohub.park.data.NewsChannel
-import com.autohub.park.data.NewsChannelsRepository
-import com.autohub.park.data.NowPlayingStore
-import com.autohub.park.ui.AppFontFamily
-import com.autohub.park.ui.AutoLoungePalette
-import com.autohub.park.ui.YouTubeLogo
-import com.autohub.park.i18n.I18n
-import com.autohub.park.i18n.tr
+import com.autolounge.park.data.AutoLoungeSyncBridge
+import com.autolounge.park.data.Bookmark
+import com.autolounge.park.data.BrandLogos
+import com.autolounge.park.data.CarConfig
+import com.autolounge.park.data.NewsChannel
+import com.autolounge.park.data.NewsChannelsRepository
+import com.autolounge.park.data.NowPlayingStore
+import com.autolounge.park.ui.AppFontFamily
+import com.autolounge.park.ui.AutoLoungePalette
+import com.autolounge.park.ui.YouTubeLogo
+import com.autolounge.park.i18n.I18n
+import com.autolounge.park.i18n.tr
 
 data class LauncherItem(
     val id: String,
@@ -71,10 +71,10 @@ data class LauncherItem(
 fun CarDashboardContent(
     config: CarConfig,
     bookmarks: List<Bookmark>,
-    remainingSeconds: Int,
-    isPremium: Boolean,
+    remainingSeconds: Int = 0,
+    isPremium: Boolean = true,
     onOpenUrl: (url: String, title: String?, isAppMode: Boolean) -> Unit,
-    onOpenPaywall: () -> Unit,
+    onOpenPaywall: () -> Unit = {},
     faviconProvider: (String) -> String,
     onReorder: ((List<String>) -> Unit)? = null,
     onDeleteBookmark: ((Long) -> Unit)? = null,

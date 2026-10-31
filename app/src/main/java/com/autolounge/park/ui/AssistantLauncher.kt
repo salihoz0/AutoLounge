@@ -1,11 +1,11 @@
-package com.autohub.park.ui
+package com.autolounge.park.ui
 
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.speech.RecognizerIntent
 import android.widget.Toast
-import com.autohub.park.i18n.tr
+import com.autolounge.park.i18n.tr
 
 /**
  * Gemini / Asistan kartı yeni ekran açmaz.

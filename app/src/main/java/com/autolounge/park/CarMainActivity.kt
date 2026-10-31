@@ -1,4 +1,4 @@
-package com.autohub.park
+package com.autolounge.park
 
 import android.os.Bundle
 import android.webkit.CookieManager
@@ -12,17 +12,16 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import com.autohub.park.data.BookmarkViewModel
-import com.autohub.park.data.NewsChannel
-import com.autohub.park.data.NewsChannelsRepository
-import com.autohub.park.ui.AutoHubTheme
-import com.autohub.park.ui.AutoLoungePalette
-import com.autohub.park.ui.browser.ParkBrowser
-import com.autohub.park.ui.components.CarDashboardContent
-import com.autohub.park.ui.components.LiveTvPlayer
-import com.autohub.park.ui.components.PaywallDialog
-import com.autohub.park.i18n.I18n
-import com.autohub.park.i18n.tr
+import com.autolounge.park.data.BookmarkViewModel
+import com.autolounge.park.data.NewsChannel
+import com.autolounge.park.data.NewsChannelsRepository
+import com.autolounge.park.ui.AutoLoungeTheme
+import com.autolounge.park.ui.AutoLoungePalette
+import com.autolounge.park.ui.browser.ParkBrowser
+import com.autolounge.park.ui.components.CarDashboardContent
+import com.autolounge.park.ui.components.LiveTvPlayer
+import com.autolounge.park.i18n.I18n
+import com.autolounge.park.i18n.tr
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,7 +36,7 @@ class CarMainActivity : ComponentActivity() {
 
         setContent {
             val config by vm.config.collectAsState()
-            AutoHubTheme(carTheme = config.theme, themeMode = config.themeMode) {
+            AutoLoungeTheme(carTheme = config.theme, themeMode = config.themeMode) {
                 CarScreenRoot(vm = vm)
             }
         }
@@ -47,14 +46,14 @@ class CarMainActivity : ComponentActivity() {
     override fun onResume() {
         super.onResume()
         vm.usageTracker.setCarScreenActive(true)
-        com.autohub.park.data.AutoLoungeSyncBridge.setCarAppAlive(true)
-        com.autohub.park.data.CarSetupChecker.markCarSessionSeen(this)
+        com.autolounge.park.data.AutoLoungeSyncBridge.setCarAppAlive(true)
+        com.autolounge.park.data.CarSetupChecker.markCarSessionSeen(this)
     }
 
     override fun onPause() {
         super.onPause()
         vm.usageTracker.setCarScreenActive(false)
-        com.autohub.park.data.AutoLoungeSyncBridge.setCarAppAlive(false)
+        com.autolounge.park.data.AutoLoungeSyncBridge.setCarAppAlive(false)
     }
 }
 
@@ -74,10 +73,9 @@ fun CarScreenRoot(vm: BookmarkViewModel) {
     var activeBrowserTitle by remember { mutableStateOf<String?>(null) }
     var activeBrowserIsAppMode by remember { mutableStateOf(false) }
     var activeLiveTvChannel by remember { mutableStateOf<NewsChannel?>(null) }
-    var showPaywallDialog by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
-        com.autohub.park.data.AutoLoungeSyncBridge.openOnPhoneFlow.collect { cmd ->
+        com.autolounge.park.data.AutoLoungeSyncBridge.openOnPhoneFlow.collect { cmd ->
             when (cmd.kind) {
                 "web" -> {
                     activeBrowserUrl = cmd.url.ifBlank { "https://www.youtube.com" }
@@ -85,7 +83,7 @@ fun CarScreenRoot(vm: BookmarkViewModel) {
                     activeBrowserIsAppMode = true
                     activeLiveTvChannel = null
                 }
-                "assistant" -> com.autohub.park.ui.AssistantLauncher.launch(context)
+                "assistant" -> com.autolounge.park.ui.AssistantLauncher.launch(context)
                 "dashboard" -> {
                     activeBrowserUrl = null
                     activeLiveTvChannel = null
@@ -103,7 +101,7 @@ fun CarScreenRoot(vm: BookmarkViewModel) {
     }
 
     LaunchedEffect(Unit) {
-        com.autohub.park.data.AutoLoungeSyncBridge.openOnCarFlow.collect { req ->
+        com.autolounge.park.data.AutoLoungeSyncBridge.openOnCarFlow.collect { req ->
             when (req.kind) {
                 "web" -> {
                     if (req.url.isNotBlank()) {
@@ -177,40 +175,23 @@ fun CarScreenRoot(vm: BookmarkViewModel) {
             remainingSeconds = remainingSeconds,
             isPremium = isPremium,
             onOpenUrl = { url, title, isApp ->
-                if (isPremium || remainingSeconds > 0) {
-                    activeBrowserUrl = url
-                    activeBrowserTitle = title
-                    activeBrowserIsAppMode = isApp
-                } else {
-                    showPaywallDialog = true
-                }
+                activeBrowserUrl = url
+                activeBrowserTitle = title
+                activeBrowserIsAppMode = isApp
             },
-            onOpenPaywall = { showPaywallDialog = true },
+            onOpenPaywall = {},
             faviconProvider = { vm.favicon(it) },
             onReorder = { vm.reorderCards(it) },
             onDeleteBookmark = { vm.delete(it) },
             onAddBookmark = { title, url -> vm.add(title, url) },
             onToggleAppVisibility = { key, show -> vm.toggleCard(key, show) },
-            onLaunchAssistant = { com.autohub.park.ui.AssistantLauncher.launch(context) },
+            onLaunchAssistant = { com.autolounge.park.ui.AssistantLauncher.launch(context) },
             // Canlı TV kanalları web sitesi yerine doğrudan yerleşik oynatıcıda açılır
             onOpenLiveTv = { ch ->
-                if (isPremium || remainingSeconds > 0) {
-                    activeLiveTvChannel = ch
-                    activeBrowserUrl = null
-                } else {
-                    showPaywallDialog = true
-                }
+                activeLiveTvChannel = ch
+                activeBrowserUrl = null
             },
             isCarScreen = true
-        )
-    }
-
-    if (showPaywallDialog) {
-        PaywallDialog(
-            remainingSeconds = remainingSeconds,
-            accent = config.theme.primary,
-            onActivate = { key, callback -> vm.activateLicense(key, callback) },
-            onDismiss = { showPaywallDialog = false }
         )
     }
 }

@@ -1,7 +1,7 @@
-package com.autohub.park.ui.components
+package com.autolounge.park.ui.components
 
 import androidx.compose.runtime.Composable
-import com.autohub.park.data.Bookmark
+import com.autolounge.park.data.Bookmark
 
 @Composable
 fun NewsChannelsSheet(

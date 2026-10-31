@@ -1,9 +1,9 @@
-package com.autohub.park.data
+package com.autolounge.park.data
 
 import androidx.lifecycle.ViewModel
-import com.autohub.park.i18n.tr
+import com.autolounge.park.i18n.tr
 import androidx.lifecycle.viewModelScope
-import com.autohub.park.ui.CarVisualTheme
+import com.autolounge.park.ui.CarVisualTheme
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
@@ -27,21 +27,14 @@ class BookmarkViewModel @Inject constructor(
     val config: StateFlow<CarConfig> = configRepo.configFlow
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), CarConfig())
 
-    val remainingSeconds: StateFlow<Int> = usageManager.remainingSecondsFlow
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), UsageSecurityManager.TRIAL_DURATION_SECONDS)
+    val remainingSeconds: StateFlow<Int> = MutableStateFlow(86400)
 
-    // VIP: sunucu imzalı lisans veya (yalnızca DEBUG) test VIP'i
-    val isPremium: StateFlow<Boolean> = combine(
-        licenseManager.isLicensedFlow,
-        usageManager.isPremiumSimulatedFlow
-    ) { licensed, simulated -> licensed || simulated }
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
+    // Open Source: Tüm özellikler sınırsız ve açık
+    val isPremium: StateFlow<Boolean> = MutableStateFlow(true)
 
-    val license: StateFlow<LicenseManager.LicenseInfo?> = licenseManager.licenseFlow
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+    val license: StateFlow<LicenseManager.LicenseInfo?> = MutableStateFlow(null)
 
     init {
-        viewModelScope.launch { licenseManager.refreshIfDue() }
 
         // Seed default bookmarks and purge old placeholder example.com bookmarks
         viewModelScope.launch {

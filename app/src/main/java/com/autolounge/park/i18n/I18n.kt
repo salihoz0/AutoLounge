@@ -1,4 +1,4 @@
-package com.autohub.park.i18n
+package com.autolounge.park.i18n
 
 import android.content.Context
 import androidx.compose.runtime.getValue

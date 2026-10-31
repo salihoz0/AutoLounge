@@ -1,7 +1,7 @@
-package com.autohub.park.ui
+package com.autolounge.park.ui
 
 import androidx.compose.foundation.Canvas
-import com.autohub.park.i18n.tr
+import com.autolounge.park.i18n.tr
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -182,63 +182,9 @@ fun CockpitPill(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun TrialPill(
-    remainingMinutes: Int,
-    isPremium: Boolean,
-    modifier: Modifier = Modifier
-) {
-    val bg = if (isPremium) {
-        AutoLoungePalette.GoldChampagne.copy(alpha = 0.16f)
-    } else if (remainingMinutes > 15) {
-        AutoLoungePalette.CarbonElevated
-    } else {
-        AutoLoungePalette.CrimsonWarning.copy(alpha = 0.15f)
-    }
-
-    val textCol = if (isPremium) {
-        AutoLoungePalette.GoldChampagne
-    } else if (remainingMinutes > 15) {
-        AutoLoungePalette.TextPure
-    } else {
-        AutoLoungePalette.CrimsonWarning
-    }
-
-    val label = when {
-        isPremium -> "LIFETIME VIP"
-        remainingMinutes > 0 -> tr("%d dk Deneme", remainingMinutes)
-        else -> tr("Süre Doldu (VIP)")
-    }
-
-    Row(
-        modifier = modifier
-            .clip(RoundedCornerShape(8.dp))
-            .background(bg)
-            .border(1.dp, textCol.copy(alpha = 0.35f), RoundedCornerShape(8.dp))
-            .padding(horizontal = 10.dp, vertical = 5.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Icon(
-            if (isPremium) Icons.Default.WorkspacePremium else Icons.Default.Lock,
-            contentDescription = null,
-            tint = textCol,
-            modifier = Modifier.size(13.dp)
-        )
-        Spacer(Modifier.width(5.dp))
-        Text(
-            label,
-            color = textCol,
-            fontWeight = FontWeight.Bold,
-            fontSize = 11.sp,
-            maxLines = 1,
-            softWrap = false
-        )
-    }
-}
-
-@Composable
 fun YouTubeLogo(modifier: Modifier = Modifier, sizeDp: Int = 32) {
     androidx.compose.foundation.Image(
-        painter = androidx.compose.ui.res.painterResource(id = com.autohub.park.R.drawable.ic_youtube),
+        painter = androidx.compose.ui.res.painterResource(id = com.autolounge.park.R.drawable.ic_youtube),
         contentDescription = "YouTube",
         modifier = modifier.size(sizeDp.dp)
     )

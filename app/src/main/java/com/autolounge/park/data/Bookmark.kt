@@ -1,4 +1,4 @@
-package com.autohub.park.data
+package com.autolounge.park.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

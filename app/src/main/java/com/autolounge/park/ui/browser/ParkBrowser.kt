@@ -1,4 +1,4 @@
-package com.autohub.park.ui.browser
+package com.autolounge.park.ui.browser
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -54,8 +54,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
-import com.autohub.park.i18n.tr
-import com.autohub.park.ui.AutoLoungePalette
+import com.autolounge.park.i18n.tr
+import com.autolounge.park.ui.AutoLoungePalette
 
 private const val MOBILE_USER_AGENT =
     "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36"
@@ -64,7 +64,7 @@ private const val DESKTOP_USER_AGENT =
 
 internal const val CONSENT_AUTO_ACCEPT_JS = """
 (function() {
-  if (window.__autohub_consent_accepted) return 'already_accepted';
+  if (window.__autolounge_consent_accepted) return 'already_accepted';
   try {
     var sels = [
       'button[jsname="b3VHJd"]',
@@ -86,7 +86,7 @@ internal const val CONSENT_AUTO_ACCEPT_JS = """
       var el = document.querySelector(sels[i]);
       if (el && typeof el.click === 'function') {
         el.click();
-        window.__autohub_consent_accepted = true;
+        window.__autolounge_consent_accepted = true;
         return 'sel:' + sels[i];
       }
     }
@@ -103,7 +103,7 @@ internal const val CONSENT_AUTO_ACCEPT_JS = """
         var t = (b.textContent || '').trim().toLowerCase();
         if (/^(tamam|kabul|kabul et|tümünü kabul et|hepsini kabul et|accept|accept all|i agree|agree|ok|onayla)$/.test(t)) {
           b.click();
-          window.__autohub_consent_accepted = true;
+          window.__autolounge_consent_accepted = true;
           return 'txt:' + t;
         }
       }
@@ -384,7 +384,7 @@ fun ParkBrowser(
     // Telefondaki klavye dock'undan gönderilen metni bu sayfadaki odaklı alana yaz (araç ekranı)
     if (acceptRemoteText) {
         LaunchedEffect(Unit) {
-            com.autohub.park.data.AutoLoungeSyncBridge.remoteTextFlow.collect { text ->
+            com.autolounge.park.data.AutoLoungeSyncBridge.remoteTextFlow.collect { text ->
                 webViewInstance?.evaluateJavascript(remoteTextInjectionJs(text), null)
             }
         }

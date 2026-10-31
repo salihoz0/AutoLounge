@@ -1,6 +1,6 @@
-package com.autohub.park.car
+package com.autolounge.park.car
 
-import com.autohub.park.i18n.tr
+import com.autolounge.park.i18n.tr
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable

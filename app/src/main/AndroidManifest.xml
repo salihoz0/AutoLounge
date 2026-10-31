@@ -12,11 +12,6 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
-    <!-- Android Auto Navigasyon & Projeksiyon Yüzey İzinleri (AABrowser uyumluluğu) -->
-    <uses-permission android:name="androidx.car.app.ACCESS_SURFACE" />
-    <uses-permission android:name="androidx.car.app.MAP_TEMPLATES" />
-    <uses-permission android:name="androidx.car.app.NAVIGATION_TEMPLATES" />
-
     <queries>
         <!-- Kurulum rehberi: Android Auto yüklü mü ve sürümü -->
         <package android:name="com.google.android.projection.gearhead" />
@@ -37,7 +32,6 @@
         android:label="AutoLounge"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher"
-        android:appCategory="maps"
         android:theme="@style/Theme.AutoLounge"
         android:usesCleartextTraffic="false"
         android:hardwareAccelerated="true"
@@ -46,9 +40,6 @@
         <!-- Android Auto / AAOS Sürüş Güvenliği: Hareket halindeyken arayüzün ekranda kalmasını sağlama -->
         <meta-data
             android:name="distractionOptimized"
-            android:value="true" />
-        <meta-data
-            android:name="androidx.car.app.category.NAVIGATION"
             android:value="true" />
 
         <!-- Telefon ekranı (Tekil Launcher) -->
@@ -65,23 +56,16 @@
                 android:value="true" />
         </activity>
 
-        <!-- Araç ekranı (Navigasyon & Projeksiyon Arayüzü) -->
+        <!-- Araç ekranı (Dahili Kokpit Arayüzü - Telefonda klon simge oluşturmaması için exported=false) -->
         <activity
             android:name=".CarMainActivity"
-            android:exported="true"
+            android:label="AutoLounge"
+            android:icon="@mipmap/ic_launcher"
+            android:exported="false"
             android:launchMode="singleTask"
             android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboardHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.CAR_LAUNCHER" />
-                <category android:name="androidx.car.app.category.NAVIGATION" />
-                <category android:name="android.intent.category.APP_MAPS" />
-            </intent-filter>
             <meta-data
                 android:name="distractionOptimized"
-                android:value="true" />
-            <meta-data
-                android:name="androidx.car.app.category.NAVIGATION"
                 android:value="true" />
         </activity>
 
@@ -90,14 +74,16 @@
             android:name="com.google.android.gms.car.application"
             android:resource="@xml/automotive_app_desc" />
 
-        <!-- Ses ve Medya Servisi: Arka plan ses & bildirim kontrolleri -->
+        <!-- Ses ve Medya Servisi: Android Auto automotive_app_desc "media" bu tarayıcı kaydını arar -->
         <service
             android:name=".audio.ParkAudioService"
+            android:label="AutoLounge"
             android:foregroundServiceType="mediaPlayback"
             android:exported="true">
             <intent-filter>
-                <action android:name="androidx.media3.session.MediaSessionService" />
                 <action android:name="androidx.media3.session.MediaLibraryService" />
+                <action android:name="androidx.media3.session.MediaSessionService" />
+                <action android:name="android.media.browse.MediaBrowserService" />
             </intent-filter>
         </service>
 
@@ -109,6 +95,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="com.google.android.apps.auto.sdk.CarActivityService" />
                 <category android:name="com.google.android.gms.car.category.CATEGORY_PROJECTION" />
                 <category android:name="com.google.android.gms.car.category.CATEGORY_PROJECTION_OEM" />
             </intent-filter>

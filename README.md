@@ -1,128 +1,213 @@
-# 🏎️ AutoLounge — Modern Android Auto Cockpit & Multimedia Lounge
+<p align="center">
+  <img src="website/assets/logo.png" alt="AutoLounge Logo" width="120" height="120" />
+</p>
+
+# 🏎️ AutoLounge — Modern Android Auto Kokpit & Multimedya Lounge
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Platform-Android%20Auto%20%7C%20CarPlay%20Style-10B981?style=for-the-badge&logo=android" alt="Android Auto" />
-  <img src="https://img.shields.io/badge/Kotlin-2.0-7F52FF?style=for-the-badge&logo=kotlin" alt="Kotlin" />
-  <img src="https://img.shields.io/badge/Jetpack%20Compose-Material%203-4285F4?style=for-the-badge&logo=jetpackcompose" alt="Jetpack Compose" />
-  <img src="https://img.shields.io/badge/License-VIP%20%2B%20Freemium-F59E0B?style=for-the-badge" alt="License" />
+  <a href="https://github.com"><img src="https://img.shields.io/badge/Status-100%25%20Free%20%26%20Open%20Source-10B981?style=for-the-badge" alt="Free and Open Source" /></a>
+  <a href="https://android.com"><img src="https://img.shields.io/badge/Platform-Android%20Auto-10B981?style=for-the-badge&logo=android" alt="Android Auto" /></a>
+  <a href="https://kotlinlang.org"><img src="https://img.shields.io/badge/Kotlin-2.0-7F52FF?style=for-the-badge&logo=kotlin" alt="Kotlin" /></a>
+  <a href="https://developer.android.com/jetpack/compose"><img src="https://img.shields.io/badge/Compose-Material%203-4285F4?style=for-the-badge&logo=jetpackcompose" alt="Jetpack Compose" /></a>
+  <a href="#-lisans--sorumluluk-reddi-disclaimer"><img src="https://img.shields.io/badge/Root-Gerekmez%20(No%20Root)-blue?style=for-the-badge" alt="No Root" /></a>
 </p>
 
 ---
 
-## 🌟 Nedir? / What is AutoLounge?
+## 📸 Ekran Görüntüleri (Screenshots)
 
-**AutoLounge**, aracınızın multimedya ekranını (Android Auto / Head Unit) son teknoloji lüks bir kokpite dönüştüren açık kaynaklı ve modüler bir eğlence platformudur. 
+<p align="center">
+  <b>Araç Ekranı (Android Auto Cockpit Display — 1280x720 OLED Dark Glass)</b><br/>
+  <img src="website/assets/car_cockpit_display.png" alt="AutoLounge Araç Kokpit Ekranı" width="100%" />
+</p>
 
-Fermata Auto veya AAAD gibi 2012'den kalma, hantal ve karmaşık arayüzlerin aksine; **Porsche Taycan / Tesla / Apple CarPlay** estetiğinde ultra lüks, akıcı ve yüksek okunurluğa sahip bir gösterge paneli sunar.
-
-> **Önemli (Android sürümüne göre kurulum):** Android 13 ve altında KingInstaller ile Google Play'den
-> yüklenmiş gibi damgalanır ve aracınız anında tanır. **Android 14 ve üzerinde KingInstaller çalışmaz**;
-> sideload edilen uygulamayı Android Auto'da görmek için **AA Geliştirici Ayarları → "Bilinmeyen kaynaklar"
-> (Unknown sources)** açık olmalıdır (veya AAWireless gibi bir dongle'ın geliştirici modu).
-
----
-
-## ✨ Öne Çıkan Özellikler (Key Features)
-
-### 1. 🎛️ Zengin Uygulama & Canlı Yayın Kataloğu (`+ Ekle`)
-Ekranı gereksiz ikonlarla boğmaz; zengin kütüphanesinden dilediğiniz servisi tek tıkla kokpitinize eklersiniz:
-- **Popüler Yayınlar:** YouTube, Netflix, Disney+, Prime Video, Twitch, Kick, Exxen, GAİN, BluTV, Spotify.
-- **Canlı Ulusal TV:** TRT 1, TRT Spor, TRT Haber, NTV, Habertürk, Sözcü TV, CNN Türk, Show TV, TV8, NOW TV.
-- **Kesintisiz Radyolar:** Power FM, Power Türk, Kral Pop, Virgin Radio, Radyo Fenomen, Joy Türk, Metro FM.
-- **Yapay Zeka & Finans:** Google Gemini AI, ChatGPT, TradingView, Bloomberg HT, Investing.com.
-- **Özel Web Sitesi / URL Ekleme:** Dilediğiniz internet sitesini (ör. şirket portalı, özel kamera yayını) başlık ve URL ile anında kokpit kartı yapın.
-
-### 2. 🎨 Modern Otomotiv Ergonomisi & Tasarım
-- **Onyx & Sapphire Glass Estetiği:** Gece sürüşlerinde gözü yormayan saf siyah OLED arka plan, zarif neon vurgular ve okunabilir tipografi (14-16sp).
-- **Sürükle-Bırak Düzenleme:** Kartlara uzun basarak veya "Düzenle" butonuna dokunarak kokpitinizi dilediğiniz gibi kişiselleştirin.
-- **Gündüz / Gece / Otomatik Modlar:** Araç farlarına veya ortam ışığına göre otomatik uyum sağlayan tema motoru.
-
-### 3. 🛡️ Donanım İmzalı 60 Dakika Deneme & Lisanslama Sistemi
-- **60 Dakika Ücretsiz Deneme:** Her yeni cihaz için araç bağlıyken video oynatıldığında işleyen 60 dakikalık deneme süresi.
-- **Sıfırlanamaz Güvenlik Mimarisi:** Süre; cihazın benzersiz donanım imzası (`Android ID` + SHA-256 tuzlanmış hash) ile saklanır. Uygulamayı silip tekrar yüklemek veya verileri temizlemek süreyi sıfırlamaz.
-- **VIP Lisans Anahtarı Etkinleştirme:** Shopier, Stripe veya sponsorluk yoluyla temin edilen `AL-XXXX-YYYY-ZZZZ` formatındaki lisanslar ve promosyon kodları (`AUTOLOUNGE-VIP`) ile tek dokunuşta ömür boyu sınırsız erişim.
+<p align="center">
+  <br/>
+  <b>Telefon Arayüzü & Kokpit Yöneticisi (Mobile Companion App)</b><br/>
+  <img src="website/assets/mobile_app_screen.png" alt="AutoLounge Telefon Eşlikçi Uygulaması" width="340" />
+</p>
 
 ---
 
-## 🚀 Kurulum Rehberi (GitHub Releases)
+## 🌟 Nedir? (What is AutoLounge?)
 
-Android Auto, Google Play dışından yüklenen APK'ların araç ekranında görünmesini engeller. Bu engeli aşmanın yolu Android sürümüne göre değişir.
+**AutoLounge**, aracınız park halindeyken Android Auto multimedya ekranınızı son teknoloji lüks bir sinema ve eğlence merkezine dönüştüren **tamamen ücretsiz ve açık kaynaklı** bir Android Auto uygulamasıdır.
 
-### Android 13 ve altı — KingInstaller ile (tek tıkla)
-```
-[ AutoLounge APK İndir ] ──> [ KingInstaller ] ──> [ Install as Google Play Store ] ──> [ Araca Bağlan 🏎️ ]
-```
-1. **APK'yı İndirin:** Bu reponun **Releases** bölümünden en son `AutoLounge-vX.X.apk` dosyasını indirin.
-2. **[KingInstaller](https://github.com/fcaronte/KingInstaller/releases)** uygulamasını kurup açın.
-3. **"Select file"** ile AutoLounge APK'sını seçip **"Install as Google Play Store"** deyin.
-4. Telefonu araca bağlayın; **AutoLounge Kokpit** araç ekranındaki uygulama listesinde görünür.
-
-### Android 14 ve üzeri — "Bilinmeyen kaynaklar" ile
-KingInstaller bu sürümlerde çalışmaz. Sideload edilen uygulamanın AA'da görünmesi için:
-1. APK'yı `adb install -r AutoLounge-vX.X.apk` ile (veya dosya yöneticisiyle) kurun.
-2. Telefonda **Ayarlar → Bağlı cihazlar → Android Auto** açın.
-3. En altta **"Sürüm ve izin bilgisi"** bölümüne ~10 kez dokunup **Geliştirici Modu**'nu açın.
-4. Sağ üst **⋮ → Geliştirici Ayarları → "Bilinmeyen kaynaklar" (Unknown sources)** seçeneğini işaretleyin.
-5. Telefonu araca bağlayın; **AutoLounge** uygulama listesinde görünür. (Alternatif: AAWireless geliştirici modu.)
-
-> **Not:** Videolar yalnızca araç park halindeyken görüntülenebilir; sürüşte ses devam eder, görüntü güvenlik gereği gizlenir.
+- **Porsche Taycan, Tesla ve Apple CarPlay** estetiğinde koyu cam (Onyx Void), yüksek okunurluklu otomotiv tipografisi ve sürücü dostu butonlar.
+- **YouTube 4K, 100+ Canlı TV kanalı**, radyo istasyonları, web siteleri ve dijital yayın platformları doğrudan araç ekranınızda.
+- **Root gerektirmez.**
+- **Hiçbir abonelik, gizli ücret veya süre kısıtlaması yoktur.**
 
 ---
 
-## 🏗️ Teknik Mimari (Architecture)
+## ⚠️ Kritik Bilgi: Normal APK vs. Bilgisayar (CMD) Kurulumu
 
-```
-app/src/main/java/com/autohub/park/
-├── data/
-│   ├── AppCatalogRepository.kt     # 30+ Popüler servis, canlı TV ve radyo kataloğu
-│   ├── UsageSecurityManager.kt     # Donanım imzalı SHA-256 kullanım ve lisans motoru
-│   ├── BookmarkViewModel.kt        # Jetpack MVVM ViewModel
-│   └── database/                   # Room Persistence (Özel kartlar ve ayarlar)
-├── service/
-│   ├── ParkAudioService.kt         # Android Auto MediaBrowserService (Root & Now Playing)
-│   └── AutoLoungeSyncBridge.kt     # Telefon-Araç senkronizasyon köprüsü
-└── ui/
-    ├── MainActivity.kt             # Telefon Arayüzü & Özelleştirici
-    ├── CarMainActivity.kt          # Araç Ekranı (Desktop Head Unit / AA Launcher)
-    ├── components/
-    │   ├── CarDashboardContent.kt  # Ultra modern otomotiv gösterge kartları
-    │   ├── AddAppModal.kt          # Kategori filtreli zengin ekleme modalı
-    │   └── PaywallSheet.kt         # Lisans etkinleştirme ve VIP yönetim diyaloğu
-    └── theme/                      # Onyx, Sapphire, Emerald otomotiv renk paletleri
+> ### ❓ Neden APK'yı telefona indirip doğrudan üzerine tıklayarak kuramıyoruz?
+> **Google Play & Android Auto Güvenlik Kısıtlaması:**
+> Google, sürüş güvenliği (Driver Distraction) kuralları gereği araç ekranında video oynatan uygulamaların Google Play Store'da yer almasına izin vermez. 
+> 
+> Eğer AutoLounge APK'sını telefonunuza indirip normal bir uygulama gibi kurarsanız:
+> 1. Android Auto, uygulamanın yükleyicisinin Google Play (`com.android.vending`) olmadığını fark eder.
+> 2. Uygulamanın araç ekranına video/grafik arayüz göndermesini **engeller.**
+> 3. **Sonuç:** Uygulama araç ekranında hiç görünmez veya Android Auto bunu standart bir ses çalıcı (radyo gibi) sanarak **yalnızca arka planda sesini çalar; arabada ekran ve video açılmaz!**
+
+---
+
+### ✅ Çözüm: Bilgisayara Bağlayıp Tek Komutla "Google'dan Yüklenmiş" Göstermek (Root Gerekmez!)
+
+Telefonunuzu **asla rootlamanıza** veya telefona üçüncü parti şüpheli yazılımlar kurmanıza gerek yoktur. Telefonu bilgisayara USB kablosuyla bağlayıp tek bir CMD komutuyla yüklediğinizde, Android sisteme:
+> *"Bu uygulama doğrudan Google Play Store tarafından kuruldu"* (`-i "com.android.vending"`)
+
+damgası vurulur. Android Auto bu damgayı gördüğü anda uygulamayı resmi kabul eder ve **araç ekranında tam grafik arayüzü, YouTube'u ve TV yayınlarını anında açar.**
+
+---
+
+## 🚀 Kurulum Rehberi (Installation Guide)
+
+### ⚡ YOL 1: Tek Tıkla Otomatik Kurulum (Tavsiye Edilen — En Kolay)
+
+Teknik bilgi veya manuel CMD komutlarıyla uğraşmak istemiyorsanız, sizin için hazırladığımız akıllı kurulum aracını kullanabilirsiniz. Bu araç:
+* Bilgisayarınızda **ADB kurulu değilse otomatik tespit eder** ve *"Google resmi Platform Tools indirilsin mi?"* diye sorup tek tıkla indirir.
+* Telefonunuzun USB bağlantısını ve izin durumunu otomatik kontrol eder.
+* AutoLounge'ı tek seferde Google Play Store damgasıyla (`com.android.vending`) telefonunuza yükler.
+
+---
+
+#### 🪟 Windows Kullanıcıları İçin:
+1. Telefonunuzu USB kablosuyla bilgisayara bağlayın (ve [Telefonda USB Hata Ayıklama](#-ön-hazırlık-telefonda-yapılacak-2-küçük-ayar)'nın açık olduğundan emin olun).
+2. Repodan indirdiğiniz klasördeki **`install.bat`** dosyasına **çift tıklayın**.
+3. Ekrandaki yönlendirmeleri takip edin; araç gereken her şeyi otomatik tamamlayacaktır!
+
+#### 🍏 macOS / 🐧 Linux Kullanıcıları İçin:
+Terminali açıp şu komutu çalıştırmanız yeterlidir:
+```bash
+bash install.sh
 ```
 
-### Sıfır Sunucu Yükü & CDN Mimarisi
-- Video ve TV yayınları doğrudan resmi Akamai, Cloudflare ve YouTube CDN'leri üzerinden doğrudan cihazınıza akar.
-- Özel bir proxy veya video aktarım sunucusu gerektirmez; bu sayede bant genişliği maliyeti $0'dır.
+---
+
+### 🛠️ YOL 2: Manuel CMD / Terminal ile Kurulum
+
+Eğer komutları kendiniz tek tek çalıştırmak isterseniz:
+
+#### 📋 Ön Hazırlık: Telefonda Yapılacak Ayarlar:
+
+> [!IMPORTANT]
+> **1. USB Hata Ayıklama (USB Debugging) Açık Olmak Zorunda mı?**  
+> **EVET, KESİNLİKLE ZORUNLUDUR.** Bilgisayarınızın telefonunuza USB kablosu üzerinden resmi Google Play damgasını basabilmesi için bu izin şarttır. Açık olmazsa bilgisayar telefonu algılayamaz veya komut gönderemez. *(Kurulum bitince dilerseniz bu ayarı kapatabilirsiniz).*
+> 
+> * **Nasıl Açılır?**
+>   1. Telefonunuzda **Ayarlar → Telefon Hakkında → Yazılım Bilgileri** bölümüne gidin.
+>   2. **"Yapım Numarası" (Build Number)** yazısına peş peşe **7 kez dokunun** ("Geliştirici modu açıldı" der).
+>   3. Ayarlar ana sayfasına dönüp en alttaki **Geliştirici Seçenekleri**'ne girin ve **"USB Hata Ayıklama" (USB Debugging)** seçeneğini açın.
 
 ---
 
-## 🔑 Lisans Anahtarları & Satın Alma
-
-AutoLounge'ı geliştirmeye devam etmemizi desteklemek ve 60 dakikalık deneme süresini ömür boyu sınırsız VIP'ye yükseltmek için:
-- **Shopier / Kredi Kartı:** Anında teslimat ile SMS/E-posta üzerinden lisans kodu.
-- **GitHub Sponsors:** Projeye sponsor olan tüm geliştiricilere özel VIP lisansı.
-- **Lisans Girişi:** Uygulama içindeki `Üyelik` sekmesinden veya araç ekranındaki `[Kilidi Aç]` menüsünden anahtarınızı yazıp `[Onayla]` demeniz yeterlidir.
+> [!WARNING]
+> **2. Cihazlara Özel Kritik İpuçları (Xiaomi / Samsung / Huawei):**
+> 
+> * **Xiaomi / Redmi / POCO (MIUI & HyperOS Kullanıcıları — ÇOK ÖNEMLİ):**  
+>   Xiaomi cihazlarda yalnızca USB Hata Ayıklama yetmez! Geliştirici Seçenekleri menüsünde biraz aşağı inip şu 2 ayarı da mutlaka **AÇIK** yapmalısınız:
+>   - **"USB üzerinden yükle" (Install via USB)**
+>   - **"USB Hata Ayıklama (Güvenlik ayarları)" (USB debugging - Security settings)**  
+>   *(Bu iki ayar açılmazsa telefon `INSTALL_FAILED_USER_RESTRICTED` hatası verir ve bilgisayardan yüklemeyi engeller).*
+> 
+> * **Samsung Kullanıcıları:**  
+>   Kabloyu taktığınızda ekrana gelen *"Bu bilgisayara her zaman izin ver"* onay kutusunu işaretleyip **İzin Ver**'e dokunun.
+> 
+> * **Huawei / Honor:**  
+>   Geliştirici seçeneklerinde *"Yalnızca şarj modunda ADB hata ayıklamasına izin ver"* seçeneğini aktif edin veya kablo takıldığında USB modunu **"Dosya Aktarımı" (MTP)** seçin.
 
 ---
 
-## 🛠️ Geliştirici Ortamı (Developer Setup)
+#### 3. Android Auto'da "Bilinmeyen Kaynaklar"ı Açın:
+1. Telefonunuzda **Ayarlar → Bağlı Cihazlar → Android Auto** menüsüne girin.
+2. En alttaki **"Sürüm"** yazısına peş peşe **10 kez dokunup** geliştirici modunu aktif edin.
+3. Sağ üstteki **üç nokta (⋮) → Geliştirici Ayarları → "Bilinmeyen kaynaklar" (Unknown sources)** kutusunu işaretleyin.
+
+> [!NOTE]
+> **❓ Neden Google Play Damgası Varken Bu Ayar da Gerekiyor?**  
+> Google Play damgası (`-i "com.android.vending"`), telefonun Android Auto projeksiyon servisine bağlanabilmesi için zorunlu kimlik kartıdır. Ancak Google, sürüş güvenliği kuralları gereği araç ekranında video ve web oynatan hiçbir uygulamayı Android Auto'nun resmi beyaz listesine (whitelist) dahil etmez. Android Auto Geliştirici Seçenekleri'ndeki **"Bilinmeyen kaynaklar"** anahtarı, Google'ın resmi beyaz listesinde yer almayan video projeksiyon uygulamalarının araç ekranı menüsünde listelenmesini sağlayan kilittir. Tek seferlik açılır ve telefonunuzu araca taktığınızda AutoLounge araç ekranında görünür.
+
+---
+
+### 🤖 Kendi Telefon Modelinize Özel Yapay Zekaya Sorun (Tek Tıkla)
+
+Telefonunuzun marka/modeline göre (Samsung, Xiaomi, Vivo, Oppo vb.) menülerin yerini bulmakta zorlanıyorsanız, aşağıdaki butonlara dokunduğunuzda hazır soruyla birlikte doğrudan yapay zeka açılır. Sadece telefon modelinizi yazıp Enter'a basmanız yeterlidir:
+
+<p align="center">
+  <a href="https://chatgpt.com/?q=Android+telefonumda+Android+Auto+i%C3%A7inde+Geli%C5%9Ftirici+Se%C3%A7enekleri+ve+Bilinmeyen+Kaynaklar+(Unknown+sources)+nas%C4%B1l+a%C3%A7%C4%B1l%C4%B1r%3F+Telefon+modelim%3A+" target="_blank">
+    <img src="https://img.shields.io/badge/ChatGPT-Kendi%20Modeline%20G%C3%B6re%20Sor-10a37f?style=for-the-badge&logo=openai&logoColor=white" alt="Ask ChatGPT" />
+  </a>
+  &nbsp;
+  <a href="https://www.perplexity.ai/search?q=Android+Auto+Gelistirici+Ayarlari+ve+Bilinmeyen+Kaynaklar+nasil+acilir" target="_blank">
+    <img src="https://img.shields.io/badge/Perplexity-Rehberi%20G%C3%B6r-22b8cd?style=for-the-badge&logo=perplexity&logoColor=white" alt="Search Perplexity" />
+  </a>
+  &nbsp;
+  <a href="https://www.google.com/search?q=Android+Auto+Bilinmeyen+Kaynaklar+Unknown+sources+nasil+acilir" target="_blank">
+    <img src="https://img.shields.io/badge/Google-Web'de%20Ara-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Search Google" />
+  </a>
+</p>
+
+---
+
+#### 💻 Kurulum Komutunu Çalıştırın:
+Telefonunuzu kabloyla bilgisayara bağlayın (telefonda *"Bu bilgisayara izin verilsin mi?"* uyarısı çıkarsa onaylayın). Ardından APK dosyasının bulunduğu klasörde terminal açıp çalıştırın:
+
+**Windows (CMD / PowerShell):**
+```cmd
+adb install -i "com.android.vending" -r AutoLounge.apk
+```
+
+**macOS / Linux (Terminal):**
+```bash
+adb install -i "com.android.vending" -r AutoLounge.apk
+```
+
+> **İşlem Tamam!** Ekranda `Success` yazdığında telefonunuz araca bağlanmaya hazırdır.
+
+---
+
+### 📱 YOL 3: Bilgisayarsız Kurulum (KingInstaller / AAAD)
+
+Eğer bilgisayarınız yoksa telefon üzerinden kurulum yapabilirsiniz:
+* **Android 13 ve altı cihazlar:** [KingInstaller](https://github.com/fcaronte/KingInstaller/releases) uygulamasını kurun, AutoLounge APK'sını seçin ve **"Install as Google Play Store"** butonuna basarak yükleyin.
+* **Android 14 ve üzeri cihazlar:** Google Android 14'te paket yükleyici kısıtlamalarını sıkılaştırdığı için [Shizuku](https://shizuku.rikka.app/) + KingInstaller eşleştirmesi gerekir. Bu nedenle **Bilgisayar (CMD)** yöntemi her zaman çok daha hızlı ve sorunsuzdur.
+
+---
+
+## ✨ Öne Çıkan Özellikler (Features)
+
+| Özellik | Açıklama |
+| :--- | :--- |
+| **📺 YouTube 4K & Canlı TV** | YouTube videolarını, müzikleri ve 100+ ulusal canlı televizyon kanalını (TRT 1, Habertürk, NTV, Sözcü vb.) araç ekranında donmadan izleyin. |
+| **🛡️ Akıllı Sürüş Güvenliği** | Araç **Park [P]** modundayken video ekranda oynar; araç hareket ettiğinde sürücü güvenliği için görüntü kararır ve **ses arka planda kesintisiz devam eder.** |
+| **⚡ 50s Hücresel Tamponlama** | Tünel geçişlerinde veya zayıf baz istasyonu bölgelerinde yayının donmasını engelleyen optimize ExoPlayer hücre profili. |
+| **🎛️ Özel Kokpit (+ Ekle)** | Dilediğiniz web sitesini, canlı kamera akışını veya video portalını tek dokunuşla araç menünüze kısayol kartı olarak ekleyin. |
+| **🎨 Otomotiv Temaları** | Onyx Emerald, Sapphire Blue, Amethyst ve Cyber Amber renk seçenekleriyle aracınızın iç ambiyansına tam uyum. |
+| **🔒 %100 Ücretsiz & Reklamsız** | Hiçbir deneme süresi, lisans kodu, abonelik veya üçüncü parti izleyici içermez. |
+
+---
+
+## 🛠️ Geliştirici Ortamı (Developer Build)
+
+Projeyi kendi ortamınızda derlemek isterseniz:
 
 ```bash
-# Projeyi klonlayın
-git clone https://github.com/your-username/AutoLounge.git
+# Repoyu klonlayın
+git clone https://github.com/autolounge/AutoLounge.git
 cd AutoLounge
 
 # Debug APK derleyin
 ./gradlew assembleDebug
 
-# Cihaza veya Desktop Head Unit'e (DHU) kurun
-adb forward tcp:5277 tcp:5277
-adb install -r app/build/outputs/apk/debug/app-debug.apk
+# Cihazınıza Google Play imzasıyla yükleyin
+adb install -i "com.android.vending" -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
 ---
 
 ## 📜 Lisans & Sorumluluk Reddi (Disclaimer)
-Bu yazılım araştırma ve kişisel araç içi eğlence konsepti amacıyla geliştirilmiştir. Sürüş güvenliği kurallarına uymak sürücünün sorumluluğundadır; video içerikleri yalnızca araç park halindeyken veya yolcu eğlencesi için kullanılmalıdır.
 
+* **Trafik ve Sürüş Güvenliği:** Bu uygulama araştırma, kişisel araç içi eğlence ve yolcu konsepti amacıyla açık kaynak olarak sunulmuştur. Trafik kurallarına ve sürüş güvenliğine uymak tamamen sürücünün yasal sorumluluğundadır. Hareket halindeyken sürücünün ekrana odaklanması yasaktır ve tehlikelidir; video özelliklerini yalnızca güvenli park halindeyken veya yolcularınız için kullanınız.
+* **Açık Kaynak:** AutoLounge özgür yazılım ilkelerine uygun olarak topluluk için geliştirilmiştir.

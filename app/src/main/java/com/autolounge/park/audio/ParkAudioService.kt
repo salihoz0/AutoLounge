@@ -1,4 +1,4 @@
-package com.autohub.park.audio
+package com.autolounge.park.audio
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -21,18 +21,18 @@ import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.DefaultLoadControl
 import androidx.media3.exoplayer.ExoPlayer
-import com.autohub.park.audio.LivePlayerFactory.liveIf
+import com.autolounge.park.audio.LivePlayerFactory.liveIf
 import androidx.media3.session.LibraryResult
 import androidx.media3.session.MediaLibraryService
 import androidx.media3.session.MediaSession
-import com.autohub.park.BuildConfig
-import com.autohub.park.R
-import com.autohub.park.i18n.tr
-import com.autohub.park.data.AutoLoungeSyncBridge
-import com.autohub.park.data.CarUsageTracker
-import com.autohub.park.data.NewsChannel
-import com.autohub.park.data.NewsChannelsRepository
-import com.autohub.park.data.NowPlayingStore
+import com.autolounge.park.BuildConfig
+import com.autolounge.park.R
+import com.autolounge.park.i18n.tr
+import com.autolounge.park.data.AutoLoungeSyncBridge
+import com.autolounge.park.data.CarUsageTracker
+import com.autolounge.park.data.NewsChannel
+import com.autolounge.park.data.NewsChannelsRepository
+import com.autolounge.park.data.NowPlayingStore
 import com.google.common.collect.ImmutableList
 import com.google.common.util.concurrent.Futures
 import com.google.common.util.concurrent.ListenableFuture
@@ -492,7 +492,7 @@ class ParkAudioService : MediaLibraryService() {
                     }
                     APP_GEMINI -> {
                         NowPlayingStore.update(tr("Gemini Asistan"), tr("Sesli Asistan"), true)
-                        runCatching { com.autohub.park.ui.AssistantLauncher.launch(applicationContext) }
+                        runCatching { com.autolounge.park.ui.AssistantLauncher.launch(applicationContext) }
                     }
                     APP_GALLERY -> {
                         NowPlayingStore.update(tr("Galeri"), tr("Medya Kokpiti"), true)
